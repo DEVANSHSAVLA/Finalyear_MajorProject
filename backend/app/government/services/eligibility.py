@@ -61,6 +61,10 @@ def evaluate_rule(user_value: Any, operator: str, required_value: Any) -> bool:
         if isinstance(norm_req, list):
             return norm_user in norm_req
         return False
+    elif op in ("not_in", "not in"):
+        if isinstance(norm_req, list):
+            return norm_user not in norm_req
+        return True
     elif op == "boolean":
         return bool(norm_user) == bool(norm_req)
     return False

@@ -16,16 +16,16 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
         \item \textit{Review 2 Status:} \textbf{100\% Complete.}
     \end{itemize}
 
-    \item \textbf{Objective O2 (Hybrid RRF Retrieval Engine):} Develop a hybrid information retrieval engine fusing sparse lexical keyword matching (BM25) with dense semantic vector embeddings (\texttt{all-MiniLM-L6-v2}) utilizing Reciprocal Rank Fusion ($k=60$).
+    \item \textbf{Objective O2 (Hybrid RRF Retrieval Engine):} Develop a hybrid information retrieval engine fusing sparse lexical keyword matching (BM25) with dense semantic vector embeddings (384-dimensional feature-hash embedding provider for serverless execution, compatible with \texttt{all-MiniLM-L6-v2} schema) utilizing Reciprocal Rank Fusion ($k=60$).
     \begin{itemize}
         \item \textit{Acceptance Criterion:} Achieve Top-3 retrieval recall $\ge 85\%$ across a benchmark of 50 complex Indian statutory queries.
         \item \textit{Review 2 Status:} \textbf{Verified (88.4\% Top-3 Recall).}
     \end{itemize}
 
-    \item \textbf{Objective O3 (Citation Grounding and Hallucination Elimination):} Implement a deterministic post-retrieval verification circuit breaker (Gate 2) that checks retrieved claim-to-evidence text overlap.
+    \item \textbf{Objective O3 (Citation Grounding and Hallucination Suppression):} Implement a deterministic post-retrieval verification circuit breaker (Gate 2) that checks retrieved claim-to-evidence text overlap.
     \begin{itemize}
         \item \textit{Acceptance Criterion:} Zero ($0\%$) fabricated statutory section citations generated in response to out-of-domain or ambiguous citizen queries.
-        \item \textit{Review 2 Status:} \textbf{Verified (Gate 2 circuit breaker active; zero hallucinations).}
+        \item \textit{Review 2 Status:} \textbf{Verified (Gate 2 circuit breaker active; 0 ungrounded citations in benchmark suite).}
     \end{itemize}
 
     \item \textbf{Objective O4 (Legal Guidance Engine Statutory Corpus):} Ingest, structure, chunk, and index eight foundational Indian statutory frameworks (BNS 2023, BNSS 2023, Consumer Protection Act 2019, RTI Act 2005, IT Act 2000, Industrial Disputes Act 1947, Senior Citizens Act 2007, DV Act 2005).
@@ -36,7 +36,7 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
 
     \item \textbf{Objective O5 (Government Welfare Scheme Navigator):} Model and index a comprehensive catalog of at least 10 major Central and State welfare schemes with structured eligibility rules.
     \begin{itemize}
-        \item \textit{Acceptance Criterion:} Seeded catalog of $\ge 10$ schemes; automated rule evaluation matching citizen age, income, caste, and landholding.
+        \item \textit{Acceptance Criterion:} Seeded catalog of $\ge 10$ schemes; automated rule evaluation matching citizen age, income, caste, and landholding (incorporating June 2019 PM-KISAN expansion to all landholding families; subject to institutional/tax exclusions).
         \item \textit{Review 2 Status:} \textbf{100\% Complete (12 schemes seeded and active).}
     \end{itemize}
 
@@ -58,7 +58,7 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
         \item \textit{Review 2 Status:} \textbf{Verified (SHA-256 byte-exact roundtrip confirmed).}
     \end{itemize}
 
-    \item \textbf{Objective O9 (DPDP Act 2023 Privacy Compliance):} Enforce strict personal data protection controls, including JWT role-based access control, encrypted document storage, zero third-party telemetry, and cascade deletion.
+    \item \textbf{Objective O9 (DPDP Act 2023 Principles Alignment):} Enforce strict personal data protection controls, including JWT role-based access control, encrypted document storage, zero third-party telemetry, and cascade deletion.
     \begin{itemize}
         \item \textit{Acceptance Criterion:} Atomically purge all document files from S3 and records from database upon user account deletion request.
         \item \textit{Review 2 Status:} \textbf{100\% Complete and Verified.}
@@ -67,7 +67,7 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
     \item \textbf{Objective O10 (Production Cloud Deployment and Reliability):} Deploy the full-stack system to production cloud infrastructure (Vercel) with high availability and automated regression testing.
     \begin{itemize}
         \item \textit{Acceptance Criterion:} $\ge 99\%$ uptime, 0 static route build crashes, and $\ge 120$ passed backend unit/regression tests.
-        \item \textit{Review 2 Status:} \textbf{Operational (129 tests passed, 31 routes prerendered, 20/20 live API probes 200 OK).}
+        \item \textit{Review 2 Status:} \textbf{Operational (129 tests passed out of 130 collected [1 skipped], 31 Next.js 16 routes prerendered, 20/20 live API probes 200 OK).}
     \end{itemize}
 \end{enumerate}
 

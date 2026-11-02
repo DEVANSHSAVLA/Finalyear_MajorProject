@@ -493,26 +493,31 @@ with open(os.path.join(FRONT_MATTER_DIR, "certificate.tex"), "w", encoding="utf-
 \noindent
 {It is my pleasure to certify that \textbf{{\studentNamea}}, \textbf{{\studentNameb}}, \textbf{{\studentNamec}} and \textbf{{\studentNamed}} worked under my supervision for the B.Tech. Project entitled \textbf{{\mytitle}} and their work is of the level of requirement set up for the Project Review 2 in \textbf{{\branch}} by Shah \& Anchor Kutchhi Engineering College, Mumbai.}
 
-\bigskip
-\bigskip
-\noindent{\textbf{\mysupervisor}} \\
+\vspace{3\baselineskip}
+\noindent
+\begin{tabular}{@{}l}
+\textbf{\mysupervisor} \\
 Assistant Professor \\
 \mydep \\
 Shah \& Anchor Kutchhi Engineering College \\
 Mumbai -- 400 088, India
+\end{tabular}
 
 \vspace{2\baselineskip}
 \noindent
 {The Oral and Practical examination of \textbf{{\studentNamea}}, \textbf{{\studentNameb}}, \textbf{{\studentNamec}} and \textbf{{\studentNamed}}, B.Tech. in \branch, has been held on \dotfill}
 
-\vspace{4\baselineskip}
-\begin{tabular}{p{0.35\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
-\textbf{External Examiner} & \textbf{Internal Examiner} & \textbf{Guide: \mysupervisor}
+\vspace{3\baselineskip}
+\begin{tabular}{p{0.32\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\textbf{External Examiner} & \textbf{Internal Examiner} & \textbf{Project Guide} \\
+\vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill \\
+Name: & Name: & \mysupervisor \\
 \end{tabular}
 
-\vspace{4\baselineskip}
-\begin{tabular}{p{0.35\textwidth}p{0.35\textwidth}p{0.35\textwidth}}
+\vspace{2.5\baselineskip}
+\begin{tabular}{p{0.32\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
 \textbf{Head of Department} & \textbf{Principal} & \textbf{College Seal} \\
+\vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill & \vspace{1.5cm} \\
 \HoDName & \principalName & 
 \end{tabular}
 """)
@@ -583,7 +588,7 @@ Name of the Guide & \mysupervisor \\
 \hline
 Name of the Department & \mydep \\ 
 \hline
-Similar content (\%) identified & \textit{[INSTITUTIONAL TURNITIN RUN REQUIRED: $\le 10\%$]} \\ 
+Similar content (\%) identified & \dotfill \\ 
 \hline
 Acceptable Maximum Limit & 10\% \\
 \hline
@@ -623,12 +628,16 @@ We also thank all faculty members and technical staff of the Department of Compu
 \bigskip
 \bigskip
 \noindent
-\textbf{\studentNamea} (\NewRollNoa) \\
-\textbf{\studentNameb} (\NewRollNob) \\
-\textbf{\studentNamec} (\NewRollNoc) \\
-\textbf{\studentNamed} (\NewRollNod) \\
-Shah \& Anchor Kutchhi Engineering College, Mumbai \\
-Date: \dotfill
+\begin{tabular}{@{}ll}
+\textbf{\studentNamea} & (\NewRollNoa) \\
+\textbf{\studentNameb} & (\NewRollNob) \\
+\textbf{\studentNamec} & (\NewRollNoc) \\
+\textbf{\studentNamed} & (\NewRollNod) \\
+\end{tabular}
+
+\vspace{1.5\baselineskip}
+\noindent Shah \& Anchor Kutchhi Engineering College, Mumbai \\
+\noindent Date: \dotfill
 """)
 
 with open(os.path.join(FRONT_MATTER_DIR, "abstract.tex"), "w", encoding="utf-8") as f:
@@ -642,9 +651,9 @@ with open(os.path.join(FRONT_MATTER_DIR, "abstract.tex"), "w", encoding="utf-8")
 
 \noindent In democratic societies such as India, equal access to justice and public entitlements represents a foundational constitutional ideal. However, in practice, citizens face severe systemic friction arising from bureaucratic fragmentation across disconnected portals, dense statutory legalese, opaque welfare eligibility criteria, and prohibitive legal consultation costs. While commercial generative AI models offer conversational accessibility, their unconstrained deployment in legal and civic domains presents grave risks of legal prejudice due to pervasive hallucinations, fabricated case citations, and temporal invalidation of superseded statutes.
 
-This project presents \textbf{CivicSphere AI}, an agentic, evidence-grounded civic intelligence platform engineered specifically for the Indian socio-legal ecosystem. CivicSphere AI unifies four intelligent modules within a modular monolithic architecture: (i) an \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory Acts with a strict Gate 2 circuit breaker that switches to deterministic synthesis whenever citation grounding falls below confidence thresholds; (ii) a \textbf{Government Service Navigator} incorporating a catalog of 12 Central and State welfare schemes with dynamic, rule-based eligibility evaluation; (iii) a \textbf{Civic Knowledge and Agentic Graph} executing multi-hop relational reasoning across a 40+ node NetworkX multigraph combined with Reciprocal Rank Fusion (RRF) hybrid retrieval (BM25 sparse + dense cosine embeddings); and (iv) an \textbf{Intelligent Document Processing Pipeline} featuring sub-2.0 second heuristic regex extraction of notices and summons, coupled with durable, serverless-compatible Supabase S3 cloud persistence and strict Digital Personal Data Protection (DPDP) Act 2023 cascade purge compliance.
+This project presents \textbf{CivicSphere AI}, an agentic, evidence-grounded civic intelligence platform engineered specifically for the Indian socio-legal ecosystem. CivicSphere AI unifies four intelligent modules within a modular monolithic architecture: (i) an \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory Acts with a strict Gate 2 circuit breaker that switches to deterministic synthesis whenever citation grounding falls below confidence thresholds; (ii) a \textbf{Government Service Navigator} incorporating a catalog of 12 Central and State welfare schemes with dynamic, rule-based eligibility evaluation (incorporating the June 2019 PM-KISAN expansion to all landholding families); (iii) a \textbf{Civic Knowledge and Agentic Graph} executing multi-hop relational reasoning across a 40+ node NetworkX multigraph combined with Reciprocal Rank Fusion (RRF) hybrid retrieval (BM25 sparse + dense embeddings); and (iv) an \textbf{Intelligent Document Processing Pipeline} featuring sub-2.0 second heuristic regex extraction of notices and summons, coupled with durable, serverless-compatible Supabase S3 cloud persistence and strict Digital Personal Data Protection (DPDP) Act 2023 cascade purge alignment.
 
-Empirical verification on live Vercel production demonstrates 100\% pass rate across 129 backend automated tests (124 functional/regression tests and 5 server-side authorization enforcement tests), error-free static prerendering of 31 Next.js 14 frontend routes, 20/20 live HTTP API endpoints returning 200 OK, and byte-exact roundtrip cloud storage persistence. By translating abstract statutory rights into plain-language, verifiable procedural roadmaps, CivicSphere AI advances UN Sustainable Development Goal 16 (Target 16.3: Equal Access to Justice) while maintaining rigorous privacy and green computational efficiency.
+Empirical verification on live production demonstrates a comprehensive pass rate across 129 backend automated tests (130 collected, 1 skipped due to external network dependency, including 5 server-side authorization enforcement tests), error-free static prerendering of 31 Next.js 16 App Router frontend routes on React 19, 20/20 live HTTP API endpoints returning 200 OK, and byte-exact roundtrip cloud storage persistence. By translating abstract statutory rights into plain-language, verifiable procedural roadmaps and official portal destinations (such as e-Jagriti), CivicSphere AI advances UN Sustainable Development Goal 16 (Target 16.3: Equal Access to Justice) while maintaining rigorous privacy and green computational efficiency.
 
 \bigskip
 \noindent {\large \bf{Keywords}:} Civic Intelligence, Legal NLP, Retrieval-Augmented Generation, Reciprocal Rank Fusion, Knowledge Graphs, Citation Verification, DPDP Act 2023, Multi-Agent Systems, E-Governance, Access to Justice.

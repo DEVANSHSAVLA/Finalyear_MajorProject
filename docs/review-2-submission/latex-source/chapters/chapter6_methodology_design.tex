@@ -14,7 +14,7 @@ To deliver high performance, maintainability, and strict security without the di
 
 The five architectural tiers operate as follows:
 \begin{enumerate}
-    \item \textbf{Tier 1: Presentation Layer (Next.js 14):} Engineered using React 18, Tailwind CSS, Lucide Icons, and Next.js App Router. Provides a responsive, accessible citizen portal featuring light/dark mode, client-side input sanitization, and 31 statically prerendered routes.
+    \item \textbf{Tier 1: Presentation Layer (Next.js 16 App Router):} Engineered using React 19, Tailwind CSS, Lucide Icons, and Next.js App Router. Provides a responsive, accessible citizen portal featuring light/dark mode, client-side input sanitization, and 31 statically prerendered routes.
     \item \textbf{Tier 2: API Gateway and Security Perimeter (FastAPI):} Asynchronous ASGI engine managing routing, CORS policies, rate limiting, and dependency-injected JWT authentication with Role-Based Access Control (RBAC).
     \item \textbf{Tier 3: Core Orchestrator and Specialist Agents:} Manages the execution lifecycle across four specialized agents: Legal Guidance Agent, Government Scheme Navigator Agent, Knowledge Graph Agent, and Document Processing Agent.
     \item \textbf{Tier 4: Hybrid Retrieval and Validation Engine:} Implements BM25 lexical search, dense cosine vector embeddings, NetworkX multi-hop graph traversal, and the Gate 2 citation circuit breaker.

@@ -74,8 +74,8 @@ def test_case_workspace_continuity_e2e():
             court_reference=evidence["case_number"],
             legal_findings=legal_finding.what_you_may_consider_doing,
             government_services=[{
-                "service_id": "svc_edaakhil_01",
-                "name": "e-Daakhil Consumer Portal Filing",
+                "service_id": "svc_ejagriti_01",
+                "name": "e-Jagriti Consumer Portal Filing",
                 "status": "RECOMMENDED"
             }],
             timeline=[

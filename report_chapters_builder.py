@@ -24,8 +24,9 @@ def add_p(doc, text, bold=False, italic=False, size=12, color=COLOR_BODY, align=
     run.font.color.rgb = color
     return p
 
-def add_chapter_heading(doc, num_str, title_str):
-    doc.add_page_break()
+def add_chapter_heading(doc, num_str, title_str, add_break=True):
+    if add_break:
+        doc.add_page_break()
     p_ch = doc.add_paragraph()
     p_ch.alignment = WD_ALIGN_PARAGRAPH.LEFT
     p_ch.paragraph_format.space_before = Pt(12)

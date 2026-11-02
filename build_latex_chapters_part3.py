@@ -20,11 +20,11 @@ At the Review 1 stage, modules relating to Government Service Navigation and Doc
 \begin{tabular}{|l|p{5cm}|p{3cm}|p{4.5cm}|}
 \hline
 \textbf{Module / Component} & \textbf{Core Capabilities Implemented} & \textbf{Review 2 Status} & \textbf{Verification Evidence} \\ \hline
-\textbf{Module A: Legal Guidance} & 8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker & \textbf{OPERATIONAL (100\%)} & Passes 129/129 automated tests; zero hallucinated citations \\ \hline
+\textbf{Module A: Legal Guidance} & 8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker & \textbf{OPERATIONAL (100\%)} & Passes 129 backend tests; zero ungrounded citations \\ \hline
 \textbf{Module B: Gov Navigator} & 12 Welfare schemes, rule-based eligibility evaluation, document checklists & \textbf{OPERATIONAL (100\%)} & Live UI scheme filtering; active REST endpoint \texttt{/api/v1/schemes} \\ \hline
 \textbf{Module C: Civic Knowledge} & 40+ node NetworkX graph, multi-hop traversal, RRF fusion, temporal metadata & \textbf{OPERATIONAL (100\%)} & Graph traversal verified; multi-hop scheme discovery active \\ \hline
 \textbf{Module D: Document AI} & Heuristic regex parser, PDF layout triage, Supabase S3 private storage & \textbf{OPERATIONAL (100\%)} & Sub-2.0s parsing latency; byte-exact S3 roundtrip verified \\ \hline
-\textbf{Frontend Web Portal} & Next.js 14 App Router, Tailwind CSS, Lucide icons, Dark/Light modes & \textbf{OPERATIONAL (100\%)} & 31 static routes prerendered in 18.9s without errors \\ \hline
+\textbf{Frontend Web Portal} & Next.js 16 App Router on React 19, Tailwind CSS, Lucide icons & \textbf{OPERATIONAL (100\%)} & 31 static routes prerendered without errors \\ \hline
 \textbf{API Gateway \& Security} & FastAPI ASGI, JWT bearer auth, RBAC, DPDP cascade purge, rate limits & \textbf{OPERATIONAL (100\%)} & 5/5 server-side auth enforcement tests pass (HTTP 401/403) \\ \hline
 \textbf{Durable Cloud Persistence} & Supabase private S3 bucket, signed URLs, service-role keys & \textbf{OPERATIONAL (100\%)} & Ephemeral \texttt{/tmp} blocker closed; cross-invocation persistence verified \\ \hline
 \end{tabular}%
@@ -37,7 +37,7 @@ Module A provides contextual, evidence-grounded legal guidance across eight foun
 \begin{enumerate}
     \item \textbf{Bharatiya Nyaya Sanhita (BNS 2023 / IPC):} Offenses against the human body, property offenses, criminal breach of trust, cheating, and criminal intimidation.
     \item \textbf{Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC):} Arrest procedures, FIR registration mandates (Section 173 BNSS), bail provisions, and magistrate complaint procedures.
-    \item \textbf{Consumer Protection Act 2019:} Product liability, unfair trade practices, e-commerce deficiency in service, and filing jurisdictions for District/State/National Commissions (e-Daakhil).
+    \item \textbf{Consumer Protection Act 2019:} Product liability, unfair trade practices, e-commerce deficiency in service, and filing jurisdictions for District/State/National Commissions via e-Jagriti (https://e-jagriti.gov.in).
     \item \textbf{Right to Information (RTI) Act 2005:} Citizen application formats under Section 6(1), 30-day statutory disclosure deadlines, and First/Second Appellate Authority procedures.
     \item \textbf{Information Technology Act 2000:} Cyber fraud, identity theft (Section 66C), privacy violations (Section 66E), and intermediary liability regulations.
     \item \textbf{Industrial Disputes Act 1947:} Unfair labour practices, unlawful retrenchment procedures, mandatory conciliation, and Labour Court jurisdiction.
@@ -46,12 +46,12 @@ Module A provides contextual, evidence-grounded legal guidance across eight foun
 \end{enumerate}
 
 \subsection{Gate 2 Statutory Circuit Breaker}
-To ensure zero hallucination, the Legal Guidance Engine implements a two-stage verification circuit. When a user submits an ambiguous or out-of-domain query (e.g., ``Can I sue my neighbour for playing loud music at 3 PM?''), the system computes the claim-to-evidence ratio against retrieved chunks. If no statutory section provides a direct cause of action, the system halts neural generation and activates the deterministic circuit breaker:
+To suppress citation hallucination, the Legal Guidance Engine implements a two-stage verification circuit. When a user submits an ambiguous or out-of-domain query (e.g., ``Can I sue my neighbour for playing loud music at 3 PM?''), the system computes the claim-to-evidence ratio against retrieved chunks. If no statutory section provides a direct cause of action, the system halts neural generation and activates the deterministic circuit breaker:
 \begin{verbatim}
 [CIVICSPHERE CIRCUIT BREAKER ACTIVE: GATE 2]
 Query evaluated: Out-of-Domain / Insufficient Statutory Grounding.
 Action: Safe Deterministic Fallback Triggered.
-Status: Zero Hallucinated Citations Generated.
+Status: Zero Ungrounded Citations Generated.
 \end{verbatim}
 This design ensures that citizens are never provided with fabricated legal rights or imaginary court precedents.
 
@@ -59,7 +59,7 @@ This design ensures that citizens are never provided with fabricated legal right
 \label{sec:module_b_impl}
 Module B models twelve transformative Central and State welfare programs, capturing granular eligibility rules and documentary prerequisites:
 \begin{enumerate}
-    \item \textbf{PM-KISAN:} Direct income support of INR 6,000/year to small and marginal landholding farmer families.
+    \item \textbf{PM-KISAN:} Direct income support of INR 6,000/year to all cultivable landholding farmer families (expanded June 2019 beyond the legacy 2-hectare ceiling; subject to institutional and tax exclusions).
     \item \textbf{Ayushman Bharat PM-JAY:} Secondary and tertiary health coverage up to INR 5,00,000 per family per year for vulnerable households identified via SECC data.
     \item \textbf{Pradhan Mantri Awas Yojana (PMAY):} Credit-linked subsidy and financial assistance for pucca house construction for EWS/LIG families.
     \item \textbf{National Social Assistance Programme (NSAP):} Monthly pensions for elderly, widows, and disabled persons living below the poverty line.
@@ -146,16 +146,18 @@ The deployed CivicSphere AI platform is illustrated in Figures~\ref{fig:screens_
 To guarantee software engineering excellence, CivicSphere AI was subjected to an exhaustive automated test battery on production infrastructure:
 
 \begin{itemize}
-    \item \textbf{129 Passed Backend Automated Tests:}
+    \item \textbf{129 Passed Backend Automated Tests (130 Collected, 1 Skipped):}
     \begin{itemize}
         \item 124 Unit, Functional, and Regression Tests: Complete coverage of query normalization, BM25 indexing, dense vector search, Gate 2 circuit-breaker triggering, scheme eligibility logic, and PDF heuristic regex parsing.
+        \item 5 Targeted Unit Tests: Explicit verification of PM-KISAN June 2019 expansion (farmers with $>2$ hectares eligible) and statutory exclusion criteria enforcement.
         \item 5 Server-Side Authorization Enforcement Tests: Validates that unauthenticated users and unauthorized citizen roles cannot access administrator routes (HTTP 401/403 enforced at backend gateway, independent of frontend guards).
-        \item Test Execution Outcome: \textbf{129 passed in 4.82s (100\% pass rate).}
+        \item 1 Skipped Test: \texttt{test\_live\_sources\_smoke.py} skipped due to external live internet network dependency in isolated test environments.
+        \item Test Execution Outcome: \textbf{129 passed, 1 skipped in 19.35s.}
     \end{itemize}
 
     \item \textbf{31 Static Frontend Routes Prerendered:}
     \begin{itemize}
-        \item Build Execution: Next.js 14 App Router production build compiled in 18.9 seconds.
+        \item Build Execution: Next.js 16 App Router on React 19 production build compiled successfully.
         \item 0 Static Generation Crashes; 0 Hydration Errors; 0 Broken Dynamic Route Links.
     \end{itemize}
 
@@ -167,12 +169,12 @@ To guarantee software engineering excellence, CivicSphere AI was subjected to an
 
     \item \textbf{Durable Supabase S3 Cloud Storage Byte-Exact Persistence:}
     \begin{itemize}
-        \item Synthetic PDF document (size: 4,812 bytes, SHA-256: \texttt{e3b0c44298fc...}) uploaded via authenticated multipart request.
+        \item Synthetic PDF document (size: 4,812 bytes) uploaded via authenticated multipart request.
         \item Downloaded across independent, freshly invoked serverless runtime instances.
         \item SHA-256 hash match verified: 100\% byte-exact roundtrip; cross-user access denied (HTTP 403).
     \end{itemize}
 
-    \item \textbf{Digital Personal Data Protection (DPDP) Act Cascade Purge:}
+    \item \textbf{Digital Personal Data Protection (DPDP) Act Cascade Purge Alignment:}
     \begin{itemize}
         \item Executed user account deletion request.
         \item Verified atomic deletion of linked S3 document objects and PostgreSQL case dossiers.
@@ -213,10 +215,10 @@ Government Service Navigator \& Scheme Catalog & C & C & \textbf{A / R} & I \\ \
 Knowledge Graph (NetworkX) \& RRF Retrieval & \textbf{A / R} & R & C & C \\ \hline
 Intelligent Document Processing \& Regex Heuristics & C & I & C & \textbf{A / R} \\ \hline
 Supabase Cloud Storage Adapter \& Durability & R & I & I & \textbf{A / R} \\ \hline
-Next.js 14 Frontend Portal \& UI Styling & C & R & \textbf{A / R} & C \\ \hline
+Next.js 16 Frontend Portal \& UI Styling & C & R & \textbf{A / R} & C \\ \hline
 Automated Test Suite (129 Tests) \& Security & \textbf{A / R} & C & C & R \\ \hline
 Production CI/CD \& Vercel Cloud Deployment & \textbf{A / R} & I & I & C \\ \hline
-DPDP Act Compliance \& Privacy Auditing & C & \textbf{A / R} & I & R \\ \hline
+DPDP Act Principles Alignment \& Privacy Auditing & C & \textbf{A / R} & I & R \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -252,12 +254,12 @@ In compliance with Level 4 rubric requirements, each team member provides an ind
 
 \section{External Engagement and Industry Exposure Profiles}
 \label{sec:external_engagement}
-To ground academic learning in industrial best practices, team members engaged with professional industry workflows, internships, and advanced certifications:
+To ground academic learning in industrial best practices, team members engaged with professional industry workflows, internships, and advanced training:
 \begin{itemize}
-    \item \textbf{Devansh Savla:} Completed an intensive Software Engineering Internship at \textbf{ElevateLabs}, working on distributed microservices, RESTful API design, and cloud performance optimization. Holds professional certifications in Cisco Networking (CCNA modules) and Big Data Analytics.
-    \item \textbf{Khushbu Chheda:} Completed industry training in Full-Stack Web Development, Data Structures, and Legal Informatics, applying industry UX standards and statutory modeling to CivicSphere AI.
-    \item \textbf{Anushka Adsul:} Completed advanced certifications in Cloud Architecture and API Engineering, mastering modern frontend state management and asynchronous service integration.
-    \item \textbf{Rahul Singh:} Completed industry training in Python Data Engineering, Cloud Security, and Automated Test Infrastructure, focusing on object storage lifecycle management and secure authentication.
+    \item \textbf{Devansh Savla:} Completed an intensive Software Engineering Internship at \textbf{ElevateLabs}, working on distributed microservices, RESTful API design, and cloud performance optimization. Holds coursework/certifications in Cisco Networking (CCNA modules) and Big Data Analytics. \textit{[Proof Pending / Student Action: Submit certificate copy for college dossier]}
+    \item \textbf{Khushbu Chheda:} Completed industry training in Full-Stack Web Development, Data Structures, and Legal Informatics, applying industry UX standards and statutory modeling to CivicSphere AI. \textit{[Proof Pending / Student Action: Submit certificate copy]}
+    \item \textbf{Anushka Adsul:} Completed advanced certifications in Cloud Architecture and API Engineering, mastering modern frontend state management and asynchronous service integration. \textit{[Proof Pending / Student Action: Submit certificate copy]}
+    \item \textbf{Rahul Singh:} Completed industry training in Python Data Engineering, Cloud Security, and Automated Test Infrastructure, focusing on object storage lifecycle management and secure authentication. \textit{[Proof Pending / Student Action: Submit certificate copy]}
 \end{itemize}
 """
 
@@ -266,14 +268,14 @@ with open(os.path.join(CHAPTERS_DIR, "chapter9_teamwork_reflections.tex"), "w", 
 print("Wrote chapter9_teamwork_reflections.tex")
 
 # =========================================================================
-# CHAPTER 10: Implementation Plan for Semester 8
+# CHAPTER 10: Proposed Implementation Plan for Semester 8
 # =========================================================================
-ch10_content = r"""\chapter{Implementation Plan for Semester 8}
+ch10_content = r"""\chapter{Proposed Implementation Plan for Semester 8}
 \label{ch:sem8_roadmap}
 
 \section{Review 2 Completion Milestone Summary}
 \label{sec:sem8_summary}
-With the successful completion of Review 2, the core functional and architectural foundation of CivicSphere AI is fully established: all four domain intelligence modules are operational, hybrid RRF retrieval and Gate 2 circuit-breakers are active, 129 backend tests are passing, and durable Supabase S3 storage is verified. The objective for Semester 8 is to transition the platform from a verified academic prototype to a battle-tested, multilingual public system ready for final university defense and field trials.
+With the successful completion of Review 2, the core functional and architectural foundation of CivicSphere AI is fully established: all four domain intelligence modules are operational, hybrid RRF retrieval and Gate 2 circuit-breakers are active, 129 backend tests are passing (130 collected, 1 skipped), and durable Supabase S3 storage is verified. The objective for Semester 8 (proposed future work) is to transition the platform from a verified academic prototype to a battle-tested, multilingual public system ready for final university defense and field trials.
 
 \section{Practical 5-Phase Semester 8 Delivery Plan}
 \label{sec:5phase_plan}
@@ -320,7 +322,7 @@ ch11_content = r"""\chapter{Summary and Conclusions}
 \label{sec:conclusion_summary}
 This B.Tech Major Project report has presented the comprehensive research, design, implementation, and empirical verification of \textbf{CivicSphere AI} at the Review 2 milestone. Driven by the urgent need to bridge systemic informational and cognitive barriers in the Indian socio-legal ecosystem, the project has successfully unified four core intelligence capabilities:
 \begin{itemize}
-    \item An \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory acts with a deterministic Gate 2 circuit breaker that guarantees zero hallucinated legal citations.
+    \item An \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory acts with a deterministic Gate 2 circuit breaker that reliably suppresses hallucinated statutory citations.
     \item A \textbf{Government Service Navigator} incorporating a catalog of 12 Central and State welfare programs with dynamic rule-based eligibility evaluation and document checklists.
     \item A \textbf{Civic Knowledge and Agentic Graph} executing multi-hop relational reasoning across a 40+ node NetworkX multigraph combined with Reciprocal Rank Fusion hybrid retrieval.
     \item An \textbf{Intelligent Document Processing Pipeline} executing sub-2.0 second heuristic regex extraction of court notices, backed by durable Supabase S3 private cloud storage and DPDP Act 2023 cascade purge compliance.

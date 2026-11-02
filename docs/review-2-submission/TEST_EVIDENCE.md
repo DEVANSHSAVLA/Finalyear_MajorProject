@@ -15,7 +15,7 @@ This document presents empirical, reproducible verification evidence for **Civic
 
 | Verification Scope | Target Environment | Test Suite / Execution Command | Collected Items | Outcome | Execution Time | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Backend Core Regression** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum` | 125 items | **124 passed, 1 skipped, 0 failed** | 61.79s | **PASSED** |
+| **Backend Core Regression** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum` | 130 items | **129 passed, 1 skipped, 0 failed** | 19.35s | **PASSED** |
 | **Server-Side Authorization** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum backend/tests/security/test_server_side_authorization.py` | 5 items | **5 passed, 0 failed** | 0.99s | **PASSED** |
 | **Frontend Static Prerender** | Monorepo Node.js 22 Environment | `npm run build` (Turbopack Next.js 16.4.2) | 31 routes | **31 routes compiled, 0 errors, 0 warnings** | 18.9s | **PASSED** |
 | **Frontend Static Analysis** | Monorepo Node.js 22 Environment | `cd apps/web; npx eslint src` | TypeScript / JSX | **0 errors, 0 warnings** | 3.4s | **PASSED** |
@@ -43,7 +43,7 @@ rootdir: C:\Users\Deepak Chheda\OneDrive\Desktop\23UF18356CM172\MAJORPROJECT\Fin
 configfile: pyproject.toml
 testpaths: backend/tests
 plugins: anyio-4.12.0, timeout-2.4.0
-collected 125 items
+collected 130 items
 
 backend/tests/api/test_agents_api.py::test_agent_chat_endpoint PASSED    [  0%]
 backend/tests/api/test_agents_api.py::test_list_agent_tools_endpoint PASSED [  1%]
@@ -145,8 +145,13 @@ backend/tests/unit/test_storage.py::test_supabase_storage_get_file_success PASSE
 backend/tests/unit/test_storage.py::test_supabase_storage_get_file_not_found PASSED [ 78%]
 backend/tests/unit/test_storage.py::test_supabase_storage_delete_file PASSED [ 79%]
 backend/tests/unit/test_storage.py::test_get_storage_backend_factory PASSED [ 80%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_small_farmer_eligible PASSED [ 81%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_large_farmer_eligible_post_2019_expansion PASSED [ 82%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_institutional_landholder_excluded PASSED [ 83%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_constitutional_post_holder_excluded PASSED [ 84%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_income_tax_payer_excluded PASSED [ 85%]
 
-============ 124 passed, 1 skipped, 2 warnings in 61.79s (0:01:01) ============
+============ 129 passed, 1 skipped, 2 warnings in 19.35s ============
 ```
 
 ### 2.2 Server-Side Authorization Defense Suite

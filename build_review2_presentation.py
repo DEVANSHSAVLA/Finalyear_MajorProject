@@ -195,9 +195,9 @@ def create_presentation():
     # Card 3: Core Mission
     add_card(s1, Inches(8.75), card_top, card_w, card_h, "PROJECT MISSION", [
         ("Unified Access:", "Bridging statutory law, welfare schemes & citizen documents."),
-        ("Evidence-Grounded:", "Strict zero-hallucination citation verification."),
-        ("Privacy & Trust:", "Full DPDP Act 2023 compliance & durable security."),
-        ("Verification:", "129 tests passed, 31 web routes live on Vercel.")
+        ("Evidence-Grounded:", "Deterministic citation grounding with Gate 2 verification."),
+        ("Privacy & Trust:", "Aligned with core DPDP Act 2023 principles & durable cloud storage."),
+        ("Empirical Testing:", "129 passed backend tests, 31 static web routes, 20 live HTTP routes.")
     ], title_color=COLOR_TEAL)
 
     # =========================================================================
@@ -234,12 +234,12 @@ def create_presentation():
         ]),
         ("05. Sustainability & Testing", [
             ("UN SDG Alignment:", "SDG 16 (Primary), 10, 9 & green compute (Slide 19)"),
-            ("Empirical Testing:", "129 tests, 31 routes, live cloud storage (Slide 20)")
+            ("Empirical Testing:", "129 passed tests, 31 routes, live cloud storage (Slide 20)")
         ]),
         ("06. Teamwork & Roadmap", [
             ("RACI & Collaboration:", "Engineering challenge case study (Slide 21)"),
-            ("Reflections & Industry:", "Individual growth & internship exposure (Slide 22)"),
-            ("Semester 8 Roadmap:", "5-phase delivery plan for final defense (Slide 23)"),
+            ("Reflections & Industry:", "Individual growth & verified industry skills (Slide 22)"),
+            ("Semester 8 Roadmap:", "Proposed 5-phase delivery plan for final defense (Slide 23)"),
             ("Academic Defense:", "Contributions, reproducibility & Q&A (Slide 24)")
         ])
     ]
@@ -262,7 +262,7 @@ def create_presentation():
     add_card(s3, Inches(0.6), Inches(1.3), Inches(12.133), Inches(1.6), "1. THE CURRENT CITIZEN REALITY IN INDIA", [
         ("Bureaucratic Fragmentation:", "Legal aid, government welfare schemes, official document formats, and grievance redressal exist in isolated, non-communicating silos (e-Courts, India Code, myScheme, State portals)."),
         ("Cognitive & Language Barriers:", "Statutory laws and procedural notices are authored in dense archaic English or formal legalese, effectively disenfranchising rural, semi-literate, and vulnerable citizens."),
-        ("High Cost of Legal Counsel:", "Private advocates charge prohibitive consultation fees, while overburdened legal aid clinics lack automated intake triage to manage the crushing 50+ million case backlog.")
+        ("High Cost of Legal Counsel:", "Private advocates charge prohibitive consultation fees, while overburdened legal aid clinics lack automated intake triage to manage heavy case backlogs.")
     ], title_color=COLOR_NAVY)
 
     add_card(s3, Inches(0.6), Inches(3.1), Inches(12.133), Inches(1.8), "2. SEVEN CORE CITIZEN PAIN POINTS IDENTIFIED", [
@@ -270,14 +270,14 @@ def create_presentation():
         ("2. Official Notice Panic:", "Inability to decipher administrative show-cause notices, summons, or statutory compliance deadlines."),
         ("3. Hidden Welfare Entitlements:", "Eligible marginalized citizens miss out on life-changing central/state schemes due to opaque discovery."),
         ("4. Procedural & Paperwork Friction:", "Missing required documentation checklists leads to repeated portal rejections and harassment."),
-        ("5. Prohibitive Advisory Costs:", "Over 70% of lower-income citizens abandon legitimate claims due to inability to afford preliminary counsel."),
-        ("6. Hallucination & Bad Advice:", "General AI chatbots (ChatGPT/Gemini) fabricate non-existent sections, generating dangerous legal misinformation.")
+        ("5. Prohibitive Advisory Costs:", "Significant legal cost barriers deter vulnerable citizens from seeking timely counsel (Tilak et al., 2023)."),
+        ("6. Hallucination & Bad Advice:", "General AI chatbots fabricate non-existent sections, generating dangerous legal misinformation without statutory grounds.")
     ], title_color=COLOR_TEAL)
 
     add_card(s3, Inches(0.6), Inches(5.1), Inches(12.133), Inches(1.7), "3. THE CIVICSPHERE AI RESPONSE", [
         ("Evidence-Grounded Single Window:", "A unified, conversational platform synthesizing statutory guidance, scheme discovery, and document triage."),
-        ("Strict Grounding Verification:", "Zero-hallucination architecture: every generated guidance claim is linked directly to authentic statutory sections."),
-        ("Actionable Citizen Roadmap:", "Transforms abstract legal principles into step-by-step procedural checklists, official URLs, and legal-aid escalation.")
+        ("Strict Grounding Verification:", "Evidence-grounded architecture: claims are checked against authentic statutory sections with deterministic fallback."),
+        ("Actionable Citizen Roadmap:", "Transforms abstract legal principles into step-by-step procedural checklists, official URLs (e.g. e-Jagriti), and legal-aid escalation.")
     ], title_color=COLOR_NAVY)
 
     # =========================================================================
@@ -291,7 +291,7 @@ def create_presentation():
             ("Chalkidis et al. (LegalBench):", "Domain-specific legal benchmarks show general LLMs fail on statutory reasoning."),
             ("Zhong et al. & Joshi et al.:", "Indian legal corpora require hierarchical section parsing and jurisdictional priors."),
             ("Lewis et al. & Gao et al. (RAG):", "Pure vector search suffers from semantic drift; hybrid BM25+dense is essential for exact law citations."),
-            ("Shuster et al. (Hallucination):", "Post-retrieval verification circuits reduce citation fabrications by over 80%.")
+            ("Shuster et al. (Hallucination):", "Post-retrieval verification circuits significantly suppress citation hallucination in RAG.")
         ]),
         ("Theme 3 & 4: Knowledge Graphs & Multi-Agents", [
             ("Ji et al. & Pan et al. (KGs):", "Knowledge graphs ground generative models in verified relational facts and statutory hierarchies."),
@@ -308,7 +308,7 @@ def create_presentation():
         ("Theme 7: Digital India & E-Governance", [
             ("Gupta et al. & Sharma et al.:", "Indian e-governance fails without localized language support and simplified citizen workflows."),
             ("Kumar et al. (Access to Justice):", "Digital legal assistance must prioritize the unrepresented litigant and public legal-aid clinics."),
-            ("DPDP Act 2023 Principles:", "Statutory requirement for purpose limitation, hard data deletion, and transparent audit logging.")
+            ("Statutory Context (DPDP Act 2023):", "Legislative foundation for purpose limitation, hard data deletion, and transparent audit logging.")
         ])
     ]
 
@@ -353,15 +353,14 @@ def create_presentation():
     rows = [
         ["Evaluation Dimension", "India Code / e-Courts", "myScheme / Gov Portals", "Commercial LLMs (GPT/Claude)", "CivicSphere AI (Ours)"],
         ["Conversational Triage", "No (Keyword lookup only)", "No (Filter forms only)", "Yes (Generic conversational)", "Yes (Domain-tuned agentic)"],
-        ["Statutory Citation Grounding", "Yes (Static text dump)", "No (Informational only)", "No (Frequent hallucinations)", "Yes (100% Gate 2 Verified)"],
+        ["Statutory Citation Grounding", "Yes (Static text dump)", "No (Informational only)", "No (Frequent hallucinations)", "Yes (Deterministic Gate 2 Verified)"],
         ["Welfare Scheme Matching", "No", "Yes (Siloed search)", "Partial (Static/Outdated)", "Yes (Dynamic rule evaluation)"],
         ["Document Intelligence", "No (PDF download only)", "No (Upload only)", "Partial (Raw OCR/Vision)", "Yes (Civic regex + Supabase S3)"],
         ["Multi-Hop Relational Reasoning", "No", "No", "Weak (Unstructured text)", "Yes (NetworkX Knowledge Graph)"],
-        ["Data Privacy & DPDP Compliance", "N/A (Public data only)", "Standard Gov servers", "Commercial Cloud (Data Risk)", "Yes (Zero telemetry + hard purge)"],
+        ["Data Privacy & DPDP Principles", "N/A (Public data only)", "Standard Gov servers", "Commercial Cloud (Data Risk)", "Yes (No telemetry + user-triggered purge)"],
         ["Durable Citizen Case Workspace", "No", "No", "No", "Yes (Encrypted case dossier)"]
     ]
 
-    # Add styled table
     shape_tbl = s6.shapes.add_table(8, 5, Inches(0.6), Inches(1.3), Inches(12.133), Inches(5.5))
     tbl = shape_tbl.table
     tbl.columns[0].width = Inches(2.8)
@@ -445,7 +444,7 @@ def create_presentation():
         ["Identified Research Gap", "Engineered Technical Solution", "CivicSphere Implemented Architecture", "Empirical Validation"],
         ["Domain Fragmentation", "Unified Multi-Agent Orchestrator", "FastAPI router + shared Pydantic data schemas", "Seamless cross-module context passing"],
         ["Retrieval Brittleness", "Reciprocal Rank Fusion (RRF) Hybrid Search", "BM25 sparse index + dense cosine vector fusion", "Top-3 retrieval recall improved to 88.4%"],
-        ["Citation Hallucination", "Gate 2 Statutory Circuit Breaker", "Deterministic fallback + regex citation verification", "Zero hallucinated citations in test suite"],
+        ["Citation Hallucination", "Gate 2 Statutory Circuit Breaker", "Deterministic fallback + regex citation verification", "Zero ungrounded citations in benchmark suite"],
         ["Temporal Invalidation", "Relational Temporal Knowledge Graph", "NetworkX multigraph with 'valid_until' metadata", "Automatic flagging of amended/repealed Acts"],
         ["Uncontrolled Agency", "Strict Role-Based Tool Gating & RBAC", "JWT dependency-injected route security", "5/5 server-side auth tests passing"],
         ["Document Disconnect", "Heuristic Civic Document Parser", "pdfplumber + regex extraction + Supabase S3", "Sub-2.0s parsing & byte-exact roundtrip"]
@@ -491,15 +490,15 @@ def create_presentation():
 
     obj_rows = [
         ["ID", "Objective Description", "Quantitative Target Metric", "Review 2 Status", "Verified Evidence"],
-        ["O1", "Unified Platform Architecture", "Modular integration of Law, Schemes & Docs", "100% COMPLETE", "FastAPI modular backend operational"],
+        ["O1", "Unified Platform Architecture", "Modular integration of Law, Schemes & Docs", "OPERATIONAL", "FastAPI modular backend operational"],
         ["O2", "Hybrid Retrieval Engine", "Reciprocal Rank Fusion (BM25 + Dense)", "IMPLEMENTED", "Top-3 retrieval recall verified at 88.4%"],
-        ["O3", "Citation Grounding & Verification", "Zero hallucinated statutory sections", "VERIFIED", "Gate 2 circuit breaker active (0 halluc.)"],
+        ["O3", "Citation Grounding & Verification", "Deterministic grounding against statutes", "VERIFIED", "Gate 2 circuit breaker active (0 ungrounded)"],
         ["O4", "Legal Guidance Engine Coverage", "Coverage of 8 core Indian statutory Acts", "100% COMPLETE", "BNS, BNSS, Consumer, RTI, IT, etc."],
-        ["O5", "Government Scheme Navigator", "Catalog of >= 10 Central/State welfare schemes", "100% COMPLETE", "12 schemes fully indexed & queryable"],
+        ["O5", "Government Scheme Navigator", "Catalog of >= 10 Central/State welfare schemes", "100% COMPLETE", "12 schemes indexed & queryable (PM-KISAN expanded)"],
         ["O6", "Knowledge Graph Traversal", ">= 30 nodes & multi-hop relational search", "100% COMPLETE", "NetworkX graph (40+ nodes, 60+ edges)"],
         ["O7", "Document Metadata Extraction", "Sub-2.0 second triage of PDF notices", "VERIFIED", "Heuristic parser extracts dates, fines, refs"],
         ["O8", "Durable Private Cloud Storage", "Byte-exact persistent storage (S3)", "VERIFIED", "Supabase private S3 roundtrip verified"],
-        ["O9", "DPDP Act 2023 Compliance", "Cascade deletion + zero telemetry leakage", "100% COMPLETE", "Account & doc purge with audit retention"],
+        ["O9", "DPDP Principles Alignment", "Cascade deletion + zero telemetry leakage", "IMPLEMENTED", "Account & doc purge with audit retention"],
         ["O10", "Production Cloud Deployment", ">= 99% availability & sub-1s UI responses", "OPERATIONAL", "Vercel live deployment (31 routes, 20 APIs)"]
     ]
 
@@ -566,7 +565,7 @@ def create_presentation():
     add_card(s11, Inches(0.6), Inches(1.3), Inches(3.9), Inches(5.5), "1. EVIDENCE-GROUNDED GUIDANCE", [
         ("Deterministic Circuit Breaker:", "If retrieved legal evidence falls below the confidence threshold, the system triggers Gate 2 deterministic synthesis instead of hallucinating."),
         ("Statutory Traceability:", "Every assertion links to specific Acts and Sections (e.g. Section 35(1) Consumer Protection Act 2019)."),
-        ("Official Portal Deep-Links:", "Directs citizens to authentic portals (e-Daakhil, myScheme, e-Courts) rather than third-party sites.")
+        ("Official Portal Deep-Links:", "Directs citizens to authentic portals (e-Jagriti [e-jagriti.gov.in], myScheme, e-Courts) rather than third-party sites.")
     ], title_color=COLOR_NAVY)
 
     add_card(s11, Inches(4.7), Inches(1.3), Inches(3.9), Inches(5.5), "2. CROSS-DOMAIN SYNERGY", [
@@ -576,7 +575,7 @@ def create_presentation():
     ], title_color=COLOR_TEAL)
 
     add_card(s11, Inches(8.8), Inches(1.3), Inches(3.9), Inches(5.5), "3. PRIVACY & ENTERPRISE DESIGN", [
-        ("DPDP Act 2023 Adherence:", "Enforces hard cascade deletion of user files and personal records with immutable audit log retention."),
+        ("DPDP Act 2023 Alignment:", "Enforces hard cascade deletion of user files and personal records with immutable audit log retention."),
         ("Durable Supabase S3 Storage:", "Replaced fragile local `/tmp` with serverless-compatible encrypted private object buckets."),
         ("Zero Telemetry Leakage:", "No citizen queries or uploaded documents are ever used for model retraining or external telemetry.")
     ], title_color=COLOR_NAVY)
@@ -592,11 +591,11 @@ def create_presentation():
             ("Statutory Coverage:", "8 major Indian Acts (BNS/IPC, BNSS/CrPC, Consumer Protection, RTI, IT Act, Labour, Senior Citizens, DV)."),
             ("Retrieval Pipeline:", "Hybrid BM25 + dense vector search across granular statutory section chunks."),
             ("Gate 2 Verification:", "Deterministic synthesis fallback prevents hallucinated citations."),
-            ("Action Output:", "Procedural timeline, jurisdiction, authority, and official filing portals.")
+            ("Action Output:", "Procedural timeline, jurisdiction, authority, and official filing portals (e-Jagriti).")
         ]),
         ("MODULE B: Government Service Navigator", "STATUS: OPERATIONAL (100% COMPLETE)", [
             ("Scheme Catalog:", "12 verified Central & State welfare schemes (PM-KISAN, Ayushman Bharat, PMAY, NSAP, etc.)."),
-            ("Eligibility Rules:", "Rule-based engine evaluating age, income, caste, landholding, and state."),
+            ("Eligibility Rules:", "Rule-based engine evaluating age, income, caste, landholding, and state (PM-KISAN 2019 expansion applied)."),
             ("Document Checklist:", "Exact documentation required for successful citizen application."),
             ("Grievance Escalation:", "Direct links to CPGRAMS and departmental appellate authorities.")
         ]),
@@ -610,7 +609,7 @@ def create_presentation():
             ("Durable Cloud Storage:", "Supabase private S3-compatible storage with signed URL access."),
             ("Heuristic Extraction:", "Regex parser extracts dates, notice numbers, fines, and sections."),
             ("Document Triage:", "Classifies summons, eviction notices, challans, and scheme forms in <2.0s."),
-            ("Privacy Cascade:", "DPDP Act compliant hard file deletion upon user command.")
+            ("Privacy Cascade:", "DPDP Act aligned hard file deletion upon user command.")
         ])
     ]
 
@@ -629,8 +628,8 @@ def create_presentation():
     add_header(s13, "System Architecture: 5-Tier Modular Monolith", "ENTERPRISE-GRADE ARCHITECTURAL BLUEPRINT & API CONTRACTS", 13)
 
     tiers = [
-        ("Tier 1: Presentation Layer (Next.js 14)", [
-            ("Modern Web UI:", "React 18 + Tailwind CSS + Lucide Icons; mobile responsive, light/dark mode support."),
+        ("Tier 1: Presentation Layer (Next.js 16 App Router)", [
+            ("Modern Web UI:", "React 19 + Tailwind CSS + Lucide Icons; mobile responsive, light/dark mode support."),
             ("31 Static Routes:", "Zero client-side crashes, fast prerendered static pages, client-side input validation.")
         ]),
         ("Tier 2: API Gateway & Security Perimeter", [
@@ -642,12 +641,12 @@ def create_presentation():
             ("State Management:", "Shared context bus routing queries to appropriate domain agents seamlessly.")
         ]),
         ("Tier 4: Hybrid Retrieval & Validation Engine", [
-            ("Hybrid Search:", "BM25 sparse retrieval + dense cosine embeddings combined via Reciprocal Rank Fusion."),
+            ("Hybrid Search:", "BM25 sparse retrieval + dense vector embeddings combined via Reciprocal Rank Fusion."),
             ("Gate 2 Circuit Breaker:", "Validates citation grounding before generating plain-language guidance.")
         ]),
         ("Tier 5: Persistence & Durable Storage Layer", [
             ("Supabase PostgreSQL & S3:", "Relational DB for users, cases, audit logs; private S3 bucket for documents."),
-            ("DPDP Compliance:", "Cascade foreign-key deletes for hard removal of personal citizen data.")
+            ("DPDP Alignment:", "Cascade foreign-key deletes for hard removal of personal citizen data.")
         ])
     ]
 
@@ -678,7 +677,7 @@ def create_presentation():
         ]),
         ("Phase 4: Grounding & Safety (Steps 9–11)", [
             ("9. Gate 2 Verification:", "Citation circuit breaker checks grounds."),
-            ("10. Response Synthesis:", "Deterministic synthesis / neural inference."),
+            ("10. Response Synthesis:", "Deterministic synthesis / real neural fallback."),
             ("11. Safety Injection:", "Adds legal disclaimer & helpline links.")
         ]),
         ("Phase 5: Delivery & Audit (Steps 12–14)", [
@@ -700,12 +699,12 @@ def create_presentation():
 
     add_card(s15, Inches(0.6), Inches(1.3), Inches(5.95), Inches(5.5), "MODULE A: LEGAL GUIDANCE ENGINE", [
         ("Statutory Corpus (8 Core Acts):", "Bharatiya Nyaya Sanhita (BNS 2023 / IPC), Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC), Consumer Protection Act 2019, Right to Information Act 2005, Information Technology Act 2000, Industrial Disputes Act 1947, Maintenance and Welfare of Parents and Senior Citizens Act 2007, Protection of Women from Domestic Violence Act 2005."),
-        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio. If ratio < 0.70 or citations are ambiguous, automatically switches to grounded deterministic synthesis, ensuring ZERO hallucinated laws."),
-        ("Structured Guidance Output:", "Delivers plain-language rights summary, exact statutory sections, applicable court/tribunal jurisdiction, limitation periods, and official e-filing portals.")
+        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio. If ratio < 0.70 or citations are ambiguous, automatically switches to grounded deterministic synthesis, suppressing hallucinated statutory citations."),
+        ("Structured Guidance Output:", "Delivers plain-language rights summary, exact statutory sections, applicable court/tribunal jurisdiction, limitation periods, and official e-filing portals (e-Jagriti: e-jagriti.gov.in).")
     ], title_color=COLOR_NAVY)
 
     add_card(s15, Inches(6.75), Inches(1.3), Inches(5.95), Inches(5.5), "MODULE B: GOVERNMENT SERVICE NAVIGATOR", [
-        ("Seeded Scheme Catalog (12 Major Schemes):", "PM-KISAN (Direct Income Support), Ayushman Bharat PM-JAY (Health Insurance), Pradhan Mantri Awas Yojana (PMAY - Housing), National Social Assistance Programme (NSAP - Pensions), Stand-Up India (SC/ST/Women Entrepreneurship), Sukanya Samriddhi Yojana (Girl Child Savings), PM SVANidhi (Street Vendors), Atmanirbhar Bharat Rojgar Yojana, plus Key State Initiatives."),
+        ("Seeded Scheme Catalog (12 Major Schemes):", "PM-KISAN (Direct Income Support - expanded June 2019 to all landholding farmer families; subject to institutional/tax exclusions), Ayushman Bharat PM-JAY (Health Insurance), Pradhan Mantri Awas Yojana (PMAY - Housing), National Social Assistance Programme (NSAP - Pensions), Stand-Up India (SC/ST/Women Entrepreneurship), Sukanya Samriddhi Yojana (Girl Child Savings), PM SVANidhi (Street Vendors), Atmanirbhar Bharat Rojgar Yojana, plus Key State Initiatives."),
         ("Rule-Based Eligibility Matcher:", "Evaluates applicant age, annual household income, social category, landholding status, and geographic state against statutory criteria."),
         ("Procedural Navigation:", "Produces exhaustive pre-requisite checklists, mandatory documentation lists, designated local authorities, and direct grievance escalation paths.")
     ], title_color=COLOR_TEAL)
@@ -725,7 +724,7 @@ def create_presentation():
     ], title_color=COLOR_TEAL)
 
     add_card(s16, Inches(6.75), Inches(1.3), Inches(5.95), Inches(5.5), "RECIPROCAL RANK FUSION (RRF) ENGINE", [
-        ("Dual-Stream Retrieval:", "Combines lexical keyword matching (BM25) with semantic dense vector search (all-MiniLM-L6-v2 embeddings)."),
+        ("Dual-Stream Retrieval:", "Combines lexical keyword matching (BM25) with dense vector search (384-dimensional feature-hash embedding provider for serverless execution; compatible with all-MiniLM-L6-v2 schema)."),
         ("Mathematical Formulation:", "RRF Score = Sum for m in M of (1 / (60 + rank_m(d))), ensuring balanced contribution from both sparse and dense ranks."),
         ("Why Pure Dense Search Fails:", "Dense embeddings often confuse Section 138 of the Negotiable Instruments Act with Section 138 of IPC due to semantic section embedding clustering."),
         ("Why BM25 Alone Fails:", "BM25 misses natural citizen queries like 'my landlord kicked me out without notice' because the word 'tenancy' or 'eviction' is absent."),
@@ -751,7 +750,7 @@ def create_presentation():
         ("Private Bucket Security:", "Documents are stored in a private Supabase bucket (`civicsphere-documents`) protected by service-role keys and row-level access control."),
         ("Presigned Ephemeral URLs:", "Authorized downloads utilize time-limited presigned URLs (60-minute expiry); unauthorized public access is strictly blocked (HTTP 403)."),
         ("Cross-Invocation Durability:", "Verified that files uploaded in one serverless function invocation remain fully retrievable across subsequent invocations."),
-        ("DPDP Act Cascade Purge:", "Deleting a citizen document automatically triggers an atomic S3 object deletion and database record purge.")
+        ("DPDP Alignment Cascade Purge:", "Deleting a citizen document automatically triggers an atomic S3 object deletion and database record purge.")
     ], title_color=COLOR_TEAL)
 
     # =========================================================================
@@ -809,9 +808,9 @@ def create_presentation():
 
     add_card(s19, Inches(8.8), Inches(1.3), Inches(3.9), Inches(5.5), "ENVIRONMENTAL IMPACT & GREEN AI", [
         ("Serverless Micro-Compute:", "Lightweight ASGI serverless architecture provisions compute strictly on-demand, minimizing idle server power."),
-        ("Deterministic Fallback (FLOP Savings):", "Gate 2 circuit breaker uses lightweight deterministic synthesis when evidence is sufficient, avoiding massive GPU inference overhead."),
-        ("Carbon Footprint Transparency:", "Generates < 0.002 kg CO2e per 1,000 queries compared to > 0.15 kg CO2e for unconstrained 70B parameter LLM generation."),
-        ("Sustainable Engineering:", "Prioritizes algorithmic efficiency over brute-force neural compute.")
+        ("Algorithmic Micro-Compute:", "Lightweight deterministic synthesis and caching avoid continuous multi-billion parameter GPU inference for routine civic queries."),
+        ("Transparent Resource Accounting:", "Evaluates compute footprint pragmatically, avoiding unverified carbon offset claims while optimizing algorithmic efficiency."),
+        ("Sustainable Engineering:", "Prioritizes algorithmic efficiency and CPU-tractable inference over brute-force neural compute.")
     ], title_color=COLOR_NAVY)
 
     # =========================================================================
@@ -821,19 +820,20 @@ def create_presentation():
     add_header(s20, "Empirical Testing & Security Validation Results", "RIGOROUS REPRODUCIBLE TEST SUITE & PLATFORM METRICS", 20)
 
     test_metrics = [
-        ("129 PASSED BACKEND TESTS", "100% SUITE PASS RATE", [
+        ("129 PASSED BACKEND TESTS", "130 COLLECTED (1 SKIPPED)", [
             ("124 Functional / Regression Tests:", "Full coverage of query classification, BM25 indexing, vector embeddings, Gate 2 circuit breaker, and scheme evaluation."),
+            ("5 Targeted Unit Tests (PM-KISAN):", "Verifies June 2019 Cabinet expansion (land > 2 ha eligible) and exclusion criteria enforcement."),
             ("5 Server-Side Authorization Tests:", "Verifies that unauthenticated or citizen users cannot access admin endpoints (HTTP 401/403 enforced independently of frontend).")
         ]),
         ("31 STATIC FRONTEND ROUTES", "ZERO PRERENDER CRASHES", [
-            ("Next.js 14 Build Verification:", "All 31 static and dynamic pages prerendered in 18.9s without hydration errors."),
-            ("Route Inventory Audit:", "Live HTTP audit confirmed 20/20 critical endpoints returning HTTP 200 OK across public and protected paths.")
+            ("Next.js 16 Build Verification:", "All 31 static and dynamic pages prerendered without hydration errors in modern React 19 architecture."),
+            ("Live HTTP Audit (20 Routes):", "Live HTTP production audit confirmed 20/20 critical endpoints responding with correct status codes.")
         ]),
         ("DURABLE CLOUD STORAGE ADAPTER", "BYTE-EXACT S3 VERIFICATION", [
             ("Supabase S3 Integration:", "Tested synthetic PDF upload, metadata persistence, and authenticated retrieval across fresh serverless instances."),
             ("Byte-Exact Roundtrip:", "SHA-256 hash of downloaded file matches uploaded PDF perfectly; cross-tenant access denied.")
         ]),
-        ("DPDP COMPLIANCE & PRIVACY", "CASCADE DATA PURGE", [
+        ("DPDP ALIGNMENT & PRIVACY", "CASCADE DATA PURGE", [
             ("Hard Account Deletion:", "User-initiated account deletion atomically purges all stored documents and linked case dossiers from Supabase storage and DB."),
             ("Immutable Audit Retention:", "Retains non-identifiable audit hashes for regulatory compliance while wiping personal identifying data.")
         ])
@@ -864,7 +864,7 @@ def create_presentation():
         ("The Critical Defect:", "During Review 1, document uploads were saved to the local `/tmp` directory. In serverless environments (Vercel/AWS Lambda), container instances are ephemeral; files uploaded in one invocation vanished on the next call, causing catastrophic HTTP 404/500 errors."),
         ("The Squad's Root Cause Analysis:", "The team mapped the storage lifecycle, identifying that serverless execution requires stateless compute and decoupled durable object persistence."),
         ("The Engineered Fix:", "Architected a dual-tier Supabase Storage Adapter implementing signed URL generation, service-role authentication, and byte-exact persistence. Document writes now commit directly to private S3 buckets."),
-        ("The Outcome:", "100% durable file persistence across cold starts, verified by automated multi-invocation retrieval scripts.")
+        ("The Outcome:", "Durable file persistence across cold starts, verified by automated multi-invocation retrieval scripts.")
     ], title_color=COLOR_TEAL)
 
     # =========================================================================
@@ -877,25 +877,25 @@ def create_presentation():
         ("Devansh Savla (23UF18356CM172)", [
             ("Core Role:", "Lead System Architect & Backend Infrastructure Engineer."),
             ("Key Learnings:", "Engineered hybrid RRF retrieval, Gate 2 circuit-breaker, and serverless FastAPI deployment."),
-            ("External Engagement:", "Completed intensive Software Engineering Internship at ElevateLabs (microservices, distributed systems)."),
-            ("Coursework:", "Cisco Networking & Big Data Analytics certifications.")
+            ("External Engagement:", "Completed intensive Software Engineering Internship at ElevateLabs (microservices, distributed systems). [Proof Pending / Student Action]"),
+            ("Coursework:", "Cisco Networking & Big Data Analytics coursework.")
         ]),
         ("Khushbu Chheda (23UF17711CM132)", [
             ("Core Role:", "Legal Domain Specialist & Case Dossier Lead."),
             ("Key Learnings:", "Curated 8 Indian statutory Acts, structured legal ontologies, and designed accessible citizen UX."),
-            ("External Engagement:", "Completed Full-Stack Web Development & Legal Informatics training."),
+            ("External Engagement:", "Completed Full-Stack Web Development & Legal Informatics training. [Proof Pending / Student Action]"),
             ("Key Growth:", "Mastered statutory chunking, prompt engineering, and legal ethical boundaries.")
         ]),
         ("Anushka Adsul (124BTCM2002)", [
             ("Core Role:", "Government Service Navigator & UI/UX Engineer."),
             ("Key Learnings:", "Implemented 12 central/state welfare schemes, rule-based eligibility evaluation, and Next.js UI."),
-            ("External Engagement:", "Completed Cloud Architecture & API Engineering industry certifications."),
+            ("External Engagement:", "Completed Cloud Architecture & API Engineering industry certifications. [Proof Pending / Student Action]"),
             ("Key Growth:", "Bridged complex bureaucratic rules with intuitive, accessible citizen interfaces.")
         ]),
         ("Rahul Singh (23UF18562CM189)", [
             ("Core Role:", "Document Processing & Storage Pipeline Lead."),
             ("Key Learnings:", "Engineered heuristic regex extractor, Supabase S3 adapter, and automated test suites."),
-            ("External Engagement:", "Completed Python Data Engineering & Test Automation industry training."),
+            ("External Engagement:", "Completed Python Data Engineering & Test Automation industry training. [Proof Pending / Student Action]"),
             ("Key Growth:", "Mastered secure cloud object storage, MIME validation, and DPDP Act compliance.")
         ])
     ]
@@ -911,26 +911,26 @@ def create_presentation():
     # SLIDE 23: PRACTICAL SEMESTER 8 ROADMAP
     # =========================================================================
     s23 = prs.slides.add_slide(blank_layout)
-    add_header(s23, "Practical Semester 8 Roadmap (5-Phase Delivery)", "PLANNED MILESTONES LEADING TO FINAL B.TECH UNIVERSITY DEFENSE", 23)
+    add_header(s23, "Proposed Semester 8 Roadmap (5-Phase Delivery)", "PLANNED FUTURE MILESTONES LEADING TO FINAL B.TECH UNIVERSITY DEFENSE", 23)
 
     roadmap_phases = [
-        ("Phase 1: Indic Multilingual NLP (Weeks 1–3)", [
-            ("Vernacular Expansion:", "Integrate fine-tuned Indic-BERT and Bhashini API to support Hindi, Marathi, and Gujarati natural language queries."),
+        ("Phase 1: Indic Multilingual NLP (Proposed Weeks 1–3)", [
+            ("Vernacular Expansion:", "Plan integration of fine-tuned Indic-BERT and Bhashini API to support Hindi, Marathi, and Gujarati natural language queries."),
             ("Acoustic Interface:", "Prototype speech-to-text input for illiterate and semi-literate rural citizens.")
         ]),
-        ("Phase 2: Advanced OCR & Vision Triage (Weeks 4–6)", [
+        ("Phase 2: Advanced OCR & Vision Triage (Proposed Weeks 4–6)", [
             ("LayoutLMv3 Integration:", "Incorporate multimodal layout models to parse complex court orders, stamp papers, and tabular challans."),
             ("Image Document Support:", "Enable direct camera snapshot parsing from mobile smartphones.")
         ]),
-        ("Phase 3: Real-Time e-Courts API Integration (Weeks 7–9)", [
+        ("Phase 3: Real-Time e-Courts API Integration (Proposed Weeks 7–9)", [
             ("Case Status Tracking:", "Connect to official e-Courts CNR number API for real-time hearing dates and interim order retrieval."),
             ("Automated Hearing Alerts:", "SMS and WhatsApp notification triggers for upcoming litigation dates.")
         ]),
-        ("Phase 4: Empirical User Study & Field Trials (Weeks 10–12)", [
+        ("Phase 4: Empirical User Study & Field Trials (Proposed Weeks 10–12)", [
             ("Field Deployment:", "Conduct controlled pilot study with 50+ diverse citizens and paralegals across Mumbai legal clinics."),
             ("Usability Benchmarking:", "Measure System Usability Scale (SUS) score and task completion rates.")
         ]),
-        ("Phase 5: Performance Hardening & Final Defense (Weeks 13–15)", [
+        ("Phase 5: Performance Hardening & Final Defense (Proposed Weeks 13–15)", [
             ("Load Testing & CDN:", "Edge caching optimization and end-to-end stress testing under 1,000 concurrent simulated queries."),
             ("Final B.Tech Thesis:", "Comprehensive final project documentation, IEEE research paper submission, and university defense.")
         ])
@@ -947,16 +947,16 @@ def create_presentation():
     add_header(s24, "Conclusion & Academic Defense Summary", "CIVICSPHERE AI: SUMMARY OF ACHIEVEMENTS & CONTRIBUTIONS", 24)
 
     add_card(s24, Inches(0.6), Inches(1.3), Inches(3.9), Inches(5.5), "ACADEMIC CONTRIBUTIONS", [
-        ("1. Evidence-Grounded Architecture:", "Proved that domain-specific hybrid retrieval (BM25 + Dense) coupled with Gate 2 circuit-breakers eliminates legal hallucination."),
+        ("1. Evidence-Grounded Architecture:", "Demonstrated that domain-specific hybrid retrieval (BM25 + Dense) coupled with Gate 2 circuit-breakers substantially suppresses citation hallucination."),
         ("2. Cross-Domain Civic Synergy:", "Pioneered unified computational linking between statutory law, welfare schemes, and citizen paperwork in India."),
-        ("3. Privacy-First Civic Engineering:", "Demonstrated strict DPDP Act 2023 compliance with zero-telemetry and cascade hard deletion.")
+        ("3. Privacy-First Civic Engineering:", "Demonstrated strict DPDP Act 2023 principles alignment with zero-telemetry and cascade hard deletion.")
     ], title_color=COLOR_NAVY)
 
     add_card(s24, Inches(4.7), Inches(1.3), Inches(3.9), Inches(5.5), "REVIEW 2 MILESTONES ACHIEVED", [
         ("Complete Module Implementation:", "All 4 modules (A, B, C, D) are fully operational and verified on live Vercel production."),
         ("Durable Cloud Persistence:", "Closed the serverless `/tmp` blocker with Supabase private S3 object storage."),
-        ("Empirical Rigor:", "129 passed tests, 31 static routes, 30 peer-reviewed papers mapped across 7 themes."),
-        ("Ready for Semester 8:", "Clear 5-phase delivery plan for multilingual and field trial expansion.")
+        ("Empirical Rigor:", "129 passed backend tests (130 collected, 1 skipped), 31 static routes, 30 peer-reviewed papers mapped across 7 themes."),
+        ("Ready for Semester 8:", "Clear proposed 5-phase delivery plan for multilingual and field trial expansion.")
     ], title_color=COLOR_TEAL)
 
     add_card(s24, Inches(8.8), Inches(1.3), Inches(3.9), Inches(5.5), "OPEN-SOURCE & REPRODUCIBILITY", [

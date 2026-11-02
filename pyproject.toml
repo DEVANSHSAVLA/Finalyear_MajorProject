@@ -41,7 +41,7 @@ include = ["backend*", "packages*"]
 testpaths = ["backend/tests"]
 pythonpath = ["."]
 asyncio_mode = "auto"
-addopts = "-v --strict-markers"
+addopts = "-v --strict-markers -p no:pytest_ethereum"
 filterwarnings = [
     "ignore::DeprecationWarning",
 ]

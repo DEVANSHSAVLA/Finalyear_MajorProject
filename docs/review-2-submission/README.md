@@ -33,8 +33,8 @@ All requested deliverables have been generated, empirically verified, and deposi
 
 | # | Deliverable Name | File Type | Pages / Metric | Description & Verified Evidence |
 |---|------------------|-----------|----------------|---------------------------------|
-| **1** | [`CivicSphere_AI_Review_2_Report.pdf`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_Report.pdf) | PDF Document | **76 Pages** | Comprehensive, publication-grade academic report formatted to exact SAKEC thesis guidelines (Times New Roman 12pt, 1.5 spacing, 3.5cm margin, official logo). |
-| **2** | [`CivicSphere_AI_Review_2_Report.docx`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_Report.docx) | Word Document | **76 Pages** | Master editable Word document containing full front matter, 11 chapters, 13 styled tables, 4 live UI figures, 31 IEEE references, and 6 appendices. |
+| **1** | [`CivicSphere_AI_Review_2_Report.pdf`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_Report.pdf) | PDF Document | **79 Pages** | Comprehensive, publication-grade academic report formatted to exact SAKEC thesis guidelines (Times New Roman 12pt, 1.5 spacing, 3.5cm margin, official logo). |
+| **2** | [`CivicSphere_AI_Review_2_Report.docx`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_Report.docx) | Word Document | **79 Pages** | Master editable Word document containing full front matter, 11 chapters, 17 styled tables, 8 live UI figures, 31 IEEE references, and 3 appendices. |
 | **3** | [`latex-source/`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/latex-source/) | Directory | Complete Source | Full SAKEC LaTeX project tree: `thesis.tex`, `front_matter/`, `chapters/` (11 chapters + appendix), `images/`, and `references.bib`. |
 | **4** | [`CivicSphere_AI_Review_2_LaTeX_Source.zip`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_LaTeX_Source.zip) | ZIP Archive | 1.01 MB | Standalone, self-contained zip file ready for instant upload to Overleaf or local compilation with `pdflatex`. |
 | **5** | [`CivicSphere_AI_Review_2_Presentation.pptx`](file:///c:/Users/Deepak%20Chheda/OneDrive/Desktop/23UF18356CM172/MAJORPROJECT/Finalyear_MajorProject/docs/review-2-submission/CivicSphere_AI_Review_2_Presentation.pptx) | PowerPoint (16:9) | **24 Slides** | Upgraded presentation deck with SAKEC branding, exact guide and student details, 6 thematic sections, tables, and 4 authentic UI screenshots. |
@@ -71,14 +71,14 @@ All requested deliverables have been generated, empirically verified, and deposi
 |---|---|---|
 | **Guide Name** | Typo in PPT ("Shayyed") and Acknowledgements ("Shazia") | Standardized everywhere as **Mrs. Shahzia Sayyad** (Assistant Professor, SAKEC) |
 | **Team Details** | Inconsistent roll numbers across slides | Standardized with official roll numbers: Devansh (`23UF18356CM172`), Khushbu (`23UF17711CM132`), Anushka (`124BTCM2002`), Rahul (`23UF18562CM189`) |
-| **Report Length** | 64 pages (with planned sections) | **76 Pages** comprehensive, publication-grade academic report (`CivicSphere_AI_Review_2_Report.pdf`) |
+| **Report Length** | 64 pages (with planned sections) | **79 Pages** comprehensive, publication-grade academic report (`CivicSphere_AI_Review_2_Report.pdf`) |
 | **Presentation Deck** | 20 slides (several blank placeholders) | **24 Slides** professional widescreen deck (`CivicSphere_AI_Review_2_Presentation.pptx` & `.pdf`) |
 | **Module B (Gov Navigator)** | Listed as "Planned" | **100% Operational** (12 Central/State welfare schemes with dynamic eligibility evaluation) |
 | **Module D (Document AI)** | Listed as "Planned / OCR-only" | **100% Operational** (Sub-2.0s heuristic regex parsing + durable Supabase S3 storage) |
 | **Cloud Storage** | Ephemeral `/tmp` container storage (crashed on serverless) | **Durable Supabase S3 Private Object Storage** (Byte-exact SHA-256 roundtrip verified) |
 | **Citation Verification** | Vulnerable to generative hallucination | **Gate 2 Circuit Breaker** active (0.0% hallucinated statutory citations) |
 | **Testing Evidence** | Limited manual test logs | **129 Passing Automated Tests** (124 functional + 5 server-side authorization enforcement) |
-| **Frontend Verification** | Unverified routes | **31 Static Routes Prerendered** in 18.9s on Next.js 14 App Router |
+| **Frontend Verification** | Unverified routes | **31 Static Routes Prerendered** on Next.js 16 App Router (React 19) |
 | **Team Reflections** | Brief 50-word paragraphs | **180–240 Word In-Depth Reflections** per student engineer + verified industry exposure profiles |
 
 ---

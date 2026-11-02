@@ -43,12 +43,12 @@ Rather than blindly deploying Western LLMs, CivicSphere AI demonstrates domestic
 A critical requirement of Level 4 rubric evaluation is an honest, evidence-based environmental assessment. Large-scale AI systems can exert substantial carbon and energy footprints. CivicSphere AI addresses environmental sustainability through concrete architectural choices:
 
 \subsection{Algorithmic Efficiency vs. Brute-Force Neural Compute}
-Standard commercial generative AI architectures process every user query through massive 70-billion or 400-billion parameter neural networks, consuming substantial GPU power (estimated at 0.001 to 0.003 kWh per query, or roughly 0.15 kg $\text{CO}_2\text{e}$ per 1,000 queries). In contrast, CivicSphere AI adopts a \textbf{Green AI} design philosophy:
+Standard commercial generative AI architectures process every user query through massive 70-billion or 400-billion parameter neural networks, consuming substantial computational power. In contrast, CivicSphere AI adopts an efficient computational design philosophy:
 \begin{itemize}
-    \item \textbf{Lightweight Deterministic Synthesis:} When retrieved statutory evidence is clear, the Gate 2 circuit breaker synthesizes the response deterministically using rule-based templates, bypassing GPU neural inference entirely.
-    \item \textbf{Efficient Sentence Transformers:} Vector embeddings utilize \texttt{all-MiniLM-L6-v2} (22.7 million parameters), which requires less than 2\% of the compute power of large multimodal models while delivering state-of-the-art semantic sentence similarity.
-    \item \textbf{Serverless Micro-Compute Architecture:} The backend runs on demand-driven serverless ASGI workers (FastAPI on Vercel), scaling to zero when idle and consuming zero baseline electrical power.
+    \item \textbf{Lightweight Deterministic Synthesis:} When retrieved statutory evidence is clear, the Gate 2 circuit breaker synthesizes the response deterministically using rule-based templates, avoiding continuous multi-billion parameter GPU inference for routine civic queries.
+    \item \textbf{Efficient Vector Embeddings:} Vector embeddings utilize a compact 384-dimensional representation optimized for serverless execution and low latency while maintaining semantic section matching.
+    \item \textbf{Serverless Micro-Compute Architecture:} The backend runs on demand-driven serverless ASGI workers (FastAPI on Vercel), scaling to zero when idle and minimizing server power overhead.
 \end{itemize}
 
-\subsection{Carbon Metric Quantification}
-Controlled performance profiling indicates that a complete end-to-end query execution in CivicSphere AI consumes an average of 42 milliseconds of CPU time on a standard virtual core, translating to an estimated carbon footprint of less than \textbf{0.0018 kg $\text{CO}_2\text{e}$ per 1,000 queries}---a reduction of over 98\% compared to unconstrained commercial LLM execution.
+\subsection{Computational Resource Accounting}
+Controlled performance profiling indicates that a complete end-to-end query execution in CivicSphere AI consumes an average of 42 milliseconds of CPU time on a standard virtual core, achieving high algorithmic efficiency without requiring continuous multi-GPU clusters.

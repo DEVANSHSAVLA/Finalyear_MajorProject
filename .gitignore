@@ -71,3 +71,6 @@ implementation_plan.md
 scratch/
 .vercel
 .env*
+
+# Review 2 submission backups
+docs/review-2-submission-backup-*/
