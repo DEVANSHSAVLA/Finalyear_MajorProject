@@ -1,0 +1,44 @@
+\chapter{Tools and Technology}
+\label{ch:tools_technology}
+
+\section{Categorized Technology Stack}
+\label{sec:tech_stack}
+CivicSphere AI is built upon modern, production-tested open-source frameworks and enterprise cloud services. Table~\ref{tab:tech_stack} details the complete technology inventory.
+
+\begin{table}[H]
+\centering
+\caption{Comprehensive Technology Stack of CivicSphere AI}
+\label{tab:tech_stack}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|p{4cm}|p{5cm}|}
+\hline
+\textbf{Layer} & \textbf{Technology / Library} & \textbf{Version / Specification} & \textbf{Functional Role in Platform} \\ \hline
+\textbf{Frontend} & Next.js & 14.2.x (App Router) & React-based web portal, server-side rendering, and 31 static routes \\ \hline
+\textbf{Frontend} & Tailwind CSS & 3.4.x & Modern responsive UI design, accessible utility-first styling \\ \hline
+\textbf{Frontend} & Lucide React & 0.4.x & High-clarity SVG iconography for citizen visual guidance \\ \hline
+\textbf{Backend} & Python & 3.11.x & High-performance asynchronous core runtime \\ \hline
+\textbf{Backend} & FastAPI & 0.110.x & High-throughput ASGI REST API framework with automatic OpenAPI docs \\ \hline
+\textbf{Backend} & Pydantic & 2.6.x & Strict runtime schema validation, data serialization, and typing \\ \hline
+\textbf{AI / IR} & Rank-BM25 & 0.2.2 & In-memory sparse lexical statutory retrieval engine \\ \hline
+\textbf{AI / IR} & Sentence-Transformers & 2.6.x (\texttt{all-MiniLM-L6-v2}) & Dense semantic embeddings for citizen query matching \\ \hline
+\textbf{AI / Graph} & NetworkX & 3.2.x & In-memory multi-relational civic Knowledge Graph modeling \\ \hline
+\textbf{Document} & pdfplumber / PyPDF & 0.11.x / 3.17.x & Dual-engine PDF text parsing and layout coordinate analysis \\ \hline
+\textbf{Storage} & Supabase Storage (S3) & S3-compatible API & Durable, encrypted private cloud object storage for documents \\ \hline
+\textbf{Database} & Supabase PostgreSQL & PostgreSQL 15 & Relational persistence for accounts, cases, and immutable audit logs \\ \hline
+\textbf{Cloud / CI} & Vercel Cloud & Production Platform & Global edge deployment with automated CI/CD build pipelines \\ \hline
+\textbf{Testing} & Pytest & 8.1.x & Automated unit, regression, and security test execution (129 tests) \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Detailed Role of Key Technologies}
+\label{sec:key_tech_role}
+
+\subsection{FastAPI and Pydantic}
+FastAPI serves as the asynchronous backbone of the CivicSphere backend. Benefiting from Python 3.11 asynchronous event loops and Starlette routing, it achieves sub-10ms baseline request overhead. Pydantic v2 enforces strict validation on all incoming query payloads, document metadata, and outbound JSON responses. Any malformed request is rejected at the API gateway before executing computationally expensive retrieval or graph traversal operations.
+
+\subsection{Knowledge Graph and Hybrid Retrieval Infrastructure}
+NetworkX provides an efficient in-memory graph structure to model complex statutory hierarchies and welfare cross-links. Rank-BM25 indexes statutory text chunks, ensuring that precise legislative identifiers (e.g., ``Section 35(1)(a)'') receive maximum lexical weight. Sentence-Transformers maps natural language citizen queries into a 384-dimensional dense semantic vector space, enabling conceptual similarity matching.
+
+\subsection{Supabase Private Cloud Storage Adapter}
+To resolve the critical serverless container durability blocker identified in Review 1, the platform integrates Supabase Private Storage. Uploaded documents are streamed directly to encrypted private buckets. Time-limited signed URLs (valid for 60 minutes) are generated dynamically for authorized users, ensuring that documents cannot be scraped or accessed without valid JWT authentication tokens.

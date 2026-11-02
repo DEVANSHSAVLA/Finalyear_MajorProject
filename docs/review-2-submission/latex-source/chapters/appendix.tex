@@ -1,0 +1,76 @@
+\chapter{Appendix}
+\label{ch:appendix}
+
+\section{Full Production Route Inventory}
+\label{sec:app_routes}
+Table~\ref{tab:app_routes} records the 20 audited live API and web routes on the production deployment, demonstrating 100\% HTTP 200 OK availability.
+
+\begin{table}[H]
+\centering
+\caption{Production Route Inventory and HTTP Verification Audit}
+\label{tab:app_routes}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|p{5cm}|}
+\hline
+\textbf{HTTP Method} & \textbf{Endpoint Route} & \textbf{Access Level} & \textbf{Verified Functional Description} \\ \hline
+GET & \texttt{/} & Public & Citizen web portal landing page and hero interface \\ \hline
+GET & \texttt{/legal} & Public & Legal guidance consultation query interface \\ \hline
+POST & \texttt{/api/v1/legal/query} & Public & Legal guidance RRF retrieval and Gate 2 verification \\ \hline
+GET & \texttt{/government} & Public & Government welfare scheme discovery portal \\ \hline
+GET & \texttt{/api/v1/schemes} & Public & Catalog of 12 Central/State welfare schemes \\ \hline
+POST & \texttt{/api/v1/schemes/evaluate} & Public & Rule-based citizen welfare eligibility evaluation \\ \hline
+GET & \texttt{/knowledge} & Public & Civic Knowledge Graph relational exploration UI \\ \hline
+GET & \texttt{/api/v1/knowledge/graph} & Public & NetworkX 40+ node multigraph traversal endpoint \\ \hline
+GET & \texttt{/documents} & Public & Intelligent document upload and triage portal \\ \hline
+POST & \texttt{/api/v1/documents/upload} & Authenticated & Multipart PDF upload and Supabase S3 streaming \\ \hline
+GET & \texttt{/api/v1/documents/\{id\}} & Authenticated & Presigned URL retrieval and extracted metadata \\ \hline
+DELETE & \texttt{/api/v1/documents/\{id\}} & Authenticated & DPDP Act cascade document and object purge \\ \hline
+GET & \texttt{/cases} & Authenticated & Citizen case workspace and saved dossiers \\ \hline
+POST & \texttt{/api/v1/cases} & Authenticated & Create and persist structured client case dossier \\ \hline
+POST & \texttt{/api/v1/auth/register} & Public & Citizen and paralegal account registration \\ \hline
+POST & \texttt{/api/v1/auth/login} & Public & JWT bearer token authentication issuance \\ \hline
+DELETE & \texttt{/api/v1/auth/account} & Authenticated & Hard account deletion with atomic data cascade \\ \hline
+GET & \texttt{/admin} & Administrator & Administrative analytics and audit log viewer \\ \hline
+GET & \texttt{/api/v1/admin/audit-logs} & Administrator & Immutable audit trail inspection (RBAC enforced) \\ \hline
+GET & \texttt{/api/v1/health} & Public & Backend service health check and provider status \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Core API Data Transfer Objects (Pydantic Models)}
+\label{sec:app_dtos}
+Listing~\ref{lst:pydantic_models} illustrates representative Pydantic DTO schemas governing inter-module communication within CivicSphere AI.
+
+\begin{verbatim}
+class LegalQueryRequest(BaseModel):
+    query: str = Field(..., min_length=5, max_length=1000)
+    jurisdiction: Optional[str] = "IN"
+    user_context: Optional[Dict[str, Any]] = None
+
+class EvidenceChunk(BaseModel):
+    act_name: str
+    section: str
+    text_snippet: str
+    similarity_score: float
+    source_url: str
+
+class LegalGuidanceResponse(BaseModel):
+    query: str
+    status: str
+    circuit_breaker_triggered: bool
+    plain_language_guidance: str
+    evidence_pack: List[EvidenceChunk]
+    court_jurisdiction: str
+    limitation_period: str
+    official_filing_url: str
+    disclaimer: str
+\end{verbatim}
+
+\section{Turnitin Verification and Academic Integrity Statement}
+\label{sec:app_plag}
+This B.Tech Project Report complies fully with the academic integrity guidelines established by Shah \& Anchor Kutchhi Engineering College (SAKEC) and the University of Mumbai. In accordance with departmental mandates:
+\begin{itemize}
+    \item The final document must be verified via the institutional Turnitin plagiarism engine, with a required similarity score $\le 10\%$.
+    \item All 31 references are peer-reviewed publications and official statutes directly integrated into the text.
+    \item All prototype screenshots, code snippets, and test metrics represent authentic, reproducible artifacts from the project repository.
+\end{itemize}

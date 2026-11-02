@@ -1,0 +1,36 @@
+\chapter{Implementation Plan for Semester 8}
+\label{ch:sem8_roadmap}
+
+\section{Review 2 Completion Milestone Summary}
+\label{sec:sem8_summary}
+With the successful completion of Review 2, the core functional and architectural foundation of CivicSphere AI is fully established: all four domain intelligence modules are operational, hybrid RRF retrieval and Gate 2 circuit-breakers are active, 129 backend tests are passing, and durable Supabase S3 storage is verified. The objective for Semester 8 is to transition the platform from a verified academic prototype to a battle-tested, multilingual public system ready for final university defense and field trials.
+
+\section{Practical 5-Phase Semester 8 Delivery Plan}
+\label{sec:5phase_plan}
+Table~\ref{tab:sem8_roadmap} outlines the structured 5-phase delivery roadmap across Semester 8.
+
+\begin{table}[H]
+\centering
+\caption{Practical 5-Phase Semester 8 Implementation Roadmap}
+\label{tab:sem8_roadmap}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|p{5cm}|p{4.5cm}|}
+\hline
+\textbf{Phase / Timeline} & \textbf{Focus Area} & \textbf{Key Technical Work Packages} & \textbf{Target Deliverable / Milestone} \\ \hline
+\textbf{Phase 1} (Weeks 1--3) & Multilingual Indic NLP & Ingest Indic-BERT and Bhashini APIs; support Hindi, Marathi, and Gujarati queries & Multilingual query triage with $\ge 80\%$ intent accuracy \\ \hline
+\textbf{Phase 2} (Weeks 4--6) & LayoutLMv3 Document AI & Train multimodal LayoutLMv3 model for tabular court orders and challans & Extraction of complex tabular notice schedules \\ \hline
+\textbf{Phase 3} (Weeks 7--9) & Real-Time e-Courts API & Connect to e-Courts CNR API for automated hearing date and order tracking & Real-time case tracking in Citizen Case Workspace \\ \hline
+\textbf{Phase 4} (Weeks 10--12) & Empirical Field Trials & Conduct pilot study with 50+ citizens and DLSA paralegals; measure SUS score & Usability report with System Usability Scale $\ge 80$ \\ \hline
+\textbf{Phase 5} (Weeks 13--15) & Benchmarking \& Defense & Load testing under 1,000 concurrent queries; thesis polishing; defense & Complete B.Tech Thesis and University Defense \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Risk Assessment and Mitigation Strategies}
+\label{sec:risk_mitigation}
+To guarantee seamless project completion in Semester 8, the squad has identified potential technical risks and formulated concrete mitigation protocols:
+\begin{itemize}
+    \item \textbf{Risk 1: e-Courts API Rate Limiting and Downtime:} Public judicial APIs frequently experience downtime. \textit{Mitigation:} Implement an asynchronous Redis caching layer with fallback to cached cause lists and graceful degraded messaging.
+    \item \textbf{Risk 2: Indic Speech-to-Text Acoustic Drift:} Rural citizen dialects may suffer from poor acoustic recognition. \textit{Mitigation:} Restrict speech recognition to constrained vocabulary sets and provide client-side confirmation prompts before submitting queries.
+    \item \textbf{Risk 3: Model Inference Latency on Multimodal Documents:} Heavy LayoutLMv3 inference may exceed serverless timeout limits. \textit{Mitigation:} Execute heavy vision inference via asynchronous background task queues (Celery/Redis) with client-side polling.
+\end{itemize}
