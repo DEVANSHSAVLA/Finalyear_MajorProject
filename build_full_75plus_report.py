@@ -313,7 +313,7 @@ def build_full_report():
         "Protection (DPDP) Act 2023 cascade purge alignment.\n\n"
         "Empirical verification on live production demonstrates a comprehensive pass rate across 129 backend automated tests (130 collected, 1 skipped "
         "due to external network dependency, including 5 server-side authorization enforcement tests), error-free static prerendering of 31 Next.js 16 App Router "
-        "frontend routes on React 19, 20/20 live HTTP API endpoints returning 200 OK, and byte-exact roundtrip cloud storage persistence. By translating abstract "
+        "frontend routes on React 19, 20 audited live frontend routes returning HTTP 200, and byte-exact roundtrip cloud storage persistence. By translating abstract "
         "statutory rights into plain-language, verifiable procedural roadmaps and official portal destinations (such as e-Jagriti: e-jagriti.gov.in), CivicSphere AI "
         "advances UN Sustainable Development Goal 16 (Target 16.3: Equal Access to Justice) while maintaining rigorous privacy and green computational efficiency."
     )
@@ -372,7 +372,7 @@ def build_full_report():
         ("    8.5 Module D Implementation: Intelligent Document Processing", "38"),
         ("    8.6 Authentic Live System Prototype Showcase", "39"),
         ("    8.7 Empirical Performance & Verification Results", "40"),
-        ("    8.8 Verbatim Pytest Test Suite Inventory (129 Passing Tests)", "42"),
+        ("    8.8 Verbatim Pytest Test Suite Inventory (136 Passing Tests)", "42"),
         ("    8.9 Complete REST API Contract Specifications", "46"),
         ("Chapter 9: Teamwork and Collaboration Reflections", "48"),
         ("    9.1 Team Organization and Agile Dynamics", "48"),
@@ -768,7 +768,7 @@ def build_full_report():
         "intelligence modules communicating via standardized Pydantic data schemas and RESTful API contracts. Target: 100% integration; 0 serialization errors. "
         "Review 2 Status: Operational.\n\n"
         "• Objective O2 (Hybrid RRF Retrieval Engine): Develop a hybrid information retrieval engine fusing sparse lexical keyword matching (BM25) "
-        "with dense semantic vector embeddings (384-dimensional feature hashing provider for serverless execution, compatible with all-MiniLM-L6-v2 schema) "
+        "with dense semantic vector embeddings (deterministic 384-dimensional token feature-hashing vectorization, optimized for low-latency serverless execution and dense similarity search) "
         "utilizing Reciprocal Rank Fusion (k=60). Target: Top-3 recall >= 85%. Review 2 Status: Verified (88.4% Top-3 Recall).\n\n"
         "• Objective O3 (Citation Grounding and Hallucination Suppression): Implement a deterministic post-retrieval verification circuit breaker "
         "(Gate 2) that checks retrieved claim-to-evidence text overlap. Target: 0 ungrounded citations in benchmark evaluation. Review 2 Status: Verified (Gate 2 active).\n\n"
@@ -805,7 +805,7 @@ def build_full_report():
         ["O7", "Document Triage", "Latency <= 2.0s", "Verified (1.62s)", "pdfplumber + Regex Parser benchmarked"],
         ["O8", "Durable Cloud Storage", "Byte-exact S3 roundtrip", "Verified", "Supabase S3 Private Bucket verified"],
         ["O9", "DPDP Principles", "Cascade Purge on Deletion", "100% Verified", "Atomic S3 + DB Deletion confirmed"],
-        ["O10", "Production Cloud", ">= 120 Tests, 0 Build Errors", "Operational", "129 Tests Pass (1 skipped), 31 Routes OK"]
+        ["O10", "Production Cloud", ">= 120 Tests, 0 Build Errors", "Operational", "136 Tests Pass (1 skipped), 31 Routes OK"]
     ]
     t41 = doc.add_table(rows=len(t41_data), cols=5)
     t41.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -925,7 +925,7 @@ def build_full_report():
     add_sec_heading(doc, "6.2 Detailed Module Workflows (Modules A, B, C, D)")
     add_p(doc,
         "• Module A (Legal Guidance Engine): Normalizes citizen query text, executes parallel BM25 and dense vector searches across 8 statutory acts, "
-        "compiles immutable Evidence Packs, evaluates Gate 2 grounding ratio (tau >= 0.70), and generates plain-language rights summaries with official filing links.\n\n"
+        "compiles immutable Evidence Packs, evaluates Gate 2 grounding ratio (tau >= 0.75), and generates plain-language rights summaries with official filing links.\n\n"
         "• Module B (Government Service Navigator): Captures citizen demographic parameters (age, income, caste, landholding, state), executes deterministic "
         "rule evaluation against 12 seeded schemes (incorporating June 2019 PM-KISAN expansion), compiles mandatory document checklists, and provides grievance redressal links.\n\n"
         "• Module C (Civic Knowledge and Agentic Graph): Maintained in-memory using NetworkX directed multigraphs with 40+ nodes, executing multi-hop relational "
@@ -1007,7 +1007,7 @@ def build_full_report():
 
     t81_data = [
         ["Module / Component", "Core Capabilities Implemented", "Review 2 Status", "Verification Evidence"],
-        ["Module A: Legal Guidance", "8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker", "OPERATIONAL (100%)", "Passes 129 backend tests; zero ungrounded citations"],
+        ["Module A: Legal Guidance", "8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker", "OPERATIONAL (100%)", "Passes 136 backend tests; zero ungrounded citations"],
         ["Module B: Gov Navigator", "12 Welfare schemes, rule-based eligibility evaluation, document checklists", "OPERATIONAL (100%)", "Live UI scheme filtering; active REST endpoint /api/v1/schemes"],
         ["Module C: Civic Knowledge", "40+ node NetworkX graph, multi-hop traversal, RRF fusion, temporal metadata", "OPERATIONAL (100%)", "Graph traversal verified; multi-hop scheme discovery active"],
         ["Module D: Document AI", "Heuristic regex parser, PDF layout triage, Supabase S3 private storage", "OPERATIONAL (100%)", "Sub-2.0s parsing latency; byte-exact S3 roundtrip verified"],
@@ -1088,11 +1088,11 @@ def build_full_report():
         ts_body_clean = re.sub(r'\*\*(.*?)\*\*', r'\1', ts_body_clean)
         add_p(doc, ts_body_clean[:1200], space_after=6)
 
-    # 8.8 Verbatim Pytest Test Suite Inventory (129 Passing Tests)
-    add_sec_heading(doc, "8.8 Verbatim Pytest Test Suite Inventory (129 Passing Tests)")
+    # 8.8 Verbatim Pytest Test Suite Inventory (136 Passing Tests)
+    add_sec_heading(doc, "8.8 Verbatim Pytest Test Suite Inventory (136 Passing Tests)")
     add_p(doc,
         "To provide incontrovertible proof of software engineering rigor and regression resilience, this section documents "
-        "the complete inventory of 129 automated tests passing with 100% success on the production backend. The test suite is "
+        "the complete inventory of 136 automated tests passing with 100% success on the production backend. The test suite is "
         "partitioned across four key functional modules executed via Pytest."
     )
 
@@ -1320,7 +1320,7 @@ def build_full_report():
         ["Intelligent Document Processing & Regex Heuristics", "C", "I", "C", "A / R"],
         ["Supabase Cloud Storage Adapter & Durability", "R", "I", "I", "A / R"],
         ["Next.js 16 Frontend Portal & UI Styling", "C", "R", "A / R", "C"],
-        ["Automated Test Suite (129 Tests) & Security", "A / R", "C", "C", "R"],
+        ["Automated Test Suite (136 Tests) & Security", "A / R", "C", "C", "R"],
         ["Production CI/CD & Vercel Cloud Deployment", "A / R", "I", "I", "C"],
         ["DPDP Act Principles Alignment & Privacy Auditing", "C", "A / R", "I", "R"]
     ]
@@ -1357,10 +1357,10 @@ def build_full_report():
     add_p(doc,
         "\"Leading the systems architecture and backend engineering for CivicSphere AI has been an extraordinary technical journey. "
         "My core focus was architecting the 5-Tier Modular Monolith and solving the high-stakes problem of generative hallucination in civic AI. "
-        "By designing the Gate 2 circuit breaker and implementing Reciprocal Rank Fusion over BM25 and dense sentence transformers, I learned how to "
+        "By designing the Gate 2 circuit breaker and implementing Reciprocal Rank Fusion over BM25 and deterministic 384-dimensional feature-hashing vectorization, I learned how to "
         "balance low-latency retrieval with strict mathematical grounding constraints. When our initial serverless deployments suffered from ephemeral "
         "state loss, I collaborated closely with Rahul to decouple storage into private S3 buckets. Furthermore, setting up our automated testing "
-        "harness with 129 Pytest suites and automating our Vercel CI/CD pipeline taught me how enterprise reliability is maintained in production. "
+        "harness with 136 Pytest suites and automating our Vercel CI/CD pipeline taught me how enterprise reliability is maintained in production. "
         "This project fundamentally deepened my appreciation for robust distributed systems, defensive API design, and ethical engineering that "
         "empowers citizens who cannot afford private legal counsel.\"", italic=True
     )
@@ -1415,10 +1415,10 @@ def build_full_report():
         ["Sprint", "Timeline", "Planned Story Points", "Completed Points", "Core User Stories Delivered", "Technical Impediments & Resolutions"],
         ["Sprint 1", "Weeks 1--2", "35 pts", "35 pts", "Repository setup, Next.js 16 foundation, FastAPI boilerplate, DB schemas", "Vercel deployment CORS configuration resolved via middleware"],
         ["Sprint 2", "Weeks 3--4", "45 pts", "42 pts", "Ingestion of 8 statutory acts, BM25 tokenizer, dense sentence embedding", "Dense embedding section mismatch resolved by introducing RRF fusion"],
-        ["Sprint 3", "Weeks 5--6", "50 pts", "48 pts", "Gate 2 circuit breaker, deterministic fallback, citation validator regex", "Tuning confidence threshold tau to 0.70 via ROC benchmark curve"],
+        ["Sprint 3", "Weeks 5--6", "50 pts", "48 pts", "Gate 2 circuit breaker, deterministic fallback, citation validator regex", "Tuning confidence threshold tau to 0.75 via ROC benchmark curve"],
         ["Sprint 4", "Weeks 7--8", "55 pts", "50 pts", "12 welfare schemes modeling, rule eligibility engine, document upload UI", "Serverless /tmp storage file loss defect diagnosed by squad"],
         ["Sprint 5", "Weeks 9--10", "60 pts", "60 pts", "Supabase S3 storage adapter, signed URLs, heuristic PDF regex extractor", "Engineered asynchronous Supabase cloud persistence, closing blocker"],
-        ["Sprint 6", "Weeks 11--12", "50 pts", "50 pts", "Automated Pytest test battery (129 tests), route audit, DPDP cascade purge", "Negative authorization tests for unauthenticated admin access passed"]
+        ["Sprint 6", "Weeks 11--12", "50 pts", "50 pts", "Automated Pytest test battery (136 tests), route audit, DPDP cascade purge", "Negative authorization tests for unauthenticated admin access passed"]
     ]
     t_sp = doc.add_table(rows=len(t_sprint_data), cols=6)
     t_sp.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -1446,7 +1446,7 @@ def build_full_report():
     add_sec_heading(doc, "10.1 Review 2 Completion Milestone Summary")
     add_p(doc,
         "With the completion of Review 2, the core functional foundation is fully established: all 4 modules are operational, hybrid retrieval "
-        "and Gate 2 circuit breakers are active, 129 backend tests pass (130 collected, 1 skipped), and durable Supabase S3 storage is verified. "
+        "and Gate 2 circuit breakers are active, 136 backend tests pass (137 collected, 1 skipped), and durable Supabase S3 storage is verified. "
         "The objective for Semester 8 (proposed future work) is to expand the platform into a multilingual, field-tested public system ready for final university defense."
     )
     add_sec_heading(doc, "10.2 Practical 5-Phase Semester 8 Delivery Plan")
@@ -1555,7 +1555,7 @@ def build_full_report():
     )
     add_sec_heading(doc, "11.5 Final Thoughts and Academic Defense Readiness")
     add_p(doc,
-        "CivicSphere AI is fully deployed on production cloud infrastructure, backed by 129 passing backend automated tests (130 collected, 1 skipped), "
+        "CivicSphere AI is fully deployed on production cloud infrastructure, backed by 136 passing backend automated tests (137 collected, 1 skipped), "
         "31 statically prerendered routes, and 20/20 live API probes returning 200 OK. The team stands fully prepared for academic evaluation and university defense."
     )
 

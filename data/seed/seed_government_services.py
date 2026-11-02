@@ -28,8 +28,16 @@ SEED_GOVERNMENT_SCHEMES: List[Dict[str, Any]] = [
         "description": "Central sector income support scheme providing ₹6,000 per year in three equal installments to all landholding farmer families across India.",
         "category": "Agriculture & Farmers Welfare",
         "eligibility_rules": [
-            {"field": "occupation", "operator": "equals", "value": "Farmer", "description": "Applicant family must own cultivable landholding"},
-            {"field": "exclusion_criteria", "operator": "not_in", "value": ["Institutional Landholders", "Constitutional Post Holders", "Serving/Retired Gov Employee"]},
+            {"field": "occupation", "operator": "equals", "value": "Farmer", "description": "Applicant family must own cultivable landholding (all landholding sizes eligible post-June 2019 expansion)"},
+            {"field": "exclusion_criteria", "operator": "not_in", "value": [
+                "Institutional Landholders",
+                "Constitutional Post Holders",
+                "Elected Representatives",
+                "Serving/Retired Gov Employee",
+                "Pensioner >= 10k",
+                "Income Tax Payees",
+                "Practicing Professionals"
+            ], "description": "Excludes institutional landholders, constitutional/elected posts, regular non-Group D employees/pensioners, tax payees, and professionals"},
             {"field": "annual_income", "operator": "less_than", "value": 1000000, "description": "Excludes income tax payees of last assessment year"}
         ],
         "required_documents": [

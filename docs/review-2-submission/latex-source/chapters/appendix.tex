@@ -3,7 +3,7 @@
 
 \section{Full Production Route Inventory}
 \label{sec:app_routes}
-Table~\ref{tab:app_routes} records the 20 audited live API and web routes on the production deployment, demonstrating 100\% HTTP 200 OK availability.
+Table~\ref{tab:app_routes} records the 20 audited live frontend routes on the production deployment returning HTTP 200, alongside backend authorization and deletion probes verified separately.
 
 \begin{table}[H]
 \centering
@@ -41,6 +41,8 @@ GET & \texttt{/api/v1/health} & Public & Backend service health check and provid
 \label{sec:app_dtos}
 Listing~\ref{lst:pydantic_models} illustrates representative Pydantic DTO schemas governing inter-module communication within CivicSphere AI.
 
+\begin{figure}[H]
+\refstepcounter{figure}\label{lst:pydantic_models}
 \begin{verbatim}
 class LegalQueryRequest(BaseModel):
     query: str = Field(..., min_length=5, max_length=1000)
@@ -65,6 +67,8 @@ class LegalGuidanceResponse(BaseModel):
     official_filing_url: str
     disclaimer: str
 \end{verbatim}
+\caption{Representative Pydantic DTO schemas governing inter-module communication.}
+\end{figure}
 
 \section{Turnitin Verification and Academic Integrity Statement}
 \label{sec:app_plag}

@@ -197,7 +197,7 @@ def create_presentation():
         ("Unified Access:", "Bridging statutory law, welfare schemes & citizen documents."),
         ("Evidence-Grounded:", "Deterministic citation grounding with Gate 2 verification."),
         ("Privacy & Trust:", "Aligned with core DPDP Act 2023 principles & durable cloud storage."),
-        ("Empirical Testing:", "129 passed backend tests, 31 static web routes, 20 live HTTP routes.")
+        ("Empirical Testing:", "136 passed backend tests, 31 static web routes, 20 audited live frontend routes.")
     ], title_color=COLOR_TEAL)
 
     # =========================================================================
@@ -234,7 +234,7 @@ def create_presentation():
         ]),
         ("05. Sustainability & Testing", [
             ("UN SDG Alignment:", "SDG 16 (Primary), 10, 9 & green compute (Slide 19)"),
-            ("Empirical Testing:", "129 passed tests, 31 routes, live cloud storage (Slide 20)")
+            ("Empirical Testing:", "136 passed tests, 31 routes, live cloud storage (Slide 20)")
         ]),
         ("06. Teamwork & Roadmap", [
             ("RACI & Collaboration:", "Engineering challenge case study (Slide 21)"),
@@ -699,7 +699,7 @@ def create_presentation():
 
     add_card(s15, Inches(0.6), Inches(1.3), Inches(5.95), Inches(5.5), "MODULE A: LEGAL GUIDANCE ENGINE", [
         ("Statutory Corpus (8 Core Acts):", "Bharatiya Nyaya Sanhita (BNS 2023 / IPC), Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC), Consumer Protection Act 2019, Right to Information Act 2005, Information Technology Act 2000, Industrial Disputes Act 1947, Maintenance and Welfare of Parents and Senior Citizens Act 2007, Protection of Women from Domestic Violence Act 2005."),
-        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio. If ratio < 0.70 or citations are ambiguous, automatically switches to grounded deterministic synthesis, suppressing hallucinated statutory citations."),
+        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio. If ratio < 0.75 or citations are ambiguous, automatically switches to grounded deterministic synthesis, suppressing hallucinated statutory citations."),
         ("Structured Guidance Output:", "Delivers plain-language rights summary, exact statutory sections, applicable court/tribunal jurisdiction, limitation periods, and official e-filing portals (e-Jagriti: e-jagriti.gov.in).")
     ], title_color=COLOR_NAVY)
 
@@ -724,7 +724,7 @@ def create_presentation():
     ], title_color=COLOR_TEAL)
 
     add_card(s16, Inches(6.75), Inches(1.3), Inches(5.95), Inches(5.5), "RECIPROCAL RANK FUSION (RRF) ENGINE", [
-        ("Dual-Stream Retrieval:", "Combines lexical keyword matching (BM25) with dense vector search (384-dimensional feature-hash embedding provider for serverless execution; compatible with all-MiniLM-L6-v2 schema)."),
+        ("Dual-Stream Retrieval:", "Combines lexical keyword matching (BM25) with dense vector search (deterministic 384-dimensional feature-hashing vectorization, optimized for low-latency serverless execution and dense similarity search)."),
         ("Mathematical Formulation:", "RRF Score = Sum for m in M of (1 / (60 + rank_m(d))), ensuring balanced contribution from both sparse and dense ranks."),
         ("Why Pure Dense Search Fails:", "Dense embeddings often confuse Section 138 of the Negotiable Instruments Act with Section 138 of IPC due to semantic section embedding clustering."),
         ("Why BM25 Alone Fails:", "BM25 misses natural citizen queries like 'my landlord kicked me out without notice' because the word 'tenancy' or 'eviction' is absent."),
@@ -820,7 +820,7 @@ def create_presentation():
     add_header(s20, "Empirical Testing & Security Validation Results", "RIGOROUS REPRODUCIBLE TEST SUITE & PLATFORM METRICS", 20)
 
     test_metrics = [
-        ("129 PASSED BACKEND TESTS", "130 COLLECTED (1 SKIPPED)", [
+        ("136 PASSED BACKEND TESTS", "137 COLLECTED (1 SKIPPED)", [
             ("124 Functional / Regression Tests:", "Full coverage of query classification, BM25 indexing, vector embeddings, Gate 2 circuit breaker, and scheme evaluation."),
             ("5 Targeted Unit Tests (PM-KISAN):", "Verifies June 2019 Cabinet expansion (land > 2 ha eligible) and exclusion criteria enforcement."),
             ("5 Server-Side Authorization Tests:", "Verifies that unauthenticated or citizen users cannot access admin endpoints (HTTP 401/403 enforced independently of frontend).")
@@ -833,7 +833,7 @@ def create_presentation():
             ("Supabase S3 Integration:", "Tested synthetic PDF upload, metadata persistence, and authenticated retrieval across fresh serverless instances."),
             ("Byte-Exact Roundtrip:", "SHA-256 hash of downloaded file matches uploaded PDF perfectly; cross-tenant access denied.")
         ]),
-        ("DPDP ALIGNMENT & PRIVACY", "CASCADE DATA PURGE", [
+        ("DPDP PRINCIPLES ALIGNMENT", "TECHNICAL SAFEGUARDS ALIGNED", [
             ("Hard Account Deletion:", "User-initiated account deletion atomically purges all stored documents and linked case dossiers from Supabase storage and DB."),
             ("Immutable Audit Retention:", "Retains non-identifiable audit hashes for regulatory compliance while wiping personal identifying data.")
         ])
@@ -955,7 +955,7 @@ def create_presentation():
     add_card(s24, Inches(4.7), Inches(1.3), Inches(3.9), Inches(5.5), "REVIEW 2 MILESTONES ACHIEVED", [
         ("Complete Module Implementation:", "All 4 modules (A, B, C, D) are fully operational and verified on live Vercel production."),
         ("Durable Cloud Persistence:", "Closed the serverless `/tmp` blocker with Supabase private S3 object storage."),
-        ("Empirical Rigor:", "129 passed backend tests (130 collected, 1 skipped), 31 static routes, 30 peer-reviewed papers mapped across 7 themes."),
+        ("Empirical Rigor:", "136 passed backend tests (137 collected, 1 skipped), 31 static routes, 30 peer-reviewed papers mapped across 7 themes."),
         ("Ready for Semester 8:", "Clear proposed 5-phase delivery plan for multilingual and field trial expansion.")
     ], title_color=COLOR_TEAL)
 

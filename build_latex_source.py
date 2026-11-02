@@ -297,7 +297,12 @@ THESIS_CONTENT = r"""\documentclass[12pt,a4paper]{report}
 \usepackage[left=3.5cm,right=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{lineno}
 \usepackage{comment}
-\usepackage{natbib}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{newunicodechar}
+\DeclareUnicodeCharacter{20B9}{INR~}
 \usepackage{multicol}
 \usepackage{xcolor}
 \usepackage{amsfonts}
@@ -407,6 +412,7 @@ THESIS_CONTENT = r"""\documentclass[12pt,a4paper]{report}
 \fontsize{12}{14.4}\selectfont
 
 % Bibliography
+\nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{references}
 \addcontentsline{toc}{chapter}{Bibliography}
@@ -471,29 +477,30 @@ with open(os.path.join(FRONT_MATTER_DIR, "title_page.tex"), "w", encoding="utf-8
 
 with open(os.path.join(FRONT_MATTER_DIR, "certificate.tex"), "w", encoding="utf-8") as f:
     f.write(r"""\thispagestyle{plain}
-\begin{minipage}[c]{1mm}
-    \includegraphics[width=23mm]{images/SAKEC_logo.png}
-\end{minipage}
+\noindent
+\begin{minipage}[c]{24mm}
+    \includegraphics[width=22mm]{images/SAKEC_logo.png}
+\end{minipage}%
 \hfill
-\begin{minipage}[c]{126mm}
+\begin{minipage}[c]{125mm}
     \centering
-    { \bf \large {Shah \& Anchor Kutchhi Engineering College} }\\
-    \vspace{-0.01 \baselineskip}
-    {(An Autonomous Institute Affiliated to University of Mumbai) }
-    { \bf \small {Mumbai--400 088, MAHARASHTRA (India)} }\\
+    {\bf \large {Shah \& Anchor Kutchhi Engineering College}} \\
+    \vspace{2pt}
+    {\small (An Autonomous Institute Affiliated to University of Mumbai)} \\
+    {\bf \small {Mumbai -- 400 088, Maharashtra (India)}} \\
 \end{minipage}
 
-\vspace{0.2\baselineskip}
+\vspace{0.4\baselineskip}
 \begin{center}
 {\Large {\bf \uppercase{Certificate}}}
 \end{center}
-\vspace{\baselineskip}
+\vspace{0.2\baselineskip}
 \hrule
-\vspace{2\baselineskip}
+\vspace{1.2\baselineskip}
 \noindent
 {It is my pleasure to certify that \textbf{{\studentNamea}}, \textbf{{\studentNameb}}, \textbf{{\studentNamec}} and \textbf{{\studentNamed}} worked under my supervision for the B.Tech. Project entitled \textbf{{\mytitle}} and their work is of the level of requirement set up for the Project Review 2 in \textbf{{\branch}} by Shah \& Anchor Kutchhi Engineering College, Mumbai.}
 
-\vspace{3\baselineskip}
+\vspace{1.5\baselineskip}
 \noindent
 \begin{tabular}{@{}l}
 \textbf{\mysupervisor} \\
@@ -503,23 +510,25 @@ Shah \& Anchor Kutchhi Engineering College \\
 Mumbai -- 400 088, India
 \end{tabular}
 
-\vspace{2\baselineskip}
+\vspace{1.2\baselineskip}
 \noindent
 {The Oral and Practical examination of \textbf{{\studentNamea}}, \textbf{{\studentNameb}}, \textbf{{\studentNamec}} and \textbf{{\studentNamed}}, B.Tech. in \branch, has been held on \dotfill}
 
-\vspace{3\baselineskip}
-\begin{tabular}{p{0.32\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\vspace{1.5\baselineskip}
+\noindent
+\begin{tabularx}{\textwidth}{@{}XXX@{}}
 \textbf{External Examiner} & \textbf{Internal Examiner} & \textbf{Project Guide} \\
-\vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill \\
+\vspace{0.9cm}\dotfill & \vspace{0.9cm}\dotfill & \vspace{0.9cm}\dotfill \\
 Name: & Name: & \mysupervisor \\
-\end{tabular}
+\end{tabularx}
 
-\vspace{2.5\baselineskip}
-\begin{tabular}{p{0.32\textwidth}p{0.32\textwidth}p{0.32\textwidth}}
+\vspace{1.2\baselineskip}
+\noindent
+\begin{tabularx}{\textwidth}{@{}XXX@{}}
 \textbf{Head of Department} & \textbf{Principal} & \textbf{College Seal} \\
-\vspace{1.5cm}\dotfill & \vspace{1.5cm}\dotfill & \vspace{1.5cm} \\
+\vspace{0.9cm}\dotfill & \vspace{0.9cm}\dotfill & \vspace{0.9cm} \\
 \HoDName & \principalName & 
-\end{tabular}
+\end{tabularx}
 """)
 
 with open(os.path.join(FRONT_MATTER_DIR, "candidate's_declaration.tex"), "w", encoding="utf-8") as f:
@@ -531,7 +540,7 @@ with open(os.path.join(FRONT_MATTER_DIR, "candidate's_declaration.tex"), "w", en
 \hrule
 \vspace{2\baselineskip}
 
-\noindent We hereby declare that the work presented in this Project Report entitled {\textbf{{“\mytitle”}}} submitted for the partial fulfillment of the requirements for the degree of Bachelor of Technology in {\branch} at Shah \& Anchor Kutchhi Engineering College, Mumbai, is an authentic record of our own research and engineering work carried out during the academic year \academicyear{} under the supervision of {\textbf{\mysupervisor}}. \par
+\noindent We hereby declare that the work presented in this Project Report entitled {\textbf{{``\mytitle''}}} submitted for the partial fulfillment of the requirements for the degree of Bachelor of Technology in {\branch} at Shah \& Anchor Kutchhi Engineering College, Mumbai, is an authentic record of our own research and engineering work carried out during the academic year \academicyear{} under the supervision of {\textbf{\mysupervisor}}. \par
 \vspace{1.5\baselineskip}
 \noindent The matter embodied in this report has not been submitted elsewhere in part or fully to any other University or Institute for the award of any degree or diploma.
 
@@ -539,6 +548,7 @@ with open(os.path.join(FRONT_MATTER_DIR, "candidate's_declaration.tex"), "w", en
 \bigskip
 
 \begin{table}[h]
+\centering
 \begin{tabular}{p{5cm}p{4cm}p{4cm}}
 \textbf{Name of the Student} & \textbf{Roll No.} & \textbf{Signature} \\
 \studentNamea & \NewRollNoa & \dotfill \\
@@ -616,6 +626,7 @@ with open(os.path.join(FRONT_MATTER_DIR, "acknowledgements.tex"), "w", encoding=
 \vspace{\baselineskip}
 \hrule
 \vspace{1.5\baselineskip}
+\justifying
 
 We express our deepest sense of gratitude and sincere indebtedness to our esteemed project guide, \textbf{\mysupervisor}, Assistant Professor, Department of Computer Engineering, for her invaluable guidance, perceptive criticism, continuous encouragement, and technical oversight throughout the course of this research and engineering endeavor. Her profound insights into intelligent systems, AI governance, and academic rigor have been indispensable in elevating this project to its present standard.
 
@@ -648,12 +659,13 @@ with open(os.path.join(FRONT_MATTER_DIR, "abstract.tex"), "w", encoding="utf-8")
 \vspace{\baselineskip}
 \hrule
 \vspace{1.5\baselineskip}
+\justifying
 
 \noindent In democratic societies such as India, equal access to justice and public entitlements represents a foundational constitutional ideal. However, in practice, citizens face severe systemic friction arising from bureaucratic fragmentation across disconnected portals, dense statutory legalese, opaque welfare eligibility criteria, and prohibitive legal consultation costs. While commercial generative AI models offer conversational accessibility, their unconstrained deployment in legal and civic domains presents grave risks of legal prejudice due to pervasive hallucinations, fabricated case citations, and temporal invalidation of superseded statutes.
 
-This project presents \textbf{CivicSphere AI}, an agentic, evidence-grounded civic intelligence platform engineered specifically for the Indian socio-legal ecosystem. CivicSphere AI unifies four intelligent modules within a modular monolithic architecture: (i) an \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory Acts with a strict Gate 2 circuit breaker that switches to deterministic synthesis whenever citation grounding falls below confidence thresholds; (ii) a \textbf{Government Service Navigator} incorporating a catalog of 12 Central and State welfare schemes with dynamic, rule-based eligibility evaluation (incorporating the June 2019 PM-KISAN expansion to all landholding families); (iii) a \textbf{Civic Knowledge and Agentic Graph} executing multi-hop relational reasoning across a 40+ node NetworkX multigraph combined with Reciprocal Rank Fusion (RRF) hybrid retrieval (BM25 sparse + dense embeddings); and (iv) an \textbf{Intelligent Document Processing Pipeline} featuring sub-2.0 second heuristic regex extraction of notices and summons, coupled with durable, serverless-compatible Supabase S3 cloud persistence and strict Digital Personal Data Protection (DPDP) Act 2023 cascade purge alignment.
+This project presents \textbf{CivicSphere AI}, an agentic, evidence-grounded civic intelligence platform engineered specifically for the Indian socio-legal ecosystem. CivicSphere AI unifies four intelligent modules within a modular monolithic architecture: (i) an \textbf{Evidence-Grounded Legal Guidance Engine} covering eight core statutory Acts with a strict Gate 2 circuit breaker (confidence threshold $\tau = 0.75$) that switches to deterministic synthesis whenever citation grounding falls below confidence thresholds; (ii) a \textbf{Government Service Navigator} incorporating a catalog of 12 Central and State welfare schemes with dynamic, rule-based eligibility evaluation (incorporating the June 2019 PM-KISAN expansion to all landholding families alongside statutory exclusion filters and preserved Class IV/Group D exceptions); (iii) a \textbf{Civic Knowledge and Agentic Graph} executing multi-hop relational reasoning across a 40+ node NetworkX multigraph combined with Reciprocal Rank Fusion (RRF) hybrid retrieval (BM25 sparse + deterministic 384-dimensional feature-hashing vectorization); and (iv) an \textbf{Intelligent Document Processing Pipeline} featuring sub-2.0 second heuristic regex extraction of notices and summons, coupled with durable, serverless-compatible Supabase S3 cloud persistence and alignment with Digital Personal Data Protection (DPDP) Act 2023 principles.
 
-Empirical verification on live production demonstrates a comprehensive pass rate across 129 backend automated tests (130 collected, 1 skipped due to external network dependency, including 5 server-side authorization enforcement tests), error-free static prerendering of 31 Next.js 16 App Router frontend routes on React 19, 20/20 live HTTP API endpoints returning 200 OK, and byte-exact roundtrip cloud storage persistence. By translating abstract statutory rights into plain-language, verifiable procedural roadmaps and official portal destinations (such as e-Jagriti), CivicSphere AI advances UN Sustainable Development Goal 16 (Target 16.3: Equal Access to Justice) while maintaining rigorous privacy and green computational efficiency.
+Empirical verification on live production demonstrates a comprehensive pass rate across 136 backend automated tests (137 collected, 1 skipped due to external network dependency, including 5 server-side authorization enforcement tests and 12 statutory PM-KISAN tests), error-free static prerendering of 31 Next.js 16 App Router frontend routes on React 19, 20 audited live frontend routes returning HTTP 200, and byte-exact roundtrip cloud storage persistence. By translating abstract statutory rights into plain-language, verifiable procedural roadmaps and official portal destinations (such as e-Jagriti), CivicSphere AI advances UN Sustainable Development Goal 16 (Target 16.3: Equal Access to Justice) while maintaining rigorous privacy and green computational efficiency.
 
 \bigskip
 \noindent {\large \bf{Keywords}:} Civic Intelligence, Legal NLP, Retrieval-Augmented Generation, Reciprocal Rank Fusion, Knowledge Graphs, Citation Verification, DPDP Act 2023, Multi-Agent Systems, E-Governance, Access to Justice.

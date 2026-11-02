@@ -30,7 +30,7 @@ The Legal Guidance Engine executes when a citizen submits a query regarding a le
     \item \textbf{Query Normalization:} Cleans input text, removes noise, and extracts key entities and statutory keywords.
     \item \textbf{Statutory Retrieval:} Executes parallel searches across the indexed 8-Act database using BM25 and vector embeddings.
     \item \textbf{Evidence Assembly:} Compiles retrieved statutory chunks into an immutable \texttt{EvidencePack}.
-    \item \textbf{Gate 2 Grounding Evaluation:} Evaluates semantic overlap between retrieved sections and query intent. If overlap ratio $\ge 0.70$, generates grounded guidance; if $< 0.70$, switches to deterministic factual fallback.
+    \item \textbf{Gate 2 Grounding Evaluation:} Evaluates semantic overlap between retrieved sections and query intent. If overlap ratio $\ge 0.75$, generates grounded guidance; if $< 0.75$, switches to deterministic factual fallback.
     \item \textbf{Action Formatting:} Appends applicable court forums, limitation deadlines, and official e-filing portal URLs.
 \end{enumerate}
 
@@ -92,4 +92,4 @@ The mathematical formulation of the Gate 2 circuit breaker is defined as:
 \end{cases}
 \label{eq:gate2_logic}
 \end{equation}
-where $\tau = 0.70$ is the empirical confidence threshold. This guarantees that ungrounded queries never produce fabricated advice.
+where $\tau = 0.75$ is the empirical confidence threshold. This guarantees that ungrounded queries never produce fabricated advice.

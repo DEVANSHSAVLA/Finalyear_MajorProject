@@ -15,7 +15,7 @@ This document presents empirical, reproducible verification evidence for **Civic
 
 | Verification Scope | Target Environment | Test Suite / Execution Command | Collected Items | Outcome | Execution Time | Status |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Backend Core Regression** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum` | 130 items | **129 passed, 1 skipped, 0 failed** | 19.35s | **PASSED** |
+| **Backend Core Regression** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum` | 137 items | **136 passed, 1 skipped, 0 failed** | 54.35s | **PASSED** |
 | **Server-Side Authorization** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum backend/tests/security/test_server_side_authorization.py` | 5 items | **5 passed, 0 failed** | 0.99s | **PASSED** |
 | **Frontend Static Prerender** | Monorepo Node.js 22 Environment | `npm run build` (Turbopack Next.js 16.4.2) | 31 routes | **31 routes compiled, 0 errors, 0 warnings** | 18.9s | **PASSED** |
 | **Frontend Static Analysis** | Monorepo Node.js 22 Environment | `cd apps/web; npx eslint src` | TypeScript / JSX | **0 errors, 0 warnings** | 3.4s | **PASSED** |
@@ -23,7 +23,7 @@ This document presents empirical, reproducible verification evidence for **Civic
 | **Live Backend Security Audit** | Production Vercel Serverless (`iad1`) | `python scripts/verify_live_backend_security.py` | 15 probes | **9/9 unauth 401, 3/3 admin 403, IDOR 403, DPDP 200** | ~12s | **PASSED** |
 | **Live Cloud Storage Durability** | Supabase Cloud Storage Production | `python scripts/verify_live_production_storage.py` | 7 probes | **Byte-exact roundtrip, cross-invocation persistent** | ~9s | **PASSED** |
 
-> **Total Verified Non-Overlapping Backend Test Cases**: **129 passed, 1 skipped, 0 failed**.  
+> **Total Verified Non-Overlapping Backend Test Cases**: **136 passed, 1 skipped, 0 failed** (including 12 dedicated PM-KISAN statutory tests and 5 server-side authorization enforcement tests).  
 > **Skipped Item Note**: `test_real_external_source_live_smoke` is guarded by `@pytest.mark.skipif(not RUN_LIVE_SMOKE)` to prevent nondeterministic failures caused by third-party government server rate limits during offline test runs.
 
 ---
@@ -43,7 +43,7 @@ rootdir: C:\Users\Deepak Chheda\OneDrive\Desktop\23UF18356CM172\MAJORPROJECT\Fin
 configfile: pyproject.toml
 testpaths: backend/tests
 plugins: anyio-4.12.0, timeout-2.4.0
-collected 130 items
+collected 137 items
 
 backend/tests/api/test_agents_api.py::test_agent_chat_endpoint PASSED    [  0%]
 backend/tests/api/test_agents_api.py::test_list_agent_tools_endpoint PASSED [  1%]
@@ -145,13 +145,20 @@ backend/tests/unit/test_storage.py::test_supabase_storage_get_file_success PASSE
 backend/tests/unit/test_storage.py::test_supabase_storage_get_file_not_found PASSED [ 78%]
 backend/tests/unit/test_storage.py::test_supabase_storage_delete_file PASSED [ 79%]
 backend/tests/unit/test_storage.py::test_get_storage_backend_factory PASSED [ 80%]
-backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_small_farmer_eligible PASSED [ 81%]
-backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_large_farmer_eligible_post_2019_expansion PASSED [ 82%]
-backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_institutional_landholder_excluded PASSED [ 83%]
-backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_constitutional_post_holder_excluded PASSED [ 84%]
-backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_income_tax_payer_excluded PASSED [ 85%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_eligible_over_two_hectares PASSED [ 83%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_small_marginal_farmer_eligible PASSED [ 83%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_institutional_landholder PASSED [ 84%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_constitutional_post_holder PASSED [ 85%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_elected_representative PASSED [ 86%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_regular_gov_employee PASSED [ 86%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_eligible_group_d_gov_employee_exception PASSED [ 87%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_high_pensioner PASSED [ 88%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_eligible_group_d_pensioner_exception PASSED [ 89%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_income_tax_payee PASSED [ 89%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_ineligible_practicing_professional PASSED [ 90%]
+backend/tests/unit/test_pm_kisan_eligibility.py::test_pm_kisan_verification_needed_unverified_land_records PASSED [ 91%]
 
-============ 129 passed, 1 skipped, 2 warnings in 19.35s ============
+================= 136 passed, 1 skipped, 2 warnings in 54.35s =================
 ```
 
 ### 2.2 Server-Side Authorization Defense Suite

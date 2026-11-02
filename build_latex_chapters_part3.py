@@ -20,7 +20,7 @@ At the Review 1 stage, modules relating to Government Service Navigation and Doc
 \begin{tabular}{|l|p{5cm}|p{3cm}|p{4.5cm}|}
 \hline
 \textbf{Module / Component} & \textbf{Core Capabilities Implemented} & \textbf{Review 2 Status} & \textbf{Verification Evidence} \\ \hline
-\textbf{Module A: Legal Guidance} & 8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker & \textbf{OPERATIONAL (100\%)} & Passes 129 backend tests; zero ungrounded citations \\ \hline
+\textbf{Module A: Legal Guidance} & 8 Statutory Acts, chunking, BM25 + dense search, Gate 2 circuit breaker & \textbf{OPERATIONAL (100\%)} & Passes 136 backend tests; zero ungrounded citations \\ \hline
 \textbf{Module B: Gov Navigator} & 12 Welfare schemes, rule-based eligibility evaluation, document checklists & \textbf{OPERATIONAL (100\%)} & Live UI scheme filtering; active REST endpoint \texttt{/api/v1/schemes} \\ \hline
 \textbf{Module C: Civic Knowledge} & 40+ node NetworkX graph, multi-hop traversal, RRF fusion, temporal metadata & \textbf{OPERATIONAL (100\%)} & Graph traversal verified; multi-hop scheme discovery active \\ \hline
 \textbf{Module D: Document AI} & Heuristic regex parser, PDF layout triage, Supabase S3 private storage & \textbf{OPERATIONAL (100\%)} & Sub-2.0s parsing latency; byte-exact S3 roundtrip verified \\ \hline
@@ -37,7 +37,7 @@ Module A provides contextual, evidence-grounded legal guidance across eight foun
 \begin{enumerate}
     \item \textbf{Bharatiya Nyaya Sanhita (BNS 2023 / IPC):} Offenses against the human body, property offenses, criminal breach of trust, cheating, and criminal intimidation.
     \item \textbf{Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC):} Arrest procedures, FIR registration mandates (Section 173 BNSS), bail provisions, and magistrate complaint procedures.
-    \item \textbf{Consumer Protection Act 2019:} Product liability, unfair trade practices, e-commerce deficiency in service, and filing jurisdictions for District/State/National Commissions via e-Jagriti (https://e-jagriti.gov.in).
+    \item \textbf{Consumer Protection Act 2019:} Product liability, unfair trade practices, e-commerce deficiency in service, and filing jurisdictions for District/State/National Commissions via e-Jagriti (\url{https://e-jagriti.gov.in}).
     \item \textbf{Right to Information (RTI) Act 2005:} Citizen application formats under Section 6(1), 30-day statutory disclosure deadlines, and First/Second Appellate Authority procedures.
     \item \textbf{Information Technology Act 2000:} Cyber fraud, identity theft (Section 66C), privacy violations (Section 66E), and intermediary liability regulations.
     \item \textbf{Industrial Disputes Act 1947:} Unfair labour practices, unlawful retrenchment procedures, mandatory conciliation, and Labour Court jurisdiction.
@@ -59,7 +59,7 @@ This design ensures that citizens are never provided with fabricated legal right
 \label{sec:module_b_impl}
 Module B models twelve transformative Central and State welfare programs, capturing granular eligibility rules and documentary prerequisites:
 \begin{enumerate}
-    \item \textbf{PM-KISAN:} Direct income support of INR 6,000/year to all cultivable landholding farmer families (expanded June 2019 beyond the legacy 2-hectare ceiling; subject to institutional and tax exclusions).
+    \item \textbf{PM-KISAN:} Direct income support of INR 6,000/year to all cultivable landholding farmer families across India. The legacy 2-hectare ceiling was abolished by the Union Cabinet in June 2019, extending eligibility to all farmer families regardless of landholding size (> 2 ha). The system enforces all 7 statutory exclusions (institutional landholders, constitutional post holders, elected representatives, regular government employees, pensioners $\ge \text{INR } 10,000$/month, income tax payees, and practicing professionals) while strictly preserving prescribed exceptions for Class IV / Group D / MTS employees and pensioners.
     \item \textbf{Ayushman Bharat PM-JAY:} Secondary and tertiary health coverage up to INR 5,00,000 per family per year for vulnerable households identified via SECC data.
     \item \textbf{Pradhan Mantri Awas Yojana (PMAY):} Credit-linked subsidy and financial assistance for pucca house construction for EWS/LIG families.
     \item \textbf{National Social Assistance Programme (NSAP):} Monthly pensions for elderly, widows, and disabled persons living below the poverty line.
@@ -103,7 +103,7 @@ Module D processes citizen PDF documents through a resilient multi-stage pipelin
     \begin{itemize}
         \item \textit{Notice Numbers:} \texttt{Notice\textbackslash s*(?:No|Ref)?[\textbackslash s.:-]*([A-Z0-9/-]+)}
         \item \textit{Statutory Sections:} \texttt{Section\textbackslash s+([0-9]+[A-Za-z]?(?:\textbackslash ([0-9]+\textbackslash ))*)}
-        \item \textit{Monetary Penalties:} \texttt{(?:INR|Rs\textbackslash .?|₹)\textbackslash s*([\textbackslash d,]+(?:\textbackslash .\textbackslash d\{2\})?)}
+        \item \textit{Monetary Penalties:} \texttt{(?:INR|Rs\textbackslash .?)\textbackslash s*([\textbackslash d,]+(?:\textbackslash .\textbackslash d\{2\})?)}
         \item \textit{Compliance Deadlines:} \texttt{(?:within|before|by)\textbackslash s+(\textbackslash d\{1,2\}[\textbackslash s/.-]+[A-Za-z0-9]+[\textbackslash s/.-]+\textbackslash d\{2,4\})}
     \end{itemize}
     \item \textbf{Classification:} Determines document category with confidence score $\ge 0.85$.
@@ -146,13 +146,13 @@ The deployed CivicSphere AI platform is illustrated in Figures~\ref{fig:screens_
 To guarantee software engineering excellence, CivicSphere AI was subjected to an exhaustive automated test battery on production infrastructure:
 
 \begin{itemize}
-    \item \textbf{129 Passed Backend Automated Tests (130 Collected, 1 Skipped):}
+    \item \textbf{136 Passed Backend Automated Tests (137 Collected, 1 Skipped):}
     \begin{itemize}
-        \item 124 Unit, Functional, and Regression Tests: Complete coverage of query normalization, BM25 indexing, dense vector search, Gate 2 circuit-breaker triggering, scheme eligibility logic, and PDF heuristic regex parsing.
-        \item 5 Targeted Unit Tests: Explicit verification of PM-KISAN June 2019 expansion (farmers with $>2$ hectares eligible) and statutory exclusion criteria enforcement.
+        \item 124 Unit, Functional, and Security Tests: Complete coverage of query normalization, BM25 indexing, dense vector search, Gate 2 circuit-breaker triggering, scheme eligibility logic, and PDF heuristic regex parsing.
+        \item 12 Dedicated PM-KISAN Statutory Tests: Explicit verification of PM-KISAN June 2019 expansion (farmers with $>2$ hectares eligible), all 7 official statutory exclusions, preserved Class IV / Group D / MTS exceptions, and \texttt{VERIFICATION\_NEEDED} state.
         \item 5 Server-Side Authorization Enforcement Tests: Validates that unauthenticated users and unauthorized citizen roles cannot access administrator routes (HTTP 401/403 enforced at backend gateway, independent of frontend guards).
         \item 1 Skipped Test: \texttt{test\_live\_sources\_smoke.py} skipped due to external live internet network dependency in isolated test environments.
-        \item Test Execution Outcome: \textbf{129 passed, 1 skipped in 19.35s.}
+        \item Test Execution Outcome: \textbf{136 passed, 1 skipped in 54.35s.}
     \end{itemize}
 
     \item \textbf{31 Static Frontend Routes Prerendered:}
@@ -161,10 +161,10 @@ To guarantee software engineering excellence, CivicSphere AI was subjected to an
         \item 0 Static Generation Crashes; 0 Hydration Errors; 0 Broken Dynamic Route Links.
     \end{itemize}
 
-    \item \textbf{20/20 Live Route Inventory Audit:}
+    \item \textbf{20 Audited Live Frontend Routes Returning HTTP 200:}
     \begin{itemize}
         \item Live HTTP probes executed against canonical production deployment.
-        \item 100\% (20/20) core endpoints returned \textbf{HTTP 200 OK} across public and authenticated routes.
+        \item 20 of 20 audited live frontend routes returned HTTP 200. Backend authorization probes returned expected 401/403 responses, and document/account deletion probes were verified separately.
     \end{itemize}
 
     \item \textbf{Durable Supabase S3 Cloud Storage Byte-Exact Persistence:}
@@ -174,11 +174,10 @@ To guarantee software engineering excellence, CivicSphere AI was subjected to an
         \item SHA-256 hash match verified: 100\% byte-exact roundtrip; cross-user access denied (HTTP 403).
     \end{itemize}
 
-    \item \textbf{Digital Personal Data Protection (DPDP) Act Cascade Purge Alignment:}
+    \item \textbf{Digital Personal Data Protection (DPDP) Act 2023 Technical Alignment:}
     \begin{itemize}
-        \item Executed user account deletion request.
-        \item Verified atomic deletion of linked S3 document objects and PostgreSQL case dossiers.
-        \item Retained non-identifiable audit trail hash for regulatory logging while completely erasing personal identifying data.
+        \item Selected technical safeguards aligned with relevant DPDP Act 2023 principles have been implemented and tested. These include authentication, server-side authorization, private document storage, auditability and deletion workflows. Formal legal compliance certification has not been performed.
+        \item Executed user account deletion request verifying atomic cascade deletion of linked S3 document objects and database records while retaining non-identifiable audit hashes.
     \end{itemize}
 \end{itemize}
 """
@@ -216,7 +215,7 @@ Knowledge Graph (NetworkX) \& RRF Retrieval & \textbf{A / R} & R & C & C \\ \hli
 Intelligent Document Processing \& Regex Heuristics & C & I & C & \textbf{A / R} \\ \hline
 Supabase Cloud Storage Adapter \& Durability & R & I & I & \textbf{A / R} \\ \hline
 Next.js 16 Frontend Portal \& UI Styling & C & R & \textbf{A / R} & C \\ \hline
-Automated Test Suite (129 Tests) \& Security & \textbf{A / R} & C & C & R \\ \hline
+Automated Test Suite (136 Tests) \& Security & \textbf{A / R} & C & C & R \\ \hline
 Production CI/CD \& Vercel Cloud Deployment & \textbf{A / R} & I & I & C \\ \hline
 DPDP Act Principles Alignment \& Privacy Auditing & C & \textbf{A / R} & I & R \\ \hline
 \end{tabular}%
@@ -241,7 +240,7 @@ The squad authored automated end-to-end regression scripts (\texttt{test\_authen
 In compliance with Level 4 rubric requirements, each team member provides an individual reflective commentary (180--240 words) detailing technical learning, engineering problem-solving, and personal growth:
 
 \subsection{Devansh Savla (Roll No: 23UF18356CM172)}
-\textit{``Leading the systems architecture and backend engineering for CivicSphere AI has been an extraordinary technical journey. My core focus was architecting the 5-Tier Modular Monolith and solving the high-stakes problem of generative hallucination in civic AI. By designing the Gate 2 circuit breaker and implementing Reciprocal Rank Fusion over BM25 and dense sentence transformers, I learned how to balance low-latency retrieval with strict mathematical grounding constraints. When our initial serverless deployments suffered from ephemeral state loss, I collaborated closely with Rahul to decouple storage into private S3 buckets. Furthermore, setting up our automated testing harness with 129 Pytest suites and automating our Vercel CI/CD pipeline taught me how enterprise reliability is maintained in production. This project fundamentally deepened my appreciation for robust distributed systems, defensive API design, and ethical engineering that empowers citizens who cannot afford private legal counsel.''}
+\textit{``Leading the systems architecture and backend engineering for CivicSphere AI has been an extraordinary technical journey. My core focus was architecting the 5-Tier Modular Monolith and solving the high-stakes problem of generative hallucination in civic AI. By designing the Gate 2 circuit breaker and implementing Reciprocal Rank Fusion over BM25 and deterministic 384-dimensional feature-hashing vectorization, I learned how to balance low-latency retrieval with strict mathematical grounding constraints. When our initial serverless deployments suffered from ephemeral state loss, I collaborated closely with Rahul to decouple storage into private S3 buckets. Furthermore, setting up our automated testing harness with 136 Pytest suites and automating our Vercel CI/CD pipeline taught me how enterprise reliability is maintained in production. This project fundamentally deepened my appreciation for robust distributed systems, defensive API design, and ethical engineering that empowers citizens who cannot afford private legal counsel.''}
 
 \subsection{Khushbu Chheda (Roll No: 23UF17711CM132)}
 \textit{``My primary responsibility centered on the Legal Guidance Engine and ontological structuring of Indian statutory law. Translating complex statutory codes---such as the transition from the Indian Penal Code to the Bharatiya Nyaya Sanhita 2023---into structured computational chunks required extensive domain research. I worked on hierarchical section parsing, mapping penal clauses, limitation periods, and court jurisdictions into our knowledge backbone. Additionally, I led our compliance auditing under the Digital Personal Data Protection Act 2023, ensuring that our data models implement strict purpose limitation and cascade hard deletion. Through this work, I discovered how thoughtful technical design can make intimidating administrative processes transparent. Collaborating with Anushka on citizen UI flows showed me that human-centered design is as critical as algorithmic complexity when building software for vulnerable populations.''}
@@ -275,7 +274,7 @@ ch10_content = r"""\chapter{Proposed Implementation Plan for Semester 8}
 
 \section{Review 2 Completion Milestone Summary}
 \label{sec:sem8_summary}
-With the successful completion of Review 2, the core functional and architectural foundation of CivicSphere AI is fully established: all four domain intelligence modules are operational, hybrid RRF retrieval and Gate 2 circuit-breakers are active, 129 backend tests are passing (130 collected, 1 skipped), and durable Supabase S3 storage is verified. The objective for Semester 8 (proposed future work) is to transition the platform from a verified academic prototype to a battle-tested, multilingual public system ready for final university defense and field trials.
+With the successful completion of Review 2, the core functional and architectural foundation of CivicSphere AI is fully established: all four domain intelligence modules are operational, hybrid RRF retrieval and Gate 2 circuit-breakers are active, 136 backend tests are passing (137 collected, 1 skipped), and durable Supabase S3 storage is verified. The objective for Semester 8 (proposed future work) is to transition the platform from a verified academic prototype to a battle-tested, multilingual public system ready for final university defense and field trials.
 
 \section{Practical 5-Phase Semester 8 Delivery Plan}
 \label{sec:5phase_plan}
@@ -332,7 +331,7 @@ This B.Tech Major Project report has presented the comprehensive research, desig
 \label{sec:main_findings}
 The empirical results achieved during Review 2 establish several key scientific findings:
 \begin{enumerate}
-    \item \textbf{Superiority of Hybrid RRF Retrieval:} Combining sparse BM25 lexical matching with dense sentence transformer embeddings via Reciprocal Rank Fusion achieves an 88.4\% Top-3 recall, substantially outperforming either retrieval model in isolation on statutory queries.
+    \item \textbf{Superiority of Hybrid RRF Retrieval:} Combining sparse BM25 lexical matching with deterministic 384-dimensional feature-hashing vectorization via Reciprocal Rank Fusion achieves an 88.4\% Top-3 recall, substantially outperforming either retrieval model in isolation on statutory queries.
     \item \textbf{Elimination of Hallucination via Circuit Breakers:} Requiring semantic overlap verification before generating natural language advice completely eliminates false statutory claims, validating the efficacy of neuro-symbolic guardrails in high-stakes public AI.
     \item \textbf{Viability of Lightweight Document Heuristics:} Domain-specific regex heuristics achieve an average parsing latency of 1.62 seconds on commodity serverless compute, proving that heavy visual transformer models are not strictly necessary for standard civic notice triage.
     \item \textbf{Resolution of Serverless Storage Fragility:} Decoupling file persistence into private, presigned S3 object buckets completely resolves serverless container cold-start crashes, guaranteeing byte-exact document persistence across invocations.
@@ -348,7 +347,7 @@ In practical terms, CivicSphere AI provides ordinary citizens with an instant, z
 
 \section{Final Thoughts and Defense Readiness}
 \label{sec:final_thoughts}
-The CivicSphere AI platform is fully deployed, thoroughly tested (129 passing backend tests, 31 prerendered routes, 20/20 live API probes), and rigorously documented. The team stands fully prepared for academic evaluation and looks forward to executing the Semester 8 roadmap toward final university defense.
+The CivicSphere AI platform is fully deployed, thoroughly tested (136 passing backend tests, 31 prerendered routes, 20 audited live frontend routes), and rigorously documented. The team stands fully prepared for academic evaluation and looks forward to executing the Semester 8 roadmap toward final university defense.
 """
 
 with open(os.path.join(CHAPTERS_DIR, "chapter11_conclusions.tex"), "w", encoding="utf-8") as f:
@@ -363,7 +362,7 @@ appendix_content = r"""\chapter{Appendix}
 
 \section{Full Production Route Inventory}
 \label{sec:app_routes}
-Table~\ref{tab:app_routes} records the 20 audited live API and web routes on the production deployment, demonstrating 100\% HTTP 200 OK availability.
+Table~\ref{tab:app_routes} records the 20 audited live frontend routes on the production deployment returning HTTP 200, alongside backend authorization and deletion probes verified separately.
 
 \begin{table}[H]
 \centering
@@ -401,6 +400,8 @@ GET & \texttt{/api/v1/health} & Public & Backend service health check and provid
 \label{sec:app_dtos}
 Listing~\ref{lst:pydantic_models} illustrates representative Pydantic DTO schemas governing inter-module communication within CivicSphere AI.
 
+\begin{figure}[H]
+\refstepcounter{figure}\label{lst:pydantic_models}
 \begin{verbatim}
 class LegalQueryRequest(BaseModel):
     query: str = Field(..., min_length=5, max_length=1000)
@@ -425,6 +426,8 @@ class LegalGuidanceResponse(BaseModel):
     official_filing_url: str
     disclaimer: str
 \end{verbatim}
+\caption{Representative Pydantic DTO schemas governing inter-module communication.}
+\end{figure}
 
 \section{Turnitin Verification and Academic Integrity Statement}
 \label{sec:app_plag}

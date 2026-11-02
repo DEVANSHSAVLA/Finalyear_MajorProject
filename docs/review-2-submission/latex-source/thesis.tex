@@ -21,7 +21,12 @@
 \usepackage[left=3.5cm,right=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{lineno}
 \usepackage{comment}
-\usepackage{natbib}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{newunicodechar}
+\DeclareUnicodeCharacter{20B9}{INR~}
 \usepackage{multicol}
 \usepackage{xcolor}
 \usepackage{amsfonts}
@@ -131,6 +136,7 @@
 \fontsize{12}{14.4}\selectfont
 
 % Bibliography
+\nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{references}
 \addcontentsline{toc}{chapter}{Bibliography}
