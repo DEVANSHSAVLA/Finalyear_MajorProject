@@ -39,4 +39,4 @@ jobs:
 
       - name: Run Secret Leakage & Static Hygiene Check
         run: |
-          python -c "from backend.app.common.config import GlobalSettings; print('Config secret checks active')"
+          python -c "from backend.app.common.config import Settings, GlobalSettings; print('Config secret checks active')"

@@ -135,4 +135,7 @@ class Settings(BaseSettings):
                     )
 
 
+# Backwards compatibility alias
+GlobalSettings = Settings
+
 settings = Settings()
