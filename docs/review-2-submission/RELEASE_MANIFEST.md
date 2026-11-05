@@ -7,15 +7,15 @@
 
 ## 1. Release & Deployment Identity
 - **Repository Branch:** `main`
-- **Current Repository Commit:** `c2892aa`
+- **Current Repository Commit:** c2abd5d
 - **GitHub Upstream Remote:** `https://github.com/Khushbu112005/Finalyear_MajorProject`
 - **GitHub Fork Remote (Vercel-Connected):** `https://github.com/DEVANSHSAVLA/Finalyear_MajorProject`
 - **Canonical Public Frontend URL:** `https://civicsphere-web.vercel.app`
-- **Frontend Deployment ID:** `dpl_7xfYDbGja8ccJLM2CRjXrNUSWPUe` (Aliased from `civicsphere-rf9gxxnlm-devanshparagsavla1709-6335s-projects.vercel.app`)
-- **Frontend Source SHA:** `86710f2` / `c2892aa`
+- **Frontend Deployment ID:** dpl_HcSLpzgFmXku1VkAtYHZzYGzudFG (Aliased from civicsphere-d290yeyh6-devanshparagsavla1709-6335s-projects.vercel.app)
+- **Frontend Source SHA:** c2abd5d
 - **Canonical Public Backend URL:** `https://civicsphere-backend.vercel.app`
 - **Backend Deployment ID:** `dpl_2hhGayNGM4AfhvgqkayaN4SHGAzM`
-- **Backend Source SHA:** `86710f2` / `c2892aa`
+- **Backend Source SHA:** 86710f2
 - **Backend Health Check:** `HTTP 200 OK` (`{"status":"HEALTHY","service":"civicsphere_unified_backend"}`)
 
 ---
