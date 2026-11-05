@@ -805,7 +805,7 @@ def build_full_report():
         ["O7", "Document Triage", "Latency <= 2.0s", "Verified (1.62s)", "pdfplumber + Regex Parser benchmarked"],
         ["O8", "Durable Cloud Storage", "Byte-exact S3 roundtrip", "Verified", "Supabase S3 Private Bucket verified"],
         ["O9", "DPDP Principles", "Cascade Purge on Deletion", "100% Verified", "Atomic S3 + DB Deletion confirmed"],
-        ["O10", "Production Cloud", ">= 120 Tests, 0 Build Errors", "Operational", "136 Tests Pass (1 skipped), 31 Routes OK"]
+        ["O10", "Production Cloud", ">= 120 Tests, 0 Build Errors", "Operational", "136 Pass (1 skipped), 12 PM-KISAN, 5 Auth, 31 Routes"]
     ]
     t41 = doc.add_table(rows=len(t41_data), cols=5)
     t41.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -1134,9 +1134,18 @@ def build_full_report():
     add_subsec_heading(doc, "Test Suite Module 2: Government Service Navigator & Eligibility Logic")
     t_sch_data = [
         ["Test ID", "Test Function Name", "Category", "Citizen Demographic Input", "Expected Qualification Outcome", "Status"],
-        ["TC-SCH-01", "test_pm_kisan_small_marginal_farmer", "RuleEvaluation", "Farmer, Land=1.2 ha, Income=INR 1.2L", "QUALIFIED: PM-KISAN (INR 6,000/yr)", "PASS (11ms)"],
-        ["TC-SCH-02", "test_pm_kisan_eligible_over_two_hectares", "Regression", "Farmer, Land=5.2 ha, Income=INR 3.5L", "QUALIFIED: PM-KISAN (June 2019 Cabinet Expansion)", "PASS (10ms)"],
-        ["TC-SCH-02b", "test_pm_kisan_ineligible_institutional_holder", "Exclusion", "Farmer, Land=3.0 ha, Exclusion='Institutional'", "DISQUALIFIED: Institutional Landholder Exclusion", "PASS (9ms)"],
+        ["TC-PK-01", "test_pm_kisan_eligible_over_two_hectares", "Regression", "Farmer, Land=5.2 ha, Income=INR 3.5L", "CONFIRMED: Eligible (> 2 ha June 2019 Expansion)", "PASS (10ms)"],
+        ["TC-PK-02", "test_pm_kisan_small_marginal_farmer_eligible", "RuleEvaluation", "Farmer, Land=1.2 ha, Income=INR 1.2L", "CONFIRMED: Eligible (Small/Marginal Baseline)", "PASS (11ms)"],
+        ["TC-PK-03", "test_pm_kisan_ineligible_institutional_landholder", "Exclusion", "Institutional Landholder Entity", "FAILED: Institutional Landholder Exclusion #1", "PASS (9ms)"],
+        ["TC-PK-04", "test_pm_kisan_ineligible_constitutional_post_holder", "Exclusion", "Former/Present Constitutional Post", "FAILED: Constitutional Post Exclusion #2", "PASS (9ms)"],
+        ["TC-PK-05", "test_pm_kisan_ineligible_elected_representative", "Exclusion", "Minister, MP, MLA, Mayor, Panchayat", "FAILED: Elected Representative Exclusion #3", "PASS (9ms)"],
+        ["TC-PK-06", "test_pm_kisan_ineligible_regular_gov_employee", "Exclusion", "Serving/Retired Regular PSE Officer", "FAILED: Regular Gov Employee Exclusion #4", "PASS (9ms)"],
+        ["TC-PK-07", "test_pm_kisan_eligible_group_d_gov_employee_exception", "Exception", "Class IV / Group D / MTS Employee", "CONFIRMED: Group D Prescribed Exception #1", "PASS (10ms)"],
+        ["TC-PK-08", "test_pm_kisan_ineligible_high_pensioner", "Exclusion", "Retired non-Group D, Pension >= 10k", "FAILED: High Pensioner Exclusion #5", "PASS (9ms)"],
+        ["TC-PK-09", "test_pm_kisan_eligible_group_d_pensioner_exception", "Exception", "Retired Class IV/MTS, Pension >= 10k", "CONFIRMED: Group D Pensioner Exception #2", "PASS (10ms)"],
+        ["TC-PK-10", "test_pm_kisan_ineligible_income_tax_payee", "Exclusion", "Paid Income Tax in Last AY", "FAILED: Income Tax Payee Exclusion #6", "PASS (9ms)"],
+        ["TC-PK-11", "test_pm_kisan_ineligible_practicing_professional", "Exclusion", "Doctor, Engineer, Lawyer, CA", "FAILED: Practicing Professional Exclusion #7", "PASS (9ms)"],
+        ["TC-PK-12", "test_pm_kisan_verification_needed_unverified_land_records", "Verification", "Unverified Land Ownership RoR", "VERIFICATION_NEEDED: State Nodal e-KYC Pending", "PASS (8ms)"],
         ["TC-SCH-03", "test_ayushman_bharat_secc_match", "Eligibility", "BPL card holder, Rural deprivation", "QUALIFIED: PM-JAY (INR 5L cover)", "PASS (12ms)"],
         ["TC-SCH-04", "test_pmay_subsidy_ews_bracket", "Financial", "Household income=INR 2.8L, no pucca house", "QUALIFIED: PMAY Interest Subsidy (INR 2.67L)", "PASS (14ms)"],
         ["TC-SCH-05", "test_nsap_old_age_pension_age65", "Pension", "Age=68, BPL category", "QUALIFIED: NSAP Indira Gandhi Pension", "PASS (10ms)"],
@@ -1605,7 +1614,12 @@ def build_full_report():
     # =========================================================================
     doc.add_page_break()
     add_p(doc, "APPENDIX A: PRODUCTION ROUTE INVENTORY", bold=True, size=13.5, color=COLOR_NAVY, space_after=10)
-    add_p(doc, "Table A.1 documents the 20 audited live API and web routes on the production deployment, demonstrating 100% HTTP 200 OK availability.")
+    add_p(doc,
+        "Production system verification is partitioned into three distinct categories: "
+        "(1) Category A: Frontend Route Verification, where 20 of 20 audited live frontend routes returned HTTP 200 on production Vercel Edge infrastructure; "
+        "(2) Category B: Backend Security and Authorization, where backend API endpoints enforce server-side access control, returning expected HTTP 401/403 responses for unauthenticated or unauthorized requests, alongside separately recorded successful authorized operations; and "
+        "(3) Category C: Durable Cloud Storage, verifying byte-exact cross-invocation persistence and presigned access token gating."
+    )
 
     tA1_data = [
         ["HTTP Method", "Endpoint Route", "Access Level", "Verified Functional Description"],
@@ -1630,7 +1644,7 @@ def build_full_report():
         ["GET", "/api/v1/admin/audit-logs", "Administrator", "Immutable audit trail inspection (RBAC enforced)"],
         ["GET", "/api/v1/health", "Public", "Backend service health check and provider status"]
     ]
-    tA1 = doc.add_table(rows=len(tA1_data), cols=4)
+    tA1 = doc.add_table(rows=len(tA1_data), cols=5)
     tA1.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(tA1)
     for r_idx, row in enumerate(tA1_data):

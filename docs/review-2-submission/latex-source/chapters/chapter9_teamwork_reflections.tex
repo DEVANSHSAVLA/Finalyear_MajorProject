@@ -42,7 +42,7 @@ The engineering team conducted a root cause analysis during Sprint 4. Devansh an
 Rahul and Devansh engineered an asynchronous Supabase Cloud Storage Adapter utilizing S3-compatible private buckets. Uploaded byte streams are written directly to encrypted object storage. Upon successful storage write, the adapter returns a persistent storage path, while metadata is committed to the Supabase PostgreSQL database. For retrieval, the adapter generates presigned, time-limited tokens (valid for 60 minutes), strictly enforcing access control.
 
 \subsection{Empirical Verification}
-The squad authored automated end-to-end regression scripts (\texttt{test\_authenticated\_doc\_upload.py}) verifying that a synthetic PDF uploaded in one invocation is retrievable across independent invocations, achieving 100\% byte-exact roundtrip persistence and closing the critical blocker.
+The squad authored automated end-to-end regression scripts (\path{test_authenticated_doc_upload.py}) verifying that a synthetic PDF uploaded in one invocation is retrievable across independent invocations, achieving 100\% byte-exact roundtrip persistence and closing the critical blocker.
 
 \section{Individual Student Reflections}
 \label{sec:student_reflections}

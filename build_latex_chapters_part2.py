@@ -26,7 +26,7 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
     \item \textbf{Objective O2 (Hybrid RRF Retrieval Engine):} Develop a hybrid information retrieval engine fusing sparse lexical keyword matching (BM25) with dense semantic vector embeddings (deterministic 384-dimensional token feature-hashing vectorization, optimized for low-latency serverless execution and dense similarity search) utilizing Reciprocal Rank Fusion ($k=60$).
     \begin{itemize}
         \item \textit{Acceptance Criterion:} Achieve Top-3 retrieval recall $\ge 85\%$ across a benchmark of 50 complex Indian statutory queries.
-        \item \textit{Review 2 Status:} \textbf{Verified (88.4\% Top-3 Recall).}
+        \item \textit{Review 2 Status:} \textbf{Verified (88.4\% Top-3 Recall on internal 50-query benchmark using deterministic 384-d feature hashing + BM25 RRF).}
     \end{itemize}
 
     \item \textbf{Objective O3 (Citation Grounding and Hallucination Suppression):} Implement a deterministic post-retrieval verification circuit breaker (Gate 2, with confidence threshold $\tau = 0.75$) that checks retrieved claim-to-evidence text overlap.
@@ -56,7 +56,7 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
     \item \textbf{Objective O7 (Heuristic Document Triage and Extraction):} Build an intelligent document processing pipeline using pdfplumber and regular expression heuristics to extract critical legal metadata.
     \begin{itemize}
         \item \textit{Acceptance Criterion:} Average processing and metadata extraction latency $\le 2.0$ seconds for standard citizen PDF notices.
-        \item \textit{Review 2 Status:} \textbf{Verified (Mean latency: 1.62 seconds).}
+        \item \textit{Review 2 Status:} \textbf{Verified (1.62s single measured test sample).}
     \end{itemize}
 
     \item \textbf{Objective O8 (Durable Cloud Storage Persistence):} Resolve the serverless container `/tmp` storage blocker by engineering an asynchronous Supabase S3-compatible cloud storage adapter.
@@ -65,16 +65,16 @@ In rigorous alignment with Level 4 (Exemplary) descriptors of the official colle
         \item \textit{Review 2 Status:} \textbf{Verified (SHA-256 byte-exact roundtrip confirmed).}
     \end{itemize}
 
-    \item \textbf{Objective O9 (DPDP Act 2023 Principles Alignment):} Enforce strict personal data protection controls, including JWT role-based access control, encrypted document storage, zero third-party telemetry, and cascade deletion.
+    \item \textbf{Objective O9 (DPDP Act 2023 Technical Safeguards Alignment):} Implement and test technical privacy safeguards aligned with DPDP Act 2023 principles.
     \begin{itemize}
-        \item \textit{Acceptance Criterion:} Atomically purge all document files from S3 and records from database upon user account deletion request.
-        \item \textit{Review 2 Status:} \textbf{100\% Complete and Verified.}
+        \item \textit{Acceptance Criterion:} Selected technical safeguards aligned with relevant DPDP Act 2023 principles have been implemented and tested. These include authentication, server-side authorization, private document storage, auditability and deletion workflows. Formal legal compliance certification has not been performed.
+        \item \textit{Review 2 Status:} \textbf{Technical Safeguards Verified (No formal certification).}
     \end{itemize}
 
     \item \textbf{Objective O10 (Production Cloud Deployment and Reliability):} Deploy the full-stack system to production cloud infrastructure (Vercel) with high availability and automated regression testing.
     \begin{itemize}
         \item \textit{Acceptance Criterion:} $\ge 99\%$ uptime, 0 static route build crashes, and $\ge 120$ passed backend unit/regression tests.
-        \item \textit{Review 2 Status:} \textbf{Operational (129 tests passed out of 130 collected [1 skipped], 31 Next.js 16 routes prerendered, 20/20 live API probes 200 OK).}
+        \item \textit{Review 2 Status:} \textbf{Operational (Full backend suite: 136 passed / 137 collected / 1 skipped [0 failed], 12 PM-KISAN regression tests included, separate 5/5 authorization tests, 31 frontend prerendered routes, 20 live frontend routes returning HTTP 200, and backend security probes with expected 401/403 results).}
     \end{itemize}
 \end{enumerate}
 
@@ -91,15 +91,15 @@ Table~\ref{tab:objectives_summary} provides the master matrix summarizing target
 \hline
 \textbf{Obj.} & \textbf{Objective Description} & \textbf{Quantitative Target} & \textbf{Review 2 Status} & \textbf{Empirical Evidence} \\ \hline
 \textbf{O1} & Unified Architecture & 4/4 Modules Integrated & 100\% Complete & FastAPI router + Next.js UI \\ \hline
-\textbf{O2} & Hybrid RRF Retrieval & Top-3 Recall $\ge 85\%$ & Verified (88.4\%) & 50-Query Benchmark Test \\ \hline
-\textbf{O3} & Citation Grounding & 0\% Hallucinated Sections & Verified (0.0\%) & Gate 2 Circuit Breaker Active \\ \hline
+\textbf{O2} & Hybrid RRF Retrieval & Top-3 Recall $\ge 85\%$ & Verified (88.4\%) & 50-Query Internal Benchmark (BM25+Hash) \\ \hline
+\textbf{O3} & Citation Grounding & 0 Ungrounded Citations & Verified (0 in test cases) & Gate 2 Circuit Breaker ($\tau=0.75$) \\ \hline
 \textbf{O4} & Statutory Corpus & 8 Core Indian Acts & 100\% Complete & Full hierarchical indexing \\ \hline
 \textbf{O5} & Scheme Navigator & $\ge 10$ Welfare Schemes & 100\% Complete & 12 Schemes seeded \& active \\ \hline
 \textbf{O6} & Knowledge Graph & $\ge 30$ Nodes, Multi-Hop & 100\% Complete & 40+ Nodes, 60+ Edges \\ \hline
-\textbf{O7} & Document Triage & Latency $\le 2.0$s & Verified (1.62s single sample) & pdfplumber + Regex Parser \\ \hline
+\textbf{O7} & Document Triage & Latency $\le 2.0$s & Verified (1.62s sample) & pdfplumber + Regex Parser \\ \hline
 \textbf{O8} & Durable Cloud Storage & Byte-exact S3 roundtrip & Verified & Supabase S3 Private Bucket \\ \hline
-\textbf{O9} & DPDP Privacy & Cascade Purge on Deletion & 100\% Verified & Atomic S3 + DB Deletion \\ \hline
-\textbf{O10} & Production Cloud & $\ge 120$ Tests, 0 Build Errors & Operational & 136 Tests Pass (1 skipped), 31 Routes OK \\ \hline
+\textbf{O9} & DPDP Privacy & Technical Safeguards & Verified (No formal cert) & Auth, RBAC, Storage, Deletion \\ \hline
+\textbf{O10} & Production Cloud & $\ge 120$ Tests, 0 Build Errors & Operational & 136 Pass (1 skipped), 12 PM-KISAN, 5 Auth, 31 Routes \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -264,7 +264,8 @@ The mathematical formulation of the Gate 2 circuit breaker is defined as:
 \begin{equation}
 \Gamma(Q, \mathcal{E}) = 
 \begin{cases} 
-\text{NeuralSynthesis}(Q, \mathcal{E}) & \text{if } \text{Sim}(Q, \mathcal{E}) \ge \tau \land \text{Citations}(\mathcal{E}) \neq \emptyset \\
+\text{NeuralSynthesis}(Q, \mathcal{E}) & \text{if } \text{Sim}(Q, \mathcal{E}) \ge \tau \\
+                                       & \quad \land \; \text{Citations}(\mathcal{E}) \neq \emptyset \\
 \text{DeterministicFallback}(Q, \mathcal{E}_{fallback}) & \text{otherwise}
 \end{cases}
 \label{eq:gate2_logic}

@@ -97,10 +97,40 @@ Module D processes citizen PDF documents through a resilient multi-stage pipelin
         \item \textit{Notice Numbers:} \texttt{Notice\textbackslash s*(?:No|Ref)?[\textbackslash s.:-]*([A-Z0-9/-]+)}
         \item \textit{Statutory Sections:} \texttt{Section\textbackslash s+([0-9]+[A-Za-z]?(?:\textbackslash ([0-9]+\textbackslash ))*)}
         \item \textit{Monetary Penalties:} \texttt{(?:INR|Rs\textbackslash .?)\textbackslash s*([\textbackslash d,]+(?:\textbackslash .\textbackslash d\{2\})?)}
-        \item \textit{Compliance Deadlines:} \texttt{(?:within|before|by)\textbackslash s+(\textbackslash d\{1,2\}[\textbackslash s/.-]+[A-Za-z0-9]+[\textbackslash s/.-]+\textbackslash d\{2,4\})}
+        \item \textit{Compliance Deadlines:} \texttt{(?:within|before|by)\textbackslash s+(\textbackslash d\{1,2\}[\textbackslash s/.-]+[A-Za-z0-9]+} \\
+        \hspace*{1.5cm} \texttt{[\textbackslash s/.-]+\textbackslash d\{2,4\})}
     \end{itemize}
     \item \textbf{Classification:} Determines document category with confidence score $\ge 0.85$.
 \end{enumerate}
+
+
+\subsection{PM-KISAN Scheme Statutory Regression Inventory (12 Tests)}
+\label{sec:pm_kisan_tests}
+Table~\ref{tab:pm_kisan_tests} documents the complete 12-test regression inventory verifying the official June 2019 PM-KISAN expansion and statutory exclusion guidelines (https://pmkisan.gov.in/).
+
+\begin{table}[H]
+\centering
+\caption{Complete 12-Test PM-KISAN Statutory Regression Inventory}
+\label{tab:pm_kisan_tests}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|p{5cm}|p{4.5cm}|p{3.2cm}|l|}
+\hline
+\textbf{Test ID} & \textbf{Test Scenario} & \textbf{Citizen Context Inputs} & \textbf{Statutory Rule / Exception} & \textbf{Result} \\ \hline
+TC-PK-01 & Landholding $>2$ ha Eligible & Farmer, 5.2 ha, verified land records & June 2019 Cabinet Expansion & PASS (CONFIRMED) \\ \hline
+TC-PK-02 & Small/Marginal Farmer & Farmer, 1.2 ha, verified records & Small/Marginal Baseline & PASS (CONFIRMED) \\ \hline
+TC-PK-03 & Institutional Landholder & Institutional entity holding land & Statutory Exclusion \#1 & PASS (FAILED) \\ \hline
+TC-PK-04 & Constitutional Post Holder & Former/present constitutional post & Statutory Exclusion \#2 & PASS (FAILED) \\ \hline
+TC-PK-05 & Elected Representative & Minister, MP, MLA, Mayor, Panchayat & Statutory Exclusion \#3 & PASS (FAILED) \\ \hline
+TC-PK-06 & Regular Government Employee & Serving/retired PSE/local body officer & Statutory Exclusion \#4 & PASS (FAILED) \\ \hline
+TC-PK-07 & Class IV / Group D Gov Exception & Serving Class IV / Group D / MTS & Prescribed Exception \#1 & PASS (CONFIRMED) \\ \hline
+TC-PK-08 & Pensioner $\ge$ INR 10,000/mo & Retired non-Group D, pension $\ge$ 10k & Statutory Exclusion \#5 & PASS (FAILED) \\ \hline
+TC-PK-09 & Group D Pensioner Exception & Retired Class IV/MTS, pension $\ge$ 10k & Prescribed Exception \#2 & PASS (CONFIRMED) \\ \hline
+TC-PK-10 & Income Tax Payee & Paid tax in last assessment year & Statutory Exclusion \#6 & PASS (FAILED) \\ \hline
+TC-PK-11 & Practicing Professional & Doctor, Engineer, Lawyer, CA, Architect & Statutory Exclusion \#7 & PASS (FAILED) \\ \hline
+TC-PK-12 & Unverified Land Records & Land records pending/unverified & District Nodal Verification & PASS (VERIF\_NEEDED) \\ \hline
+\end{tabular}%
+}
+\end{table}
 
 \section{Authentic Live System Prototype Showcase}
 \label{sec:prototype_showcase}
@@ -139,13 +169,12 @@ The deployed CivicSphere AI platform is illustrated in Figures~\ref{fig:screens_
 To guarantee software engineering excellence, CivicSphere AI was subjected to an exhaustive automated test battery on production infrastructure:
 
 \begin{itemize}
-    \item \textbf{136 Passed Backend Automated Tests (137 Collected, 1 Skipped):}
+    \item \textbf{136 Passed Backend Automated Tests (137 Collected, 1 Skipped, 0 Failed):}
     \begin{itemize}
-        \item 124 Unit, Functional, and Security Tests: Complete coverage of query normalization, BM25 indexing, dense vector search, Gate 2 circuit-breaker triggering, scheme eligibility logic, and PDF heuristic regex parsing.
-        \item 12 Dedicated PM-KISAN Statutory Tests: Explicit verification of PM-KISAN June 2019 expansion (farmers with $>2$ hectares eligible), all 7 official statutory exclusions, preserved Class IV / Group D / MTS exceptions, and \texttt{VERIFICATION\_NEEDED} state.
-        \item 5 Server-Side Authorization Enforcement Tests: Validates that unauthenticated users and unauthorized citizen roles cannot access administrator routes (HTTP 401/403 enforced at backend gateway, independent of frontend guards).
-        \item 1 Skipped Test: \texttt{test\_live\_sources\_smoke.py} skipped due to external live internet network dependency in isolated test environments.
-        \item Test Execution Outcome: \textbf{136 passed, 1 skipped in 54.35s.}
+        \item Full Backend Pytest Suite: 136 passed out of 137 collected items in 60.45s (1 skipped: \texttt{test\_live\_sources\_smoke.py} due to network isolation in CI/CD).
+        \item 12 PM-KISAN Regression Tests: Included within the full suite, rigorously confirming the June 2019 expansion to all landholding families regardless of land size ($>2$ ha), all 7 official statutory exclusions, preserved Class IV / Group D exceptions, and \texttt{VERIFICATION\_NEEDED} state.
+        \item Separate Focused Authorization Suite: 5 dedicated server-side negative authorization tests (5 passed in 1.03s), verifying HTTP 401 unauthenticated denial, HTTP 403 citizen access denial to admin routes, cross-user IDOR blocking, and admin self-deletion blocking.
+        \item No Double Counting: The 12 PM-KISAN tests are part of the 136 passed backend tests. The 5 authorization tests constitute a separate focused security audit suite.
     \end{itemize}
 
     \item \textbf{31 Static Frontend Routes Prerendered:}

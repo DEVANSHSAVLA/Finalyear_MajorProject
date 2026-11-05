@@ -251,7 +251,7 @@ BIB_CONTENT = r"""@article{nigam2026ailqa,
   year      = {2022}
 }
 
-@article{xu2020layoutlm,
+@inproceedings{xu2020layoutlm,
   author    = {Y. Xu and M. Li and L. Cui and S. Huang and F. Wei and M. Zhou},
   title     = {{LayoutLM}: Pre-training of Text and Layout for Document Image Understanding},
   booktitle = {Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},

@@ -15,7 +15,7 @@ from backend.app.common.database import get_db_session
 from backend.app.common.errors import CivicSphereException
 from backend.app.government.models import GovernmentServiceModel
 from backend.app.government.services.ai_service import GovernmentAIService
-from backend.app.government.services.eligibility import check_eligibility
+from backend.app.government.services.eligibility import check_eligibility, evaluate_pm_kisan_eligibility
 from backend.app.government.services.recommendation import recommend_services
 from data.seed.seed_government_services import SEED_GOVERNMENT_SCHEMES
 
@@ -113,6 +113,27 @@ async def check_service_eligibility(
     db: AsyncSession = Depends(get_db_session),
 ):
     """Checks citizen eligibility for a specific government service."""
+    if payload.service_id in ("gov_pm_kisan", "pm-kisan", "pm_kisan"):
+        pm_res = evaluate_pm_kisan_eligibility(payload.citizen_context)
+        return ApiResponse(
+            data={
+                "service_id": payload.service_id,
+                "eligibility": {
+                    "status": pm_res["status"],
+                    "is_eligible": pm_res["is_eligible"],
+                    "confidence": pm_res["confidence"],
+                    "reasons": pm_res["reasons"],
+                    "failed": [{"field": f, "description": f} for f in pm_res["failed_checks"]],
+                    "confirmed": [{"field": c, "description": c} for c in pm_res["confirmed_checks"]],
+                    "unknown": [{"field": u, "description": u} for u in pm_res["unknown_checks"]],
+                    "exclusions_applied": pm_res["exclusions_applied"],
+                    "exceptions_applied": pm_res["exceptions_applied"],
+                    "percent_complete": 100 if pm_res["status"] != "VERIFICATION_NEEDED" else 75,
+                }
+            },
+            confidence=pm_res["confidence"],
+        )
+
     rules = []
     try:
         res = await db.execute(select(GovernmentServiceModel).where(GovernmentServiceModel.service_id == payload.service_id))

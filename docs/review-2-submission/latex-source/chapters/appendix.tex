@@ -39,10 +39,10 @@ GET & \texttt{/api/v1/health} & Public & Backend service health check and provid
 
 \section{Core API Data Transfer Objects (Pydantic Models)}
 \label{sec:app_dtos}
-Listing~\ref{lst:pydantic_models} illustrates representative Pydantic DTO schemas governing inter-module communication within CivicSphere AI.
+Figure~\ref{fig:pydantic_models} illustrates representative Pydantic DTO schemas governing inter-module communication within CivicSphere AI.
 
 \begin{figure}[H]
-\refstepcounter{figure}\label{lst:pydantic_models}
+\label{fig:pydantic_models}
 \begin{verbatim}
 class LegalQueryRequest(BaseModel):
     query: str = Field(..., min_length=5, max_length=1000)

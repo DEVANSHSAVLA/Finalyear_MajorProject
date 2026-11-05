@@ -498,7 +498,7 @@ def create_presentation():
         ["O6", "Knowledge Graph Traversal", ">= 30 nodes & multi-hop relational search", "100% COMPLETE", "NetworkX graph (40+ nodes, 60+ edges)"],
         ["O7", "Document Metadata Extraction", "Sub-2.0 second triage of PDF notices", "VERIFIED", "Heuristic parser extracts dates, fines, refs"],
         ["O8", "Durable Private Cloud Storage", "Byte-exact persistent storage (S3)", "VERIFIED", "Supabase private S3 roundtrip verified"],
-        ["O9", "DPDP Principles Alignment", "Cascade deletion + zero telemetry leakage", "IMPLEMENTED", "Account & doc purge with audit retention"],
+        ["O9", "DPDP Technical Safeguards", "Safeguards tested; no formal certification", "IMPLEMENTED", "Auth, RBAC, private storage, deletion"],
         ["O10", "Production Cloud Deployment", ">= 99% availability & sub-1s UI responses", "OPERATIONAL", "Vercel live deployment (31 routes, 20 APIs)"]
     ]
 
@@ -949,7 +949,7 @@ def create_presentation():
     add_card(s24, Inches(0.6), Inches(1.3), Inches(3.9), Inches(5.5), "ACADEMIC CONTRIBUTIONS", [
         ("1. Evidence-Grounded Architecture:", "Demonstrated that domain-specific hybrid retrieval (BM25 + Dense) coupled with Gate 2 circuit-breakers substantially suppresses citation hallucination."),
         ("2. Cross-Domain Civic Synergy:", "Pioneered unified computational linking between statutory law, welfare schemes, and citizen paperwork in India."),
-        ("3. Privacy-First Civic Engineering:", "Demonstrated strict DPDP Act 2023 principles alignment with zero-telemetry and cascade hard deletion.")
+        ("3. Privacy-First Civic Engineering:", "Selected technical safeguards aligned with relevant DPDP Act 2023 principles implemented and tested (auth, RBAC, private storage, auditability, deletion; formal legal compliance certification has not been performed).")
     ], title_color=COLOR_NAVY)
 
     add_card(s24, Inches(4.7), Inches(1.3), Inches(3.9), Inches(5.5), "REVIEW 2 MILESTONES ACHIEVED", [

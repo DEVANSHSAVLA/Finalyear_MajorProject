@@ -87,7 +87,8 @@ The mathematical formulation of the Gate 2 circuit breaker is defined as:
 \begin{equation}
 \Gamma(Q, \mathcal{E}) = 
 \begin{cases} 
-\text{NeuralSynthesis}(Q, \mathcal{E}) & \text{if } \text{Sim}(Q, \mathcal{E}) \ge \tau \land \text{Citations}(\mathcal{E}) \neq \emptyset \\
+\text{NeuralSynthesis}(Q, \mathcal{E}) & \text{if } \text{Sim}(Q, \mathcal{E}) \ge \tau \\
+                                       & \quad \land \; \text{Citations}(\mathcal{E}) \neq \emptyset \\
 \text{DeterministicFallback}(Q, \mathcal{E}_{fallback}) & \text{otherwise}
 \end{cases}
 \label{eq:gate2_logic}
