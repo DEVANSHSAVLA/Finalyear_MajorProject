@@ -77,7 +77,7 @@ All requested deliverables have been generated, empirically verified, and deposi
 | **Module D (Document AI)** | Listed as "Planned / OCR-only" | **100% Operational** (Sub-2.0s heuristic regex parsing + durable Supabase S3 storage) |
 | **Cloud Storage** | Ephemeral `/tmp` container storage (crashed on serverless) | **Durable Supabase S3 Private Object Storage** (Byte-exact SHA-256 roundtrip verified) |
 | **Citation Verification** | Vulnerable to generative hallucination | **Gate 2 Circuit Breaker** active (No ungrounded statutory citations observed in evaluated test cases) |
-| **Testing Evidence** | Limited manual test logs | **136 Passing Automated Tests** (124 functional + 5 server-side authorization enforcement) |
+| **Testing Evidence** | Limited manual test logs | **136 Passing Automated Tests** (137 collected, 1 skipped; 12 PM-KISAN tests integrated; 5/5 dedicated authorization tests) |
 | **Frontend Verification** | Unverified routes | **31 Static Routes Prerendered** on Next.js 16 App Router (React 19) |
 | **Team Reflections** | Brief 50-word paragraphs | **180–240 Word In-Depth Reflections** per student engineer + verified industry exposure profiles |
 
