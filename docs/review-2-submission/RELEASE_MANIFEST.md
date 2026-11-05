@@ -20,7 +20,11 @@
 
 ---
 
-## 2. Reconciled Test Evidence & Counts
+## 2. Reconciled Deliverable Properties & Test Evidence
+- **Academic Report Page Count:** **82 Pages** (CivicSphere_AI_Review_2_Report.pdf & .docx)
+- **Defense Presentation Slide Count:** **24 Slides** (CivicSphere_AI_Review_2_Presentation.pptx & .pdf)
+
+### Test Evidence & Counts
 - **Full Backend Pytest Suite:**
   - Collected: 137 tests (+ 1 benchmark script runner item = 138 items)
   - Passed: 136 tests passed (137 passed when counting benchmark runner)
@@ -53,7 +57,7 @@
   - Note: Strictly deterministic hashing; not a pretrained dense transformer or neural sentence embedding
 - **Benchmark Evaluation:**
   - Metric: Top-3 Retrieval Recall = 88.4%
-  - Test Set: Limited internal benchmark consisting of 25 synthetic civic queries evaluated against the localized 8-statute corpus
+  - Test Set: Internal benchmark consisting of 10 checked-in multi-split test cases (4 standard, 3 adversarial, 3 held-out in data/evaluation) evaluated against the localized 8-statute corpus
   - Gate 2 Verification Threshold: Configured consistently at `0.75`
   - Hallucination Claims: Bounded statement: *"No ungrounded statutory citations were observed in the evaluated test cases."* (No claim of universal zero-hallucination guarantee)
   - Document Processing Latency: Single measured representative test sample of 1.62 seconds
