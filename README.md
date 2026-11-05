@@ -189,7 +189,7 @@ The authoritative final year major project verification and academic evaluation 
 7. **[Demonstration & Viva Voce Guide](docs/submission/DEMO_AND_VIVA_GUIDE.md)** — 10-minute viva presentation script, 7 demonstration workflows, and technical FAQ.
 8. **[Known Limitations & Technical Disclosures](docs/submission/KNOWN_LIMITATIONS.md)** — Transparent disclosures on mock embedding status, Supabase dormancy, and offline test markings.
 
----
+
 
 ## ⚖️ Statutory Disclaimer
 CivicSphere AI is an informational technology platform engineered to assist citizens in discovering published laws, regulations, and government schemes. Generated outputs do not constitute formal legal representation. For courtroom proceedings, please consult a qualified advocate or the Legal Aid Clinic.
