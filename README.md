@@ -7,7 +7,7 @@ sdk: gradio
 sdk_version: 4.44.0
 app_file: app.py
 pinned: false
----
+
 
 # CivicSphere AI — National Civic & Legal Intelligence Platform
 
