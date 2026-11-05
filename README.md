@@ -1,5 +1,5 @@
 
-title: CivicSphere AI Unified Backend
+Title: CivicSphere AI Unified Backend
 emoji: 🏛️
 colorFrom: blue
 colorTo: indigo
