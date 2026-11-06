@@ -9,7 +9,7 @@
 
 ## 1. Overview of the Research Foundation
 
-To ensure academic rigor, technical soundness, and defensible architectural decisions, CivicSphere AI is grounded in an exhaustive review of thirty-one peer-reviewed research papers and foundational specifications published in premier venues including **IEEE, ACM, Springer, ACL, EMNLP, ICLR, and ICML**.
+To ensure academic rigor, technical soundness, and defensible architectural decisions, CivicSphere AI is grounded in an exhaustive review of 30 peer-reviewed research papers (P01–P30) published in premier venues, supplemented by relevant statutory and technical references (P31: DPDP Act 2023) including **IEEE, ACM, Springer, ACL, EMNLP, ICLR, and ICML**.
 
 This document provides a systematic analysis of each reference, organized into seven core technical themes directly governing the development of CivicSphere AI.
 
@@ -19,7 +19,7 @@ This document provides a systematic analysis of each reference, organized into s
 
 ```mermaid
 flowchart TD
-    Research["CivicSphere AI Research Foundation (31 Papers)"]
+    Research["CivicSphere AI Research Foundation (30 Papers + Statutory References)"]
     Research --> T1["Theme 1: Legal AI & Indian Legal QA (P01, P02, P03, P07, P08)"]
     Research --> T2["Theme 2: Legal NLP & Rhetorical Role Extraction (P04, P05, P06, P11, P12)"]
     Research --> T3["Theme 3: Legal Information Retrieval & Entailment (P09, P10, P17, P18)"]

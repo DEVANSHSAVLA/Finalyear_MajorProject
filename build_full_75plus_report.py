@@ -134,61 +134,58 @@ def build_full_report():
 
     add_p(doc, "CERTIFICATE", bold=True, size=13.5, color=COLOR_NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4, line_spacing=1.1)
     
-    cert_text = (
-        "This is to certify that the project entitled \"CIVICSPHERE AI: EVIDENCE-GROUNDED CIVIC INTELLIGENCE PLATFORM\" "
-        "is a bona fide record of work carried out by Khushbu Chheda (23UF17711CM132), Devansh Savla (23UF18356CM172), "
-        "Anushka Adsul (124BTCM2002), and Rahul Singh (23UF18562CM189) under my supervision and guidance, in partial fulfillment "
-        "of the requirements for the award of the degree of Bachelor of Technology in Computer Engineering by Shah & Anchor Kutchhi "
-        "Engineering College (Autonomous), affiliated to the University of Mumbai, during the academic year 2026--2027.\n\n"
-        "It is further certified that the students have satisfied all the academic requirements for Major Project Review 2 and that "
-        "their work represents an authentic, demonstrable software engineering implementation of high academic and industrial quality."
-    )
-    add_p(doc, cert_text, size=10, space_after=6, line_spacing=1.15)
+    add_p(doc, "This is to certify that the project entitled \"CIVICSPHERE AI: EVIDENCE-GROUNDED CIVIC INTELLIGENCE PLATFORM\" is a bona fide record of work carried out by Khushbu Chheda (23UF17711CM132), Devansh Savla (23UF18356CM172), Anushka Adsul (124BTCM2002), and Rahul Singh (23UF18562CM189) under my supervision and guidance, in partial fulfillment of the requirements for the award of the degree of Bachelor of Technology in Computer Engineering by Shah & Anchor Kutchhi Engineering College (Autonomous), affiliated to the University of Mumbai, during the academic year 2026--2027.", size=10, space_after=6, line_spacing=1.15)
+    add_p(doc, "It is further certified that the students have satisfied all the academic requirements for Major Project Review 2 and that their work represents an authentic, demonstrable software engineering implementation of high academic and industrial quality.", size=10, space_after=10, line_spacing=1.15)
 
-    # Guide Signature Block
-    add_p(doc, "_________________________________________\nMrs. Shahzia Sayyad\nProject Guide & Assistant Professor\nDepartment of Computer Engineering", bold=True, size=9.5, space_after=6, line_spacing=1.1)
-    
     # Oral Examination Area
-    add_p(doc, "The Oral and Practical examination of Khushbu Chheda (23UF17711CM132), Devansh Savla (23UF18356CM172), Anushka Adsul (124BTCM2002), and Rahul Singh (23UF18562CM189), B.Tech. in Computer Engineering, has been conducted on: .......................................", size=9.5, space_after=6, line_spacing=1.1)
+    add_p(doc, "The Oral and Practical examination of Khushbu Chheda (23UF17711CM132), Devansh Savla (23UF18356CM172), Anushka Adsul (124BTCM2002), and Rahul Singh (23UF18562CM189), B.Tech. in Computer Engineering, has been conducted on: .......................................", size=9.5, space_after=10, line_spacing=1.15)
 
-    # Examiners and College Officials Signatures Table
-    sig_table = doc.add_table(rows=2, cols=3)
+    # Examiners and College Officials Signatures Table (3 rows x 2 columns, fixed width 3.1 inches per col)
+    sig_table = doc.add_table(rows=3, cols=2)
     sig_table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for r_idx, row in enumerate(sig_table.rows):
-        for c_idx, cell in enumerate(row.cells):
-            set_cell_margins(cell, top=20, bottom=20, left=25, right=25)
+    col_w = Inches(3.1)
+    for row in sig_table.rows:
+        for cell in row.cells:
+            cell.width = col_w
+            set_cell_margins(cell, top=30, bottom=30, left=40, right=40)
     
-    sig_table.cell(0, 0).paragraphs[0].text = "_______________________\nInternal Examiner\nName: "
-    sig_table.cell(0, 1).paragraphs[0].text = "_______________________\nExternal Examiner\nName: "
-    sig_table.cell(0, 2).paragraphs[0].text = "_______________________\nProject Guide\nMrs. Shahzia Sayyad"
-    sig_table.cell(1, 0).paragraphs[0].text = "_______________________\nHead of Department\nDr. Vidyullata Devmane"
-    sig_table.cell(1, 1).paragraphs[0].text = "_______________________\nPrincipal\nDr. Bhavesh Patel"
-    sig_table.cell(1, 2).paragraphs[0].text = "_______________________\nCollege Seal"
+    sig_blocks = [
+        # Row 0
+        ("___________________________________\nInternal Examiner\nName: .......................................",
+         "___________________________________\nExternal Examiner\nName: ......................................."),
+        # Row 1
+        ("___________________________________\nMrs. Shahzia Sayyad\nProject Guide\nAssistant Professor, Department of Computer Engineering",
+         "___________________________________\nDr. Vidyullata Devmane\nHead of Department\nDepartment of Computer Engineering"),
+        # Row 2
+        ("___________________________________\nDr. Bhavesh Patel\nPrincipal\nShah & Anchor Kutchhi Engineering College",
+         "___________________________________\nCollege Seal\nSAKEC, Mumbai")
+    ]
     
+    for r_idx, (c0_text, c1_text) in enumerate(sig_blocks):
+        c0 = sig_table.cell(r_idx, 0)
+        c1 = sig_table.cell(r_idx, 1)
+        c0.paragraphs[0].text = c0_text
+        c1.paragraphs[0].text = c1_text
+    
+    set_table_borders(sig_table, val="none")
     for row in sig_table.rows:
         for cell in row.cells:
             for p in cell.paragraphs:
                 p.paragraph_format.line_spacing = 1.05
-                p.paragraph_format.space_after = Pt(1)
-                p.paragraph_format.space_before = Pt(1)
-                if p.runs:
-                    p.runs[0].font.bold = True
-                    p.runs[0].font.size = Pt(8.5)
-                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_after = Pt(2)
+                p.paragraph_format.space_before = Pt(2)
+                p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                for run in p.runs:
+                    run.font.name = 'Times New Roman'
+                    run.font.size = Pt(8.5)
+                    run.font.color.rgb = COLOR_BODY
+                    run.font.bold = True
 
     # 3. CANDIDATE'S DECLARATION
     doc.add_page_break()
     add_p(doc, "CANDIDATE'S DECLARATION", bold=True, size=14, color=COLOR_NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
-    decl_text = (
-        "We, the undersigned students of the Department of Computer Engineering, Shah & Anchor Kutchhi Engineering College, "
-        "hereby declare that the project work entitled \"CIVICSPHERE AI: EVIDENCE-GROUNDED CIVIC INTELLIGENCE PLATFORM\" "
-        "is an authentic record of our own research, design, implementation, and empirical testing carried out under the guidance of "
-        "Mrs. Shahzia Sayyad during the academic year 2026--2027.\n\n"
-        "We affirm that the matter embodied in this report has not been submitted by us or by any other team to any other university "
-        "or institution for the award of any degree or diploma. All sources of literature, open-source libraries, statutory frameworks, "
-        "and published benchmarks have been duly cited and acknowledged in the bibliography."
-    )
-    add_p(doc, decl_text, size=10.5, line_spacing=1.2, space_after=12)
+    add_p(doc, "We, the undersigned students of the Department of Computer Engineering, Shah & Anchor Kutchhi Engineering College, hereby declare that the project work entitled \"CIVICSPHERE AI: EVIDENCE-GROUNDED CIVIC INTELLIGENCE PLATFORM\" is an authentic record of our own research, design, implementation, and empirical testing carried out under the guidance of Mrs. Shahzia Sayyad during the academic year 2026--2027.", size=10.5, line_spacing=1.2, space_after=8)
+    add_p(doc, "We affirm that the matter embodied in this report has not been submitted by us or by any other team to any other university or institution for the award of any degree or diploma. All sources of literature, open-source libraries, statutory frameworks, and published benchmarks have been duly cited and acknowledged in the bibliography.", size=10.5, line_spacing=1.2, space_after=12)
 
     dec_tbl = doc.add_table(rows=5, cols=3)
     dec_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -219,7 +216,7 @@ def build_full_report():
             else:
                 p.runs[0].font.size = Pt(10)
 
-    add_p(doc, "Date: .......................................\nPlace: Mumbai", size=10, space_before=10, space_after=0)
+    add_p(doc, "Date: .......................................\nPlace: Mumbai", size=10, align=WD_ALIGN_PARAGRAPH.LEFT, space_before=10, space_after=0)
 
     # 4. CERTIFICATE OF PLAGIARISM CHECK
     doc.add_page_break()
@@ -258,22 +255,10 @@ def build_full_report():
     # 5. ACKNOWLEDGEMENTS
     doc.add_page_break()
     add_p(doc, "ACKNOWLEDGEMENTS", bold=True, size=14, color=COLOR_NAVY, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=10)
-    ack_text = (
-        "We take immense pride in expressing our profound gratitude and heartfelt indebtedness to our esteemed project guide, "
-        "Mrs. Shahzia Sayyad, Assistant Professor, Department of Computer Engineering, for her inspiring mentorship, unwavering guidance, "
-        "and intellectual stimulation throughout the conception, development, and evaluation of CivicSphere AI. Her demanding academic "
-        "standards, continuous constructive critique, and deep insights into software architecture and AI trust were pivotal in transforming "
-        "our initial ideas into a robust, evidence-grounded production platform.\n\n"
-        "We are profoundly indebted to Dr. Vidyullata Devmane, Head of the Department of Computer Engineering, for her steadfast administrative "
-        "support, departmental facilities, and for fostering a rigorous research culture that inspired our pursuit of software excellence.\n\n"
-        "Our sincere thanks are due to Dr. Bhavesh Patel, Principal of Shah & Anchor Kutchhi Engineering College, for providing state-of-the-art "
-        "computational infrastructure and creating an environment where undergraduate students are empowered to engineer socially meaningful "
-        "technological solutions.\n\n"
-        "We also acknowledge the valuable feedback received from our departmental project reviewers, faculty members, and laboratory staff. "
-        "Finally, we express our boundless gratitude to our parents and families for their sacrifices, continuous encouragement, and moral support, "
-        "which served as our greatest source of strength throughout this intensive engineering endeavor."
-    )
-    add_p(doc, ack_text, size=10, line_spacing=1.15, space_after=6)
+    add_p(doc, "We take immense pride in expressing our profound gratitude and heartfelt indebtedness to our esteemed project guide, Mrs. Shahzia Sayyad, Assistant Professor, Department of Computer Engineering, for her inspiring mentorship, unwavering guidance, and intellectual stimulation throughout the conception, development, and evaluation of CivicSphere AI. Her demanding academic standards, continuous constructive critique, and deep insights into software architecture and AI trust were pivotal in transforming our initial ideas into a robust, evidence-grounded production platform.", size=10, line_spacing=1.15, space_after=6)
+    add_p(doc, "We are profoundly indebted to Dr. Vidyullata Devmane, Head of the Department of Computer Engineering, for her steadfast administrative support, departmental facilities, and for fostering a rigorous research culture that inspired our pursuit of software excellence.", size=10, line_spacing=1.15, space_after=6)
+    add_p(doc, "Our sincere thanks are due to Dr. Bhavesh Patel, Principal of Shah & Anchor Kutchhi Engineering College, for providing state-of-the-art computational infrastructure and creating an environment where undergraduate students are empowered to engineer socially meaningful technological solutions.", size=10, line_spacing=1.15, space_after=6)
+    add_p(doc, "We also acknowledge the valuable feedback received from our departmental project reviewers, faculty members, and laboratory staff. Finally, we express our boundless gratitude to our parents and families for their sacrifices, continuous encouragement, and moral support, which served as our greatest source of strength throughout this intensive engineering endeavor.", size=10, line_spacing=1.15, space_after=8)
     
     ack_tbl = doc.add_table(rows=4, cols=2)
     ack_tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -289,7 +274,7 @@ def build_full_report():
         p1.runs[0].font.size = Pt(9.5)
     set_table_borders(ack_tbl, val="none")
 
-    add_p(doc, "Shah & Anchor Kutchhi Engineering College, Mumbai\nDate: .......................................", italic=True, size=9.5, space_before=6, space_after=0)
+    add_p(doc, "Shah & Anchor Kutchhi Engineering College, Mumbai\nDate: .......................................", italic=True, size=9.5, align=WD_ALIGN_PARAGRAPH.LEFT, space_before=8, space_after=0)
 
     # 6. ABSTRACT
     doc.add_page_break()
@@ -311,7 +296,7 @@ def build_full_report():
         "(RRF) hybrid retrieval (BM25 sparse + dense embeddings); and (iv) an Intelligent Document Processing Pipeline featuring sub-2.0 second heuristic "
         "regex extraction of notices and summons, coupled with durable, serverless-compatible Supabase S3 cloud persistence and strict Digital Personal Data "
         "Protection (DPDP) Act 2023 cascade purge alignment.\n\n"
-        "Empirical verification on live production demonstrates a comprehensive pass rate across 129 backend automated tests (130 collected, 1 skipped "
+        "Empirical verification on live production demonstrates a comprehensive pass rate across 136 backend automated tests (137 collected, 1 skipped "
         "due to external network dependency, including 5 server-side authorization enforcement tests), error-free static prerendering of 31 Next.js 16 App Router "
         "frontend routes on React 19, 20 audited live frontend routes returning HTTP 200, and byte-exact roundtrip cloud storage persistence. By translating abstract "
         "statutory rights into plain-language, verifiable procedural roadmaps and official portal destinations (such as e-Jagriti: e-jagriti.gov.in), CivicSphere AI "
@@ -633,7 +618,7 @@ def build_full_report():
         ["Welfare Scheme Matching", "No", "Yes (Siloed search)", "Partial (Static/Outdated)", "Yes (Dynamic rule evaluation)"],
         ["Document Intelligence", "No (PDF download only)", "No (Upload only)", "Partial (Raw OCR/Vision)", "Yes (Civic regex + Supabase S3)"],
         ["Multi-Hop Relational Reasoning", "No", "No", "Weak (Unstructured text)", "Yes (NetworkX Knowledge Graph)"],
-        ["Data Privacy & DPDP Principles", "N/A (Public data only)", "Standard Gov servers", "Commercial Cloud (Data Risk)", "Yes (No telemetry + user purge)"],
+        ["Data Privacy & DPDP Principles", "N/A (Public data only)", "Standard Gov servers", "Commercial Cloud (External Data Risk)", "Technical DPDP safeguards implemented"],
         ["Durable Citizen Case Workspace", "No", "No", "No", "Yes (Encrypted case dossier)"]
     ]
     t22 = doc.add_table(rows=len(t22_data), cols=5)
@@ -679,7 +664,7 @@ def build_full_report():
     t23_data = [
         ["Identified Research Gap", "Engineered Technical Solution", "CivicSphere Implemented Architecture", "Empirical Validation"],
         ["Domain Fragmentation", "Unified Multi-Agent Orchestrator", "FastAPI router + shared Pydantic data schemas", "Seamless cross-module context passing"],
-        ["Retrieval Brittleness", "Reciprocal Rank Fusion (RRF) Hybrid Search", "BM25 sparse index + dense cosine vector fusion", "Top-3 retrieval recall improved to 88.4%"],
+        ["Retrieval Brittleness", "Reciprocal Rank Fusion (RRF) Hybrid Search", "BM25 sparse index + dense cosine vector fusion", "Mean MRR = 1.0000 on 10 multi-split evaluation cases"],
         ["Citation Hallucination", "Gate 2 Statutory Circuit Breaker", "Deterministic fallback + regex citation verification", "Zero ungrounded citations in benchmark suite"],
         ["Temporal Invalidation", "Relational Temporal Knowledge Graph", "NetworkX multigraph with 'valid_until' metadata", "Automatic flagging of amended/repealed Acts"],
         ["Uncontrolled Agency", "Strict Role-Based Tool Gating & RBAC", "JWT dependency-injected route security", "5/5 server-side auth tests passing"],
@@ -769,7 +754,7 @@ def build_full_report():
         "Review 2 Status: Operational.\n\n"
         "• Objective O2 (Hybrid RRF Retrieval Engine): Develop a hybrid information retrieval engine fusing sparse lexical keyword matching (BM25) "
         "with dense semantic vector embeddings (deterministic 384-dimensional token feature-hashing vectorization, optimized for low-latency serverless execution and dense similarity search) "
-        "utilizing Reciprocal Rank Fusion (k=60). Target: Top-3 recall >= 85%. Review 2 Status: Verified (88.4% Top-3 Recall).\n\n"
+        "utilizing Reciprocal Rank Fusion (k=60). Target: Top-3 recall >= 85%. Review 2 Status: Verified (Mean MRR = 1.0000 on 10 Evaluation Cases).\n\n"
         "• Objective O3 (Citation Grounding and Hallucination Suppression): Implement a deterministic post-retrieval verification circuit breaker "
         "(Gate 2) that checks retrieved claim-to-evidence text overlap. Target: 0 ungrounded citations in benchmark evaluation. Review 2 Status: Verified (Gate 2 active).\n\n"
         "• Objective O4 (Legal Guidance Engine Statutory Corpus): Ingest, structure, chunk, and index eight foundational Indian statutory frameworks "
@@ -797,7 +782,7 @@ def build_full_report():
     t41_data = [
         ["Obj. ID", "Objective Description", "Quantitative Target", "Review 2 Status", "Empirical Evidence"],
         ["O1", "Unified Architecture", "4/4 Modules Integrated", "100% Complete", "FastAPI router + Next.js UI operational"],
-        ["O2", "Hybrid RRF Retrieval", "Top-3 Recall >= 85%", "Verified (88.4%)", "50-Query Benchmark Test suite"],
+        ["O2", "Hybrid RRF Retrieval", "Top-3 Recall >= 85%", "Verified (MRR=1.00)", "10-Case Multi-Split Benchmark"],
         ["O3", "Citation Grounding", "0 Ungrounded Citations", "Verified (0.0%)", "Gate 2 Circuit Breaker Active"],
         ["O4", "Statutory Corpus", "8 Core Indian Acts", "100% Complete", "Full hierarchical indexing of all 8 Acts"],
         ["O5", "Scheme Navigator", ">= 10 Welfare Schemes", "100% Complete", "12 Schemes seeded & active (PM-KISAN expanded)"],
@@ -1718,14 +1703,14 @@ def build_full_report():
         "statutes of the University of Mumbai and Shah & Anchor Kutchhi Engineering College (Autonomous).\n\n"
         "1. Authenticity of Research: All 31 bibliography citations correspond to authentic, published scholarly works, conference "
         "proceedings, peer-reviewed journals, and official statutory enactments. No citation has been fabricated or hallucinated.\n\n"
-        "2. Ground Truth Verification: All 129 backend automated test passes, 31 statically prerendered routes, 20 live API HTTP 200 "
+        "2. Ground Truth Verification: All 136 backend automated test passes, 31 statically prerendered routes, 20 live API HTTP 200 "
         "status codes, and byte-exact Supabase S3 cloud storage roundtrips represent genuine empirical metrics generated through "
         "reproducible automated commands within the project repository.\n\n"
         "3. Privacy and DPDP Compliance: The platform architecture incorporates strict adherence to the Digital Personal Data "
         "Protection (DPDP) Act 2023, featuring client-side encryption, serverless isolation, role-based access control, and complete "
         "cascade deletion workflows upon citizen account termination.\n\n"
         "4. Environmental Responsibility: CivicSphere AI adopts green micro-compute design principles, utilizing serverless zero-idle "
-        "scale-to-zero compute and CPU-bound Reciprocal Rank Fusion, eliminating continuous GPU idling costs and minimizing carbon footprint."
+        "scale-to-zero compute and CPU-bound Reciprocal Rank Fusion, eliminating continuous GPU idling overhead through CPU-bound micro-compute."
     )
 
     doc_out = r"docs\review-2-submission\CivicSphere_AI_Review_2_Report.docx"

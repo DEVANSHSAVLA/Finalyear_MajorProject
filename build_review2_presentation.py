@@ -3,7 +3,7 @@ import sys
 import pptx
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 
 def create_presentation():
@@ -225,7 +225,7 @@ def create_presentation():
             ("System Architecture:", "5-tier modular monolith & API contracts (Slide 13)"),
             ("14-Step Workflow:", "Citizen query to validated evidence flow (Slide 14)"),
             ("Legal & Scheme Engines:", "Gate 2 circuit breaker & scheme rules (Slide 15)"),
-            ("Knowledge Graph & RRF:", "Hybrid BM25 + dense vector retrieval (Slide 16)"),
+            ("Knowledge Graph & RRF:", "Hybrid BM25 + deterministic 384-d feature-hash vectors (Slide 16)"),
             ("Document Processing:", "Heuristic parser & durable Supabase S3 (Slide 17)")
         ]),
         ("04. Live Demonstration", [
@@ -349,33 +349,40 @@ def create_presentation():
     s6 = prs.slides.add_slide(blank_layout)
     add_header(s6, "Existing Systems Comparison Matrix", "COMPREHENSIVE MULTI-DIMENSIONAL BENCHMARKING", 6)
 
-    # Table comparing systems
+    # Rebuilt Table: clean, uniform fonts, concise phrases, no overflow
     rows = [
-        ["Evaluation Dimension", "India Code / e-Courts", "myScheme / Gov Portals", "Commercial LLMs (GPT/Claude)", "CivicSphere AI (Ours)"],
-        ["Conversational Triage", "No (Keyword lookup only)", "No (Filter forms only)", "Yes (Generic conversational)", "Yes (Domain-tuned agentic)"],
-        ["Statutory Citation Grounding", "Yes (Static text dump)", "No (Informational only)", "No (Frequent hallucinations)", "Yes (Deterministic Gate 2 Verified)"],
-        ["Welfare Scheme Matching", "No", "Yes (Siloed search)", "Partial (Static/Outdated)", "Yes (Dynamic rule evaluation)"],
-        ["Document Intelligence", "No (PDF download only)", "No (Upload only)", "Partial (Raw OCR/Vision)", "Yes (Civic regex + Supabase S3)"],
-        ["Multi-Hop Relational Reasoning", "No", "No", "Weak (Unstructured text)", "Yes (NetworkX Knowledge Graph)"],
-        ["Data Privacy & DPDP Principles", "N/A (Public data only)", "Standard Gov servers", "Commercial Cloud (Data Risk)", "Yes (No telemetry + user-triggered purge)"],
-        ["Durable Citizen Case Workspace", "No", "No", "No", "Yes (Encrypted case dossier)"]
+        ["Evaluation Dimension", "India Code / e-Courts", "myScheme / Gov Portals", "Commercial LLMs", "CivicSphere AI (Ours)"],
+        ["Conversational Triage", "No (Keyword index only)", "No (Form filters only)", "Yes (Generic conversational)", "Yes (Domain-guided agentic)"],
+        ["Statutory Citation Grounding", "Yes (Static full-text)", "No (Informational summary)", "Variable (Prone to hallucination)", "Verified (Gate 2 Circuit Breaker)"],
+        ["Welfare Scheme Matching", "No (Statutory only)", "Yes (Siloed rule search)", "Partial (Static/Unverified)", "Yes (12 Central/State rules)"],
+        ["Document Intelligence", "No (Raw PDF download)", "No (Upload storage only)", "Partial (Raw OCR extraction)", "Yes (Civic regex + S3 storage)"],
+        ["Relational Reasoning", "No (Flat text corpus)", "No (Categorical tags)", "Weak (Unstructured context)", "Yes (NetworkX Knowledge Graph)"],
+        ["Data Privacy / DPDP", "Public records only", "Standard government hosting", "Third-party cloud data risks", "Technical DPDP safeguards"],
+        ["Durable Citizen Case Dossier", "No", "No", "No", "Yes (Durable private dossier)"]
     ]
 
-    shape_tbl = s6.shapes.add_table(8, 5, Inches(0.6), Inches(1.3), Inches(12.133), Inches(5.5))
+    shape_tbl = s6.shapes.add_table(8, 5, Inches(0.6), Inches(1.3), Inches(12.133), Inches(5.3))
     tbl = shape_tbl.table
-    tbl.columns[0].width = Inches(2.8)
-    tbl.columns[1].width = Inches(2.2)
-    tbl.columns[2].width = Inches(2.2)
-    tbl.columns[3].width = Inches(2.4)
-    tbl.columns[4].width = Inches(2.533)
+    tbl.columns[0].width = Inches(2.6)
+    tbl.columns[1].width = Inches(2.25)
+    tbl.columns[2].width = Inches(2.25)
+    tbl.columns[3].width = Inches(2.45)
+    tbl.columns[4].width = Inches(2.583)
 
     for r_idx, row in enumerate(rows):
+        tbl.rows[r_idx].height = Inches(0.62)
         for c_idx, val in enumerate(row):
             cell = tbl.cell(r_idx, c_idx)
             cell.text = val
+            cell.vertical_anchor = MSO_ANCHOR.MIDDLE
+            cell.margin_top = Pt(4)
+            cell.margin_bottom = Pt(4)
+            cell.margin_left = Pt(6)
+            cell.margin_right = Pt(6)
             p = cell.text_frame.paragraphs[0]
             p.font.name = FONT_MAIN
             p.font.size = Pt(9.5) if r_idx > 0 else Pt(10.5)
+            p.alignment = PP_ALIGN.CENTER if c_idx > 0 else PP_ALIGN.LEFT
             if r_idx == 0:
                 p.font.bold = True
                 p.font.color.rgb = COLOR_WHITE
@@ -440,30 +447,38 @@ def create_presentation():
     s8 = prs.slides.add_slide(blank_layout)
     add_header(s8, "Research Gap → Technical Solution → Implemented Architecture", "ENGINEERING TRANSLATION & RIGOROUS DESIGN DECISIONS", 8)
 
+    # Rebuilt Table: clean, uniform fonts, concise phrases, no overflow
     map_rows = [
         ["Identified Research Gap", "Engineered Technical Solution", "CivicSphere Implemented Architecture", "Empirical Validation"],
-        ["Domain Fragmentation", "Unified Multi-Agent Orchestrator", "FastAPI router + shared Pydantic data schemas", "Seamless cross-module context passing"],
-        ["Retrieval Brittleness", "Reciprocal Rank Fusion (RRF) Hybrid Search", "BM25 sparse index + dense cosine vector fusion", "Top-3 retrieval recall improved to 88.4%"],
-        ["Citation Hallucination", "Gate 2 Statutory Circuit Breaker", "Deterministic fallback + regex citation verification", "Zero ungrounded citations in benchmark suite"],
-        ["Temporal Invalidation", "Relational Temporal Knowledge Graph", "NetworkX multigraph with 'valid_until' metadata", "Automatic flagging of amended/repealed Acts"],
-        ["Uncontrolled Agency", "Strict Role-Based Tool Gating & RBAC", "JWT dependency-injected route security", "5/5 server-side auth tests passing"],
-        ["Document Disconnect", "Heuristic Civic Document Parser", "pdfplumber + regex extraction + Supabase S3", "Sub-2.0s parsing & byte-exact roundtrip"]
+        ["Domain Fragmentation", "Unified Multi-Agent Orchestrator", "FastAPI router + shared Pydantic data schemas", "Cross-module context passing"],
+        ["Retrieval Brittleness", "RRF Hybrid Search Fusion (k=60)", "BM25 sparse + deterministic 384-d feature hashing", "100% Pass / MRR 1.0000 on 10 cases"],
+        ["Citation Hallucination", "Gate 2 Statutory Circuit Breaker", "Deterministic fallback + regex statutory check", "No ungrounded citations in test cases"],
+        ["Temporal Invalidation", "Relational Temporal Knowledge Graph", "NetworkX multigraph with 'valid_until' metadata", "Flagged amended/repealed Acts"],
+        ["Uncontrolled Agency", "Strict Role-Based Tool Gating & RBAC", "JWT dependency-injected route security", "5/5 dedicated auth tests passed"],
+        ["Document Disconnect", "Heuristic Civic Document Parser", "pdfplumber + regex extraction + Supabase S3", "1.62s triage & byte-exact roundtrip"]
     ]
 
-    shape_tbl8 = s8.shapes.add_table(7, 4, Inches(0.6), Inches(1.3), Inches(12.133), Inches(5.5))
+    shape_tbl8 = s8.shapes.add_table(7, 4, Inches(0.6), Inches(1.3), Inches(12.133), Inches(5.3))
     tbl8 = shape_tbl8.table
-    tbl8.columns[0].width = Inches(2.6)
-    tbl8.columns[1].width = Inches(3.2)
-    tbl8.columns[2].width = Inches(3.6)
-    tbl8.columns[3].width = Inches(2.733)
+    tbl8.columns[0].width = Inches(2.4)
+    tbl8.columns[1].width = Inches(3.0)
+    tbl8.columns[2].width = Inches(3.8)
+    tbl8.columns[3].width = Inches(2.933)
 
     for r_idx, row in enumerate(map_rows):
+        tbl8.rows[r_idx].height = Inches(0.70)
         for c_idx, val in enumerate(row):
             cell = tbl8.cell(r_idx, c_idx)
             cell.text = val
+            cell.vertical_anchor = MSO_ANCHOR.MIDDLE
+            cell.margin_top = Pt(4)
+            cell.margin_bottom = Pt(4)
+            cell.margin_left = Pt(6)
+            cell.margin_right = Pt(6)
             p = cell.text_frame.paragraphs[0]
             p.font.name = FONT_MAIN
             p.font.size = Pt(9.5) if r_idx > 0 else Pt(10.5)
+            p.alignment = PP_ALIGN.CENTER if c_idx == 3 else PP_ALIGN.LEFT
             if r_idx == 0:
                 p.font.bold = True
                 p.font.color.rgb = COLOR_WHITE
@@ -671,13 +686,13 @@ def create_presentation():
             ("5. Specialist Dispatch:", "Routes to Legal, Scheme, or Doc agent.")
         ]),
         ("Phase 3: Hybrid Retrieval (Steps 6–8)", [
-            ("6. Hybrid Search:", "BM25 exact match + dense vector fusion."),
+            ("6. Hybrid Search:", "BM25 exact match + deterministic 384-d feature hashing."),
             ("7. Knowledge Graph:", "NetworkX multi-hop relational search."),
             ("8. Evidence Pack:", "Compiles ranked, immutable statutory chunks.")
         ]),
         ("Phase 4: Grounding & Safety (Steps 9–11)", [
             ("9. Gate 2 Verification:", "Citation circuit breaker checks grounds."),
-            ("10. Response Synthesis:", "Deterministic synthesis / real neural fallback."),
+            ("10. Response Synthesis:", "Operational deterministic synthesis (neural provider integration planned/conditional)."),
             ("11. Safety Injection:", "Adds legal disclaimer & helpline links.")
         ]),
         ("Phase 5: Delivery & Audit (Steps 12–14)", [
@@ -724,7 +739,7 @@ def create_presentation():
     ], title_color=COLOR_TEAL)
 
     add_card(s16, Inches(6.75), Inches(1.3), Inches(5.95), Inches(5.5), "RECIPROCAL RANK FUSION (RRF) ENGINE", [
-        ("Dual-Stream Retrieval:", "Combines lexical keyword matching (BM25) with dense vector search (deterministic 384-dimensional feature-hashing vectorization, optimized for low-latency serverless execution and dense similarity search)."),
+        ("Dual-Stream Retrieval:", "Hybrid retrieval combines BM25 lexical ranking with deterministic 384-dimensional token feature-hashing vectors using Reciprocal Rank Fusion (RRF, k=60). This vectorizer is deterministic and is not a pretrained neural sentence-embedding model."),
         ("Mathematical Formulation:", "RRF Score = Sum for m in M of (1 / (60 + rank_m(d))), ensuring balanced contribution from both sparse and dense ranks."),
         ("Why Pure Dense Search Fails:", "Dense embeddings often confuse Section 138 of the Negotiable Instruments Act with Section 138 of IPC due to semantic section embedding clustering."),
         ("Why BM25 Alone Fails:", "BM25 misses natural citizen queries like 'my landlord kicked me out without notice' because the word 'tenancy' or 'eviction' is absent."),
@@ -820,22 +835,25 @@ def create_presentation():
     add_header(s20, "Empirical Testing & Security Validation Results", "RIGOROUS REPRODUCIBLE TEST SUITE & PLATFORM METRICS", 20)
 
     test_metrics = [
-        ("136 PASSED BACKEND TESTS", "137 COLLECTED (1 SKIPPED)", [
-            ("124 Functional / Regression Tests:", "Full coverage of query classification, BM25 indexing, vector embeddings, Gate 2 circuit breaker, and scheme evaluation."),
-            ("5 Targeted Unit Tests (PM-KISAN):", "Verifies June 2019 Cabinet expansion (land > 2 ha eligible) and exclusion criteria enforcement."),
-            ("5 Server-Side Authorization Tests:", "Verifies that unauthenticated or citizen users cannot access admin endpoints (HTTP 401/403 enforced independently of frontend).")
+        ("136 PASSED BACKEND TESTS", "137 COLLECTED / 1 SKIPPED / 0 FAILED", [
+            ("Full Automated Regression Suite:", "136 passed out of 137 collected (1 skipped due to external smoke flag)."),
+            ("Integrated PM-KISAN Suite:", "12 dedicated statutory tests included directly within the full suite."),
+            ("Separate Authorization Suite:", "5/5 dedicated server-side authorization enforcement tests passed separately (evaluating 401 unauth, 403 RBAC, and IDOR isolation).")
         ]),
-        ("31 STATIC FRONTEND ROUTES", "ZERO PRERENDER CRASHES", [
-            ("Next.js 16 Build Verification:", "All 31 static and dynamic pages prerendered without hydration errors in modern React 19 architecture."),
-            ("Live HTTP Audit (20 Routes):", "Live HTTP production audit confirmed 20/20 critical endpoints responding with correct status codes.")
+        ("31 STATIC FRONTEND ROUTES", "ZERO BUILD ERRORS", [
+            ("Next.js 16 Production Build:", "31 static routes prerendered without hydration errors in Next.js App Router."),
+            ("Live Canonical Route Audit:", "27 of 27 live routes returned HTTP 200 OK on https://civicsphere-web.vercel.app."),
+            ("Negative Security Probes:", "Server-side security probes returned expected HTTP 401 Unauthorized / HTTP 403 Forbidden.")
         ]),
         ("DURABLE CLOUD STORAGE ADAPTER", "BYTE-EXACT S3 VERIFICATION", [
-            ("Supabase S3 Integration:", "Tested synthetic PDF upload, metadata persistence, and authenticated retrieval across fresh serverless instances."),
-            ("Byte-Exact Roundtrip:", "SHA-256 hash of downloaded file matches uploaded PDF perfectly; cross-tenant access denied.")
+            ("Supabase S3 Integration:", "Round-trip persistence across independent serverless function invocations."),
+            ("Byte-Exact Integrity:", "Downloaded bytes match uploaded PDF SHA-256 perfectly; cross-tenant access denied."),
+            ("Processing Latency:", "Representative test document parsed and triaged in 1.62 seconds.")
         ]),
         ("DPDP PRINCIPLES ALIGNMENT", "TECHNICAL SAFEGUARDS ALIGNED", [
-            ("Hard Account Deletion:", "User-initiated account deletion atomically purges all stored documents and linked case dossiers from Supabase storage and DB."),
-            ("Immutable Audit Retention:", "Retains non-identifiable audit hashes for regulatory compliance while wiping personal identifying data.")
+            ("Standardized Statement:", "Selected technical safeguards aligned with relevant DPDP Act 2023 principles implemented and tested."),
+            ("Implemented Controls:", "Authentication, server-side authorization, private document storage, auditability and deletion workflows."),
+            ("Legal Boundary:", "Formal legal compliance certification has not been performed.")
         ])
     ]
 
@@ -889,13 +907,13 @@ def create_presentation():
         ("Anushka Adsul (124BTCM2002)", [
             ("Core Role:", "Government Service Navigator & UI/UX Engineer."),
             ("Key Learnings:", "Implemented 12 central/state welfare schemes, rule-based eligibility evaluation, and Next.js UI."),
-            ("External Engagement:", "Completed Cloud Architecture & API Engineering industry certifications. [Proof Pending / Student Action]"),
+            ("External Engagement:", "Cloud Architecture & API Engineering training. [Organization details & documentary certificate proof pending student submission]"),
             ("Key Growth:", "Bridged complex bureaucratic rules with intuitive, accessible citizen interfaces.")
         ]),
         ("Rahul Singh (23UF18562CM189)", [
             ("Core Role:", "Document Processing & Storage Pipeline Lead."),
             ("Key Learnings:", "Engineered heuristic regex extractor, Supabase S3 adapter, and automated test suites."),
-            ("External Engagement:", "Completed Python Data Engineering & Test Automation industry training. [Proof Pending / Student Action]"),
+            ("External Engagement:", "Python Data Engineering & Test Automation training. [Organization details & documentary certificate proof pending student submission]"),
             ("Key Growth:", "Mastered secure cloud object storage, MIME validation, and DPDP Act compliance.")
         ])
     ]
@@ -947,7 +965,7 @@ def create_presentation():
     add_header(s24, "Conclusion & Academic Defense Summary", "CIVICSPHERE AI: SUMMARY OF ACHIEVEMENTS & CONTRIBUTIONS", 24)
 
     add_card(s24, Inches(0.6), Inches(1.3), Inches(3.9), Inches(5.5), "ACADEMIC CONTRIBUTIONS", [
-        ("1. Evidence-Grounded Architecture:", "Demonstrated that domain-specific hybrid retrieval (BM25 + Dense) coupled with Gate 2 circuit-breakers substantially suppresses citation hallucination."),
+        ("1. Evidence-Grounded Architecture:", "Demonstrated that domain-specific hybrid retrieval (BM25 + deterministic 384-d feature hashing) coupled with Gate 2 circuit-breakers substantially suppresses citation hallucination."),
         ("2. Cross-Domain Civic Synergy:", "Pioneered unified computational linking between statutory law, welfare schemes, and citizen paperwork in India."),
         ("3. Privacy-First Civic Engineering:", "Selected technical safeguards aligned with relevant DPDP Act 2023 principles implemented and tested (auth, RBAC, private storage, auditability, deletion; formal legal compliance certification has not been performed).")
     ], title_color=COLOR_NAVY)

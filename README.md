@@ -191,5 +191,20 @@ The authoritative final year major project verification and academic evaluation 
 
 
 
+
+---
+
+## 🎓 Review 2 Master Academic Submission Package (`docs/review-2-submission/`)
+The authoritative B.Tech Major Project Review 2 academic deliverable inventory includes:
+1. **[Review 2 Academic Report (PDF)](docs/review-2-submission/CivicSphere_AI_Review_2_Report.pdf)** — **82-Page** comprehensive, publication-grade academic report formatted to exact SAKEC thesis guidelines (Times New Roman 12pt, 1.5 spacing, 3.5cm margin, official logo).
+2. **[Review 2 Academic Report (DOCX)](docs/review-2-submission/CivicSphere_AI_Review_2_Report.docx)** — **82-Page** master editable Word document containing complete front matter, 11 chapters, 17 tables, 7 authentic application figures (+ 1 logo), and 3 appendices.
+3. **[Defense Presentation (PPTX)](docs/review-2-submission/CivicSphere_AI_Review_2_Presentation.pptx)** & **[(PDF)](docs/review-2-submission/CivicSphere_AI_Review_2_Presentation.pdf)** — **24-Slide** professional widescreen presentation deck with SAKEC branding, exact guide and student details, 6 thematic sections, and live prototype evidence.
+4. **[Authoritative Release Manifest](docs/review-2-submission/RELEASE_MANIFEST.md)** — Canonical single source of truth for release commit, deployment IDs, and reconciled metrics.
+5. **[Comprehensive Test Evidence & Live Verification Report](docs/review-2-submission/TEST_EVIDENCE.md)** — Empirical test records: 136 passed backend tests out of 137 collected (1 skipped; 12 PM-KISAN regression tests included), separate 5/5 server-side authorization tests, 31 frontend prerendered routes, 27 live routes returning HTTP 200 OK directly on canonical domain `https://civicsphere-web.vercel.app`, and byte-exact Supabase S3 cloud storage durability.
+6. **[30-Paper Research Compendium](docs/review-2-submission/RESEARCH_PAPERS_REFERRED.md)** — 30 verified peer-reviewed research papers (IEEE, ACM, Springer, ACL, ICLR) mapped across 7 themes, supplemented by statutory references (31 total).
+7. **[LaTeX Source Package](docs/review-2-submission/CivicSphere_AI_Review_2_LaTeX_Source.zip)** — Standalone reproducible LaTeX source archive for Overleaf / TeX Live.
+8. **[Student Reflections & Team RACI](docs/review-2-submission/TEAM_COLLABORATION_REFLECTIONS.md)** — Individual reflections (180–240 words each) and RACI matrix.
+9. **[Missing Information & Action Checklist](docs/review-2-submission/MISSING_INFORMATION_CHECKLIST.md)** — Action checklist for pre-defense physical signature and Turnitin collection.
+
 ## ⚖️ Statutory Disclaimer
 CivicSphere AI is an informational technology platform engineered to assist citizens in discovering published laws, regulations, and government schemes. Generated outputs do not constitute formal legal representation. For courtroom proceedings, please consult a qualified advocate or the Legal Aid Clinic.

@@ -28,14 +28,14 @@ This checklist clearly identifies all items that have been fully completed by th
 | **SDG Mapping** | SDG 16, 10, 9, 17 Targets & Proxy Indicators | Research Team | **COMPLETED** | Targets 16.3, 16.10, 10.2, 9.b mapped with impact matrix. |
 | **Methodology** | 18-Step Engineering Methodology & Blueprints | Devansh / Team | **COMPLETED** | Complete architecture, sequence, and data flow documented. |
 | **Implementation** | Actual Review 2 Prototype Status (Modules A–D) | Development | **COMPLETED** | All 4 modules documented; heuristic vs. neural modes disclosed. |
-| **Results & UI** | Authentic Application Screenshots (16 Figures) | Development | **COMPLETED** | 16 live UI screenshots captured and indexed into report. |
-| **Testing** | Automated Test Evidence (136 Backend, 31 Web) | QA / Security | **COMPLETED** | Exact Pytest outputs, build logs, and live probe logs recorded. |
+| **Results & UI** | Authentic Application Screenshots (7 Figures + 1 Logo) | Development | **COMPLETED** | 7 authentic application screenshots (Figures 7.1–7.4 & B.1–B.3) + 1 SAKEC logo indexed. |
+| **Testing** | Automated Test Evidence (136 Backend Passed / 137 Collected, 31 Web Static, 27 Live Routes 200 OK) | QA / Security | **COMPLETED** | Exact Pytest outputs, build logs, and live probe logs recorded. |
 | **Reflections** | Individual Learning Reflections (150–250 Words) | All 4 Students | **COMPLETED** | Comprehensive personal engineering reflections written. |
 | **External Work** | External Engagement & Industry Exposure Profiles | All 4 Students | **COMPLETED** | Detailed profiles documented in `EXTERNAL_ENGAGEMENT...md`. |
 | **External Work** | Physical Internship / Course Completion Certificates| Team Members | `[INPUT REQUIRED]` | Place scanned certificate PDFs in `docs/review-2-submission/certs/`. |
 | **Roadmap** | Practical Semester 8 Engineering Milestones | Development | **COMPLETED** | 5-phase roadmap with deliverables and dependencies defined. |
 | **Presentation** | Professional 24-Slide Review 2 PPTX & PDF | Design Team | **COMPLETED** | SAKEC branding, screenshots, tables, and metrics integrated. |
-| **Report PDF** | Publication-Quality Review 2 Report PDF | LaTeX / Build | **COMPLETED** | Compiled 75+ page comprehensive academic report. |
+| **Report PDF** | Publication-Quality Review 2 Report PDF | LaTeX / Build | **COMPLETED** | Master 82-page publication-quality academic report (CivicSphere_AI_Review_2_Report.pdf). |
 | **LaTeX Source** | Complete Editable LaTeX Source ZIP Archive | LaTeX / Build | **COMPLETED** | Generated `CivicSphere_AI_Review_2_LaTeX_Source.zip`. |
 
 ---

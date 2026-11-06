@@ -19,7 +19,7 @@ This document presents empirical, reproducible verification evidence for **Civic
 | **Server-Side Authorization** | Local Python 3.11 Environment | `pytest -p no:pytest_ethereum backend/tests/security/test_server_side_authorization.py` | 5 items | **5 passed, 0 failed** | 0.99s | **PASSED** |
 | **Frontend Static Prerender** | Monorepo Node.js 22 Environment | `npm run build` (Turbopack Next.js 16.4.2) | 31 routes | **31 routes compiled, 0 errors, 0 warnings** | 18.9s | **PASSED** |
 | **Frontend Static Analysis** | Monorepo Node.js 22 Environment | `cd apps/web; npx eslint src` | TypeScript / JSX | **0 errors, 0 warnings** | 3.4s | **PASSED** |
-| **Live Frontend Route Audit** | Production Vercel Edge (`bom1`) | `python scripts/verify_live_frontend_routes.py` | 20 routes | **20 of 20 routes returned HTTP 200 OK** | ~16s | **PASSED** |
+| **Live Frontend Route Audit** | Production Vercel Edge (`bom1`) | `python scripts/verify_live_frontend_routes.py` | 27 routes | **27 of 27 routes returned HTTP 200 OK directly on canonical domain** | ~14s | **PASSED** |
 | **Live Backend Security Audit** | Production Vercel Serverless (`iad1`) | `python scripts/verify_live_backend_security.py` | 15 probes | **9/9 unauth 401, 3/3 admin 403, IDOR 403, DPDP 200** | ~12s | **PASSED** |
 | **Live Cloud Storage Durability** | Supabase Cloud Storage Production | `python scripts/verify_live_production_storage.py` | 7 probes | **Byte-exact roundtrip, cross-invocation persistent** | ~9s | **PASSED** |
 
@@ -316,27 +316,26 @@ SERVER-SIDE AUTHORIZATION AND ERASURE AUDIT COMPLETE
 ### 5.3 Live Production PM-KISAN Statutory Eligibility Audit (12 Production Probes)
 
 - **Target Endpoint**: `POST https://civicsphere-backend.vercel.app/api/v1/government/check-eligibility`
-- **Active Deployment ID**: `dpl_2hhGayNGM4AfhvgqkayaN4SHGAzM` (Commit `86710f2`)
+- **Active Deployment ID**: `dpl_2hhGayNGM4AfhvgqkayaN4SHGAzM` (Source Commit `86710f2`)
 - **Scheme Evaluated**: PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)
-- **Statutory Rules Tested**: June 2019 Expansion (removal of 2-hectare ceiling), institutional landholder exclusion, constitutional post holder exclusion, elected representative exclusion, regular government employee exclusion, Class IV / Multi-Tasking Staff (MTS) exceptions, pensioner >= 10,000 INR exclusion and Class IV pensioner exception, income tax payee exclusion, registered practicing professional exclusion, and unverified land records requirement.
+- **Statutory Rules Tested**: June 2019 Expansion (removal of 2-hectare ceiling), institutional landholder exclusion, constitutional post holder exclusion, elected representative exclusion, regular government employee exclusion, Class IV / Multi-Tasking Staff (MTS) exceptions, pensioner >= ₹10,000 exclusion and Class IV pensioner exception, income tax payee exclusion, registered practicing professional exclusion, and unverified land records requirement.
 
-| # | Scenario / Citizen Profile | Key Request Payload Attributes | HTTP Status | Eligibility Outcome | Decision Status | Matched Exclusion / Reason | Verification Status |
+| # | Scenario / Citizen Profile | Key Request Payload Attributes | HTTP Status | Expected Eligibility | Observed Decision | Statutory Rule / Reason Verified | Probe Result |
 |---|---|---|:---:|:---:|:---:|---|:---:|
-| 1 | Farmer > 2 Hectares (4.5 ha) | `land_size_hectares: 4.5`, `is_farmer: true` | `200 OK` | `is_eligible: true` | `CONFIRMED` | Eligible under June 2019 Cabinet expansion (2-ha ceiling abolished) | **PASS** |
-| 2 | Small/Marginal Farmer (1.2 ha) | `land_size_hectares: 1.2`, `is_farmer: true` | `200 OK` | `is_eligible: true` | `CONFIRMED` | Standard smallholder eligibility confirmed | **PASS** |
-| 3 | Institutional Landholder | `is_institutional_landholder: true` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Institutional landholder | **PASS** |
-| 4 | Constitutional Post Holder | `is_constitutional_post_holder: true` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Former or present holder of constitutional posts | **PASS** |
-| 5 | Former/Present Elected Rep | `is_elected_representative: true` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Former and present MPs, MLAs, MLCs, Mayors, Chairpersons | **PASS** |
-| 6 | Regular Government Employee | `is_government_employee: true`, `is_class_iv_mts: false` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Serving/retired officer or employee of central/state ministries | **PASS** |
-| 7 | Class IV / MTS Employee (Exception) | `is_government_employee: true`, `is_class_iv_mts: true` | `200 OK` | `is_eligible: true` | `CONFIRMED` | Exception preserved: Group D / Class IV / MTS employee permitted | **PASS** |
-| 8 | High Pensioner (>= 10,000 INR/mo) | `monthly_pension_amount: 15000`, `is_class_iv_mts_pensioner: false` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Retired person with monthly pension >= 10,000 INR | **PASS** |
-| 9 | Class IV Pensioner >= 10,000 INR (Exception) | `monthly_pension_amount: 12000`, `is_class_iv_mts_pensioner: true` | `200 OK` | `is_eligible: true` | `CONFIRMED` | Exception preserved: Multi-Tasking Staff / Group D pensioner permitted | **PASS** |
-| 10 | Income Tax Payee (Last AY) | `paid_income_tax_last_ay: true` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Person who paid income tax in last assessment year | **PASS** |
-| 11 | Registered Practicing Professional | `is_practicing_professional: true`, `professional_practice: "Doctor"` | `200 OK` | `is_eligible: false` | `FAILED` | Excluded: Registered professionals (Doctors, Engineers, Lawyers, CAs, Architects) undertaking practice | **PASS** |
-| 12 | Unverified Land Records | `has_verified_land_records: false` | `200 OK` | `is_eligible: false` | `VERIFICATION_NEEDED` | Citizen required to complete land title e-KYC verification | **PASS** |
+| 1 | Farmer > 2 Hectares (4.5 ha) | `land_size_hectares: 4.5`, `is_farmer: true` | `200 OK` | **ELIGIBLE** | `CONFIRMED` | June 2019 Cabinet expansion applied (2-ha ceiling abolished) | **PASS** |
+| 2 | Small/Marginal Farmer (1.2 ha) | `land_size_hectares: 1.2`, `is_farmer: true` | `200 OK` | **ELIGIBLE** | `CONFIRMED` | Standard smallholder eligibility confirmed | **PASS** |
+| 3 | Institutional Landholder | `is_institutional_landholder: true` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Institutional landholder | **PASS** |
+| 4 | Constitutional Post Holder | `is_constitutional_post_holder: true` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Former or present holder of constitutional posts | **PASS** |
+| 5 | Former/Present Elected Rep | `is_elected_representative: true` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Former and present MPs, MLAs, MLCs, Mayors, Chairpersons | **PASS** |
+| 6 | Regular Government Employee | `is_government_employee: true`, `is_class_iv_mts: false` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Serving/retired officer or employee of ministries/depts | **PASS** |
+| 7 | Class IV / MTS Employee (Exception) | `is_government_employee: true`, `is_class_iv_mts: true` | `200 OK` | **ELIGIBLE** | `CONFIRMED` | Exception preserved: Group D / Class IV / MTS employee permitted | **PASS** |
+| 8 | High Pensioner (>= ₹10,000/mo) | `monthly_pension_amount: 15000`, `is_class_iv_mts_pensioner: false` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Retired person with monthly pension >= ₹10,000 | **PASS** |
+| 9 | Class IV Pensioner >= ₹10,000 (Exception) | `monthly_pension_amount: 12000`, `is_class_iv_mts_pensioner: true` | `200 OK` | **ELIGIBLE** | `CONFIRMED` | Exception preserved: Multi-Tasking Staff / Group D pensioner permitted | **PASS** |
+| 10 | Income Tax Payee (Last AY) | `paid_income_tax_last_ay: true` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Person who paid income tax in last assessment year | **PASS** |
+| 11 | Registered Practicing Professional | `is_practicing_professional: true`, `professional_practice: "Doctor"` | `200 OK` | **INELIGIBLE** | `FAILED` | Excluded: Registered professionals (Doctor/Engineer/Lawyer/CA) in practice | **PASS** |
+| 12 | Unverified Land Records | `has_verified_land_records: false` | `200 OK` | **VERIFICATION_NEEDED** | `VERIFICATION_NEEDED` | Citizen required to complete land title e-KYC verification | **PASS** |
 
-> **Live Probe Telemetry**: All 12 live production probes returned HTTP 200 with deterministic statutory eligibility decisions matching official PM-KISAN operational guidelines.
-
+> **Live Probe Telemetry**: All 12 live production probes returned HTTP 200 with deterministic statutory eligibility decisions matching official PM-KISAN operational guidelines (Probe Result: PASS across all 12 scenarios).
 
 ---
 

@@ -102,8 +102,8 @@ To preserve strict academic integrity:
 | :--- | :--- | :--- | :---: | :---: |
 | **Devansh Savla** | Data Science Internship | ElevateLabs | **VERIFIED IN REPO** (`Downloads/INTERNSHIP`) | `[PENDING STUDENT UPLOAD]` |
 | **Khushbu Chheda** | NLP / LLM Training | DeepLearning.AI / Coursera | **VERIFIED IN CODE** (`Module A Engine`) | `[PENDING STUDENT UPLOAD]` |
-| **Anushka Adsul** | Full-Stack Training | Web Dev Workshop / Cert | **VERIFIED IN CODE** (`Module B Catalog`) | `[PENDING STUDENT UPLOAD]` |
-| **Rahul Singh** | Cloud Security Training | Cloud / Security Training | **VERIFIED IN CODE** (`Module D Storage`) | `[PENDING STUDENT UPLOAD]` |
+| **Anushka Adsul** | `124BTCM2002` | Cloud Architecture & API Engineering Training | Course details and documentary certificate proof pending student submission | `[PENDING STUDENT UPLOAD]` |
+| **Rahul Singh** | `23UF18562CM189` | Python Data Engineering & Test Automation Training | Course details and documentary certificate proof pending student submission | `[PENDING STUDENT UPLOAD]` |
 
 > [!IMPORTANT]
 > **Action Required for Final College Submission**: Each student must scan and place their verified completion certificate PDF inside `docs/review-2-submission/certificates/` prior to final Department Academic Integrity Panel (DAIP) binder signing.
