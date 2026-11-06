@@ -1,0 +1,31 @@
+# Python / Dev cache
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.coverage
+htmlcov
+.tox
+.nox
+
+# Environment files (secrets are provided via Vercel Project Settings)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Git & Editor
+.git
+.github
+.vscode
+.idea
+
+# Local databases
+*.sqlite3
+*.db
+
+# Large submission source binaries (kept in git, excluded from serverless bundle)
+docs/review-2-submission/CivicSphere_AI_Review_2_LaTeX_Source.zip
+docs/review-2-submission/*.pptx
+docs/review-2-submission/*.docx

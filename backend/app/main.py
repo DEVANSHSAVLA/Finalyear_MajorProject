@@ -205,6 +205,20 @@ app.include_router(admin_router, prefix=settings.API_PREFIX)
 app.include_router(document_processing_router, prefix=settings.API_PREFIX)
 
 
+@app.get("/", tags=["Root"])
+async def root():
+    """Root entrypoint returning backend service metadata."""
+    return {
+        "status": "ONLINE",
+        "service": "CivicSphere AI Unified Backend",
+        "version": "1.0.0",
+        "health": "/health",
+        "docs": "/docs",
+        "api_prefix": settings.API_PREFIX,
+        "timestamp": time.time()
+    }
+
+
 @app.get("/health", tags=["Health"])
 @app.get("/healthz", tags=["Health"])
 @app.get(f"{settings.API_PREFIX}/health", tags=["Health"])
