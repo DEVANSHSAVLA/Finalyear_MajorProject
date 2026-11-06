@@ -15,7 +15,7 @@ This B.Tech Major Project report has presented the comprehensive research, desig
 \label{sec:main_findings}
 The empirical results achieved during Review 2 establish several key scientific findings:
 \begin{enumerate}
-    \item \textbf{Superiority of Hybrid RRF Retrieval:} Combining sparse BM25 lexical matching with deterministic 384-dimensional feature-hashing vectorization via Reciprocal Rank Fusion achieves an 88.4\% Top-3 recall, substantially outperforming either retrieval model in isolation on statutory queries.
+    \item \textbf{Effectiveness of Hybrid RRF Retrieval:} Combining sparse BM25 lexical matching with deterministic 384-dimensional feature-hashing vectorization via Reciprocal Rank Fusion achieves Mean MRR = 1.0000 across evaluated test cases, prioritizing authoritative statutory sections without neural sentence-embedding overhead.
     \item \textbf{Elimination of Hallucination via Circuit Breakers:} Requiring semantic overlap verification before generating natural language advice completely eliminates false statutory claims, validating the efficacy of neuro-symbolic guardrails in high-stakes public AI.
     \item \textbf{Viability of Lightweight Document Heuristics:} Domain-specific regex heuristics achieve an average parsing latency of 1.62 seconds on commodity serverless compute, proving that heavy visual transformer models are not strictly necessary for standard civic notice triage.
     \item \textbf{Resolution of Serverless Storage Fragility:} Decoupling file persistence into private, presigned S3 object buckets completely resolves serverless container cold-start crashes, guaranteeing byte-exact document persistence across invocations.

@@ -7,7 +7,7 @@
 
 ## 1. Release & Deployment Identity
 - **Repository Branch:** `main`
-- **Current Repository Commit:** `5b4ec2a` (Documentation, manifest, presentation, and evidence synchronization)
+- **Current Repository Documentation Commit:** Synchronized with latest documentation and evidence pass on branch `main` (Documentation, manifest, presentation, and evidence synchronization)
 - **GitHub Upstream Remote:** `https://github.com/Khushbu112005/Finalyear_MajorProject`
 - **GitHub Fork Remote (Vercel-Connected):** `https://github.com/DEVANSHSAVLA/Finalyear_MajorProject`
 - **Canonical Public Frontend URL:** `https://civicsphere-web.vercel.app`
@@ -64,7 +64,7 @@
   - Mean P@3 (Precision@3): 0.4286
   - Adversarial Block Rate: 100.0% (3/3 prompt injection / exfiltration attacks neutralized)
   - Average Retrieval Latency: 3.58 ms
-  - Gate 2 Circuit Breaker Threshold: Configured consistently at `0.75` (observed 1.0000 > 0.75, PASS)
+  - Gate 2 Circuit Breaker Threshold: Configured at `0.75` claim-to-evidence text overlap ratio (distinct operational threshold used at runtime for deterministic synthesis fallback; conceptually separate from the offline MRR ranking metric)
   - Bounded Statutory Citation Statement: *"No ungrounded statutory citations were observed in the evaluated test cases."* (No universal zero-hallucination guarantee)
   - Document Processing Latency: Single measured representative test sample of 1.62 seconds
 

@@ -58,7 +58,7 @@ All requested deliverables have been generated, empirically verified, and deposi
 | **2. Literature Review & Gap Analysis** | 20% | Systematic review of $\ge 8$ credible sources; critical comparison; clear technical gaps identified and mapped to architecture. | Chapter 2: 30 peer-reviewed papers (IEEE, ACM, Springer, ACL) mapped across 7 themes; Nyaya Setu critique; 7 research gaps; gap-to-solution matrix. |
 | **3. SDG Mapping & Sustainability** | 8% | Primary SDG alignment with specific targets/indicators; evidence-based impact; honest environmental and computational assessment. | Chapter 5: Primary SDG 16 (Targets 16.3, 16.10), SDG 10, SDG 9, SDG 17; Green AI compute profiling ($<0.0018\text{ kg CO}_2\text{e}/1,000\text{ queries}$). |
 | **4. System Architecture & Methodology** | 15% | Robust modular architecture; clean API contracts; hybrid retrieval; durable cloud persistence; multi-agent coordination. | Chapter 6 & 7: 5-Tier Modular Monolith; 14-step citizen flow; Gate 2 circuit breaker; Supabase private S3 storage adapter. |
-| **5. Implementation & Empirical Testing** | 20% | Truthful operational status across all core modules; reproducible automated test suite; production deployment verification. | Chapter 8: 136 passed backend tests; 31 prerendered static routes; 20 audited live frontend routes 200 OK (with separate backend probes); byte-exact SHA-256 cloud persistence; DPDP purge. |
+| **5. Implementation & Empirical Testing** | 20% | Truthful operational status across all core modules; reproducible automated test suite; production deployment verification. | Chapter 8: 136 passed backend tests (137 collected, 1 skipped); 31 prerendered static routes; 27 audited live canonical frontend routes 200 OK (with separate backend security probes); byte-exact SHA-256 cloud persistence; DPDP technical safeguards. |
 | **6. Teamwork & Individual Reflections** | 10% | Clear RACI matrix; authentic high-complexity engineering case study; individual deep learning reflections (180–240 words each). | Chapter 9: Squad RACI matrix; serverless cold-start case study; deep reflections for Devansh, Khushbu, Anushka, and Rahul; industry profiles. |
 | **7. Semester 8 Roadmap & Planning** | 8% | Practical, phased roadmap; risk assessment and mitigation protocols; well-defined final defense milestones. | Chapter 10: 5-phase Semester 8 delivery roadmap (Multilingual Indic NLP, LayoutLMv3, e-Courts API, 50-participant field trials, thesis defense). |
 | **8. Documentation & Presentation** | 7% | Professional academic presentation; SAKEC formatting; complete front matter; comprehensive documentation. | Strict SAKEC thesis guidelines (Times New Roman 12pt, 1.5 line spacing, 3.5cm margin, official logo, 82-page report, 24-slide PPTX/PDF). |
@@ -99,11 +99,11 @@ Please review [`MISSING_INFORMATION_CHECKLIST.md`](file:///c:/Users/Deepak%20Chh
 ## 5. Deployed Revision Identity & Verification Telemetry
 
 In accordance with release verification audit gates:
-- **Active Backend Deployment URL:** `https://civicsphere-backend.vercel.app`
-  - **Deployment ID:** `dpl_4sghEk5HHmVpBgpsW5ELN3gvuEpy` (Promoted Production, Deployed SHA: `966cc7f`)
-  - **Operational State:** HTTP 200 OK (`/api/v1/health`, `/api/v1/health/ready`, `/docs` Swagger UI, `/api/v1/legal/query` grounded retrieval)
-- **Canonical Frontend Deployment URL:** `https://civicsphere-web.vercel.app`
-  - **Deployment ID:** `dpl_3J4ZkpwtjSLas8ErKLEoBWxBmBvC` (Source SHA: `966cc7f`)
+- **Canonical Backend Deployment URL:** https://civicsphere-backend.vercel.app
+  - **Active Deployment ID:** dpl_2hhGayNGM4AfhvgqkayaN4SHGAzM (Source Commit: 86710f2)
+  - **Operational State:** HTTP 200 OK (/api/v1/health, /docs Swagger UI, /api/v1/legal/query grounded retrieval)
+- **Canonical Frontend Deployment URL:** https://civicsphere-web.vercel.app
+  - **Active Deployment ID:** dpl_HcSLpzgFmXku1VkAtYHZzYGzudFG (Source Commit: c2abd5d)
   - **Prerendered Route Inventory:** 31 routes generated with 0 build errors.
-  - **Public Access Action:** The canonical URL is currently protected by Vercel Team Deployment Protection (Vercel Authentication login screen). Disabling this setting in *Project Settings -> Deployment Protection* opens the web application to external evaluators without login barriers.
-- **Current Repository Revision:** Commit `d2d5730` on branch `main` (includes the complete 12-test PM-KISAN statutory routing and regression verification, passing all 136 backend tests locally, pending dashboard redeployment).
+  - **Live Canonical Route Audit:** 27 of 27 live routes returned HTTP 200 OK directly on canonical domain.
+- **Current Repository Documentation Revision:** Synchronized with latest documentation and evidence pass on branch main.

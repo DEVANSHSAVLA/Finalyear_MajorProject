@@ -35,14 +35,14 @@ The CivicSphere AI Major Project Report and accompanying technical artifacts hav
 As an advanced Computer Engineering project investigating **Retrieval-Augmented Generation, Knowledge Graphs, and Multi-Agent Systems**, CivicSphere AI utilizes AI technologies responsibly as an object of research and engineering development:
 
 - **AI as Engineering Artifact**: AI components embedded inside the CivicSphere application (BM25 keyword search, text embeddings, heuristic regex extractors, and LLM reasoning orchestrators) are subject to rigorous automated verification, unit tests, and out-of-domain circuit breakers.
-- **AI in Documentation**: Generative AI tools were utilized strictly for structural planning, LaTeX template formatting, and code documentation assistance. All technical claims, architecture diagrams, test results, and empirical tables reflect the actual ground truth of the checked-in Git repository (`https://github.com/Khushbu112005/Finalyear_MajorProject`).
+- **AI in Documentation**: Generative AI tools were utilized in accordance with SAKEC institutional policy as an assistive technology for drafting structure, stylistic editing, and documentation formatting. All factual claims, architectural descriptions, source code implementations, empirical test results, and benchmark metrics were developed, verified, and audited by the student project team against the checked-in repository (`https://github.com/Khushbu112005/Finalyear_MajorProject`).
 - **Zero Hallucinated Citations**: All 30 academic research papers cited in Chapter 2 and the Bibliography have been independently verified against official digital object identifiers (DOIs), IEEE Xplore, ACM Digital Library, and Springer Nature archives. Zero synthetic or non-existent papers exist in the report.
 
 ---
 
 ## 4. Next Steps for Final Verification Sign-Off
 
-1. **Step 1**: Compile final `CivicSphere_AI_Review_2_Report.pdf` from the updated LaTeX source.
+1. **Step 1**: Export final `CivicSphere_AI_Review_2_Report.pdf` from the master DOCX artifact via Word automation (with LaTeX source preserved for archival reproducibility).
 2. **Step 2**: Submit PDF file to the official Department Turnitin coordinator.
 3. **Step 3**: Receive the official Digital Receipt and Turnitin Originality Report.
 4. **Step 4**: Enter the verified similarity index percentage and verification date onto Page iv.

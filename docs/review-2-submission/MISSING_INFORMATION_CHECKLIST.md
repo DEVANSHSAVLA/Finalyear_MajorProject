@@ -35,7 +35,7 @@ This checklist clearly identifies all items that have been fully completed by th
 | **External Work** | Physical Internship / Course Completion Certificates| Team Members | `[INPUT REQUIRED]` | Place scanned certificate PDFs in `docs/review-2-submission/certs/`. |
 | **Roadmap** | Practical Semester 8 Engineering Milestones | Development | **COMPLETED** | 5-phase roadmap with deliverables and dependencies defined. |
 | **Presentation** | Professional 24-Slide Review 2 PPTX & PDF | Design Team | **COMPLETED** | SAKEC branding, screenshots, tables, and metrics integrated. |
-| **Report PDF** | Publication-Quality Review 2 Report PDF | LaTeX / Build | **COMPLETED** | Master 82-page publication-quality academic report (CivicSphere_AI_Review_2_Report.pdf). |
+| **Report PDF** | Publication-Quality Review 2 Report PDF | Word COM Export | **COMPLETED** | Master 82-page publication-quality academic report (CivicSphere_AI_Review_2_Report.pdf). |
 | **LaTeX Source** | Complete Editable LaTeX Source ZIP Archive | LaTeX / Build | **COMPLETED** | Generated `CivicSphere_AI_Review_2_LaTeX_Source.zip`. |
 
 ---

@@ -197,7 +197,7 @@ def create_presentation():
         ("Unified Access:", "Bridging statutory law, welfare schemes & citizen documents."),
         ("Evidence-Grounded:", "Deterministic citation grounding with Gate 2 verification."),
         ("Privacy & Trust:", "Aligned with core DPDP Act 2023 principles & durable cloud storage."),
-        ("Empirical Testing:", "136 passed backend tests, 31 static web routes, 20 audited live frontend routes.")
+        ("Empirical Testing:", "136 passed backend tests (137 collected), 31 static web routes, 27 audited live canonical frontend routes (HTTP 200).")
     ], title_color=COLOR_TEAL)
 
     # =========================================================================
@@ -568,7 +568,7 @@ def create_presentation():
         ("Strict Non-Goal 2: No Automated Litigation:", "The platform does not auto-file court petitions or draft binding legal affidavits without human lawyer oversight."),
         ("Strict Non-Goal 3: No Unregulated Legal Advice:", "All outputs include statutory disclaimers and require confirmation by qualified legal professionals."),
         ("Jurisdictional Boundary:", "Strictly bounded to Indian Central Statutes and major State welfare policies (excludes foreign jurisdictions)."),
-        ("Privacy Boundary:", "Zero persistent tracking; user documents are isolated in private buckets and subject to instant purge on request.")
+        ("Privacy Safeguards:", "User documents isolated in private Supabase cloud storage buckets with authenticated deletion workflows.")
     ], title_color=COLOR_NAVY)
 
     # =========================================================================
@@ -590,9 +590,9 @@ def create_presentation():
     ], title_color=COLOR_TEAL)
 
     add_card(s11, Inches(8.8), Inches(1.3), Inches(3.9), Inches(5.5), "3. PRIVACY & ENTERPRISE DESIGN", [
-        ("DPDP Act 2023 Alignment:", "Enforces hard cascade deletion of user files and personal records with immutable audit log retention."),
-        ("Durable Supabase S3 Storage:", "Replaced fragile local `/tmp` with serverless-compatible encrypted private object buckets."),
-        ("Zero Telemetry Leakage:", "No citizen queries or uploaded documents are ever used for model retraining or external telemetry.")
+        ("DPDP Technical Safeguards:", "Selected technical safeguards aligned with relevant DPDP Act 2023 principles (auth, RBAC, private storage, deletion; not certified)."),
+        ("Durable Supabase S3 Storage:", "Replaced local ephemeral `/tmp` with serverless-compatible private object storage buckets."),
+        ("Tested Logging Controls:", "Sanitized application logs redact sensitive authorization headers and citizen credentials.")
     ], title_color=COLOR_NAVY)
 
     # =========================================================================
@@ -602,29 +602,29 @@ def create_presentation():
     add_header(s12, "Four Core Intelligence Modules (Review 2 Status)", "TRUTHFUL VERIFICATION OF COMPLETE MODULE IMPLEMENTATION", 12)
 
     modules_info = [
-        ("MODULE A: Legal Guidance Engine", "STATUS: OPERATIONAL (100% COMPLETE)", [
+        ("MODULE A: Legal Guidance Engine", "STATUS: OPERATIONAL (VERIFIED SCOPE)", [
             ("Statutory Coverage:", "8 major Indian Acts (BNS/IPC, BNSS/CrPC, Consumer Protection, RTI, IT Act, Labour, Senior Citizens, DV)."),
-            ("Retrieval Pipeline:", "Hybrid BM25 + dense vector search across granular statutory section chunks."),
-            ("Gate 2 Verification:", "Deterministic synthesis fallback prevents hallucinated citations."),
+            ("Retrieval Pipeline:", "Hybrid BM25 + deterministic 384-d feature-hashing vectors across statutory section chunks."),
+            ("Gate 2 Verification:", "Citation-grounding check with deterministic fallback (no universal zero-hallucination guarantee)."),
             ("Action Output:", "Procedural timeline, jurisdiction, authority, and official filing portals (e-Jagriti).")
         ]),
-        ("MODULE B: Government Service Navigator", "STATUS: OPERATIONAL (100% COMPLETE)", [
+        ("MODULE B: Government Service Navigator", "STATUS: OPERATIONAL (VERIFIED SCOPE)", [
             ("Scheme Catalog:", "12 verified Central & State welfare schemes (PM-KISAN, Ayushman Bharat, PMAY, NSAP, etc.)."),
             ("Eligibility Rules:", "Rule-based engine evaluating age, income, caste, landholding, and state (PM-KISAN 2019 expansion applied)."),
             ("Document Checklist:", "Exact documentation required for successful citizen application."),
             ("Grievance Escalation:", "Direct links to CPGRAMS and departmental appellate authorities.")
         ]),
-        ("MODULE C: Civic Knowledge & Agentic Graph", "STATUS: OPERATIONAL (100% COMPLETE)", [
+        ("MODULE C: Civic Knowledge & Agentic Graph", "STATUS: OPERATIONAL (VERIFIED SCOPE)", [
             ("Knowledge Graph:", "NetworkX multigraph with 40+ nodes connecting statutes, schemes & authorities."),
             ("Multi-Hop Reasoning:", "Traverses relational edges to discover hidden scheme entitlements."),
-            ("RRF Fusion:", "Combines sparse and dense retrieval streams into unified Evidence Packs."),
+            ("RRF Fusion:", "Combines sparse BM25 and deterministic hashed-vector retrieval into unified Evidence Packs."),
             ("Temporal Metadata:", "Flags amended and superseded legislative acts dynamically.")
         ]),
-        ("MODULE D: Intelligent Document Processing", "STATUS: OPERATIONAL (100% COMPLETE)", [
+        ("MODULE D: Intelligent Document Processing", "STATUS: OPERATIONAL (VERIFIED SCOPE)", [
             ("Durable Cloud Storage:", "Supabase private S3-compatible storage with signed URL access."),
             ("Heuristic Extraction:", "Regex parser extracts dates, notice numbers, fines, and sections."),
             ("Document Triage:", "Classifies summons, eviction notices, challans, and scheme forms in <2.0s."),
-            ("Privacy Cascade:", "DPDP Act aligned hard file deletion upon user command.")
+            ("Privacy Controls:", "Technical deletion workflows aligned with DPDP data minimization principles.")
         ])
     ]
 
@@ -645,7 +645,7 @@ def create_presentation():
     tiers = [
         ("Tier 1: Presentation Layer (Next.js 16 App Router)", [
             ("Modern Web UI:", "React 19 + Tailwind CSS + Lucide Icons; mobile responsive, light/dark mode support."),
-            ("31 Static Routes:", "Zero client-side crashes, fast prerendered static pages, client-side input validation.")
+            ("31 Static Routes:", "Turbopack prerendered static pages, client-side input validation, responsive UI.")
         ]),
         ("Tier 2: API Gateway & Security Perimeter", [
             ("FastAPI Backend:", "High-throughput asynchronous ASGI engine with Pydantic request/response validation."),
@@ -656,7 +656,7 @@ def create_presentation():
             ("State Management:", "Shared context bus routing queries to appropriate domain agents seamlessly.")
         ]),
         ("Tier 4: Hybrid Retrieval & Validation Engine", [
-            ("Hybrid Search:", "BM25 sparse retrieval + dense vector embeddings combined via Reciprocal Rank Fusion."),
+            ("Hybrid Search:", "BM25 sparse retrieval + deterministic 384-d feature-hashing vectors combined via Reciprocal Rank Fusion."),
             ("Gate 2 Circuit Breaker:", "Validates citation grounding before generating plain-language guidance.")
         ]),
         ("Tier 5: Persistence & Durable Storage Layer", [
@@ -696,7 +696,7 @@ def create_presentation():
             ("11. Safety Injection:", "Adds legal disclaimer & helpline links.")
         ]),
         ("Phase 5: Delivery & Audit (Steps 12–14)", [
-            ("12. Audit Logging:", "Captures query provenance (no PII leakage)."),
+            ("12. Audit Logging:", "Structured audit events with sensitive header and credential sanitization."),
             ("13. UI Rendering:", "Presents plain-language guide with citations."),
             ("14. Case Dossier:", "Citizen saves evidence to personal workspace.")
         ])
@@ -714,7 +714,7 @@ def create_presentation():
 
     add_card(s15, Inches(0.6), Inches(1.3), Inches(5.95), Inches(5.5), "MODULE A: LEGAL GUIDANCE ENGINE", [
         ("Statutory Corpus (8 Core Acts):", "Bharatiya Nyaya Sanhita (BNS 2023 / IPC), Bharatiya Nagarik Suraksha Sanhita (BNSS 2023 / CrPC), Consumer Protection Act 2019, Right to Information Act 2005, Information Technology Act 2000, Industrial Disputes Act 1947, Maintenance and Welfare of Parents and Senior Citizens Act 2007, Protection of Women from Domestic Violence Act 2005."),
-        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio. If ratio < 0.75 or citations are ambiguous, automatically switches to grounded deterministic synthesis, suppressing hallucinated statutory citations."),
+        ("Gate 2 Circuit Breaker Logic:", "Calculates claim-to-evidence overlap ratio (tau=0.75 threshold); automatically switches to deterministic fallback when evidence is ambiguous (no universal guarantee)."),
         ("Structured Guidance Output:", "Delivers plain-language rights summary, exact statutory sections, applicable court/tribunal jurisdiction, limitation periods, and official e-filing portals (e-Jagriti: e-jagriti.gov.in).")
     ], title_color=COLOR_NAVY)
 
@@ -741,7 +741,7 @@ def create_presentation():
     add_card(s16, Inches(6.75), Inches(1.3), Inches(5.95), Inches(5.5), "RECIPROCAL RANK FUSION (RRF) ENGINE", [
         ("Dual-Stream Retrieval:", "Hybrid retrieval combines BM25 lexical ranking with deterministic 384-dimensional token feature-hashing vectors using Reciprocal Rank Fusion (RRF, k=60). This vectorizer is deterministic and is not a pretrained neural sentence-embedding model."),
         ("Mathematical Formulation:", "RRF Score = Sum for m in M of (1 / (60 + rank_m(d))), ensuring balanced contribution from both sparse and dense ranks."),
-        ("Why Pure Dense Search Fails:", "Dense embeddings often confuse Section 138 of the Negotiable Instruments Act with Section 138 of IPC due to semantic section embedding clustering."),
+        ("Lexical-Hashing Synergy:", "Feature hashing captures sub-word n-gram patterns while BM25 enforces exact statutory term matching."),
         ("Why BM25 Alone Fails:", "BM25 misses natural citizen queries like 'my landlord kicked me out without notice' because the word 'tenancy' or 'eviction' is absent."),
         ("Unified Evidence Pack:", "Aggregates Top-5 retrieved chunks with source citations, similarity scores, and Act metadata into an immutable payload.")
     ], title_color=COLOR_NAVY)
